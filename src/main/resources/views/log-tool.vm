@@ -25,6 +25,16 @@
 		        <input id="end_date" class="input-large" type="text"/>
 		    </div>
 		</div>
+        <div class="control-group">
+		    <label for="option" class="control-label">Option</label>
+		    <div class="controls">
+		        <select id="option">
+		            <option value="both">Key search+Error Analysis</option>
+		            <option value="key">Key Search</option>
+		            <option value="error">Error Analysis</option>
+		        </select>
+		    </div>
+		</div>
         <div id="buttons" class="form-actions">
             <input type="button" class="btn btn-primary" id="analyse" value="Analyse"/>
         </div>

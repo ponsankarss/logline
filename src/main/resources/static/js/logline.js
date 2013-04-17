@@ -1,11 +1,12 @@
 LogForm = function(){
-    var folder, keys, startDate, endDate;
+    var folder, keys, startDate, endDate,option;
 
     var pick = function() {
 		folder = $("#folder").val();
 		keys = $("#keys").val();
 		startDate = $("#start_date").val();
 		endDate = $("#end_date").val();
+		option = $("#option").val();
 	};
 
     var post = function(){
@@ -17,7 +18,8 @@ LogForm = function(){
         		folder : folder,
         		keys : keys,
         		startDate: startDate,
-        		endDate: endDate
+        		endDate: endDate,
+        		option: option
         	},
         	type : "POST"
         }).done(displayResults);

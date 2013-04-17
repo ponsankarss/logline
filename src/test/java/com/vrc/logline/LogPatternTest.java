@@ -82,13 +82,19 @@ public class LogPatternTest {
                 "|dao.util.ReportQueryReader" +
                 "|Claim type cannot be determined for SCCF" +
                 "|There is no data to display for this tab" +
+                "|Message [\\w]{32} is not found."+
                 "|No matching records found");
         String line1 = "INFO com.bcbsa.blue2.xx.processor.common.configuration.b2config.ConfigReader - boid value: 7802[/ERROR]";
         String line2 = "INFO com.bcbsa.blue2.xx.processor.common.configuration.ejb.ExceptionProcessorStartUpBeanBean - boid value: 7802[/ERROR]";
         String line3 = "000100fe SystemOut O [2013-01-26 08:01:26,169] [MessageListenerThreadPool : 732] ERROR com.bcbsa.blue2.service.notification.ProcessInterplanMessageHandler - Blue2Exception in ProcessInterPlanMessageHandler.com.bcbsa.blue2.common.Blue2Exception: No matching records found";
+        String line4 = "000100fe SystemOut O [2013-01-26 08:01:26,169] Claim type cannot be determined for SCCF (16120130380013101).";
+        String line5 = "Message 0b400165e4d96766f9bc3953d425f8e7 is not found.";
+
         System.out.println(invalidPattern.matcher(line1).find());
         System.out.println(invalidPattern.matcher(line2).find());
         System.out.println(invalidPattern.matcher(line3).find());
+        System.out.println(invalidPattern.matcher(line4).find());
+        System.out.println(invalidPattern.matcher(line5).find());
 
         String toStrip = "[b2_node1.log.2][2013-01-23 10:43:24,606] [WebContainer : 23644] INFO com.bcbsa.blue2.service.dataservice.ClaimSummaryHandler - FindClaimDetailsInput.isRetrieveClaim = false";
         System.out.println(toStrip.replaceAll("\\[.*\\]",""));

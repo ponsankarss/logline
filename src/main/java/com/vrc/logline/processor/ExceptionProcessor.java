@@ -20,7 +20,20 @@ public class ExceptionProcessor implements Processor {
                 "|dao.util.ReportQueryReader" +
                 "|Claim type cannot be determined for SCCF" +
                 "|There is no data to display for this tab" +
-                "|No matching records found|(:?<.+>)");
+                "|The reply to Message ID"+
+                "|Message [\\w]{32} is not found."+
+                "|Authentication error during authentication for user"+
+                "|Authentication failed when using LTPA"+
+                "|Destination Plan Code is required"+
+                "|Invalid SCCF. It must be numeric"+
+                "|com.bcbsa.blue2.common.Blue2Exception: No matching records found"+
+                "|com.bcbsa.blue2.common.Blue2Exception: Comments is required"+
+                "|com.bcbsa.blue2.common.Blue2Exception: Invalid Action Code"+
+                "|Postal Code is invalid"+
+                "|Attempt Dates is required"+
+                "|Phone is required"+
+                "|No matching records found|(:?<.+>)"
+        );
     }
 
     @Override
@@ -39,6 +52,7 @@ public class ExceptionProcessor implements Processor {
                         || !(config.datePattern1().matcher(fileLine).find() || config.datePattern2().matcher(fileLine).find())) {
                     errorString.append(fileLine + "\n");
                 } else {
+                    if(invalidPattern.matcher(errorString.toString()).find()) continue;
                     allLines.addProcessedLine("[ERROR]" + errorString.toString() + "[/ERROR]");
                     inStack = false;
                 }
