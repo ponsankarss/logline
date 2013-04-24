@@ -10,6 +10,9 @@ HomePage = function(){
         $('a.config').click(function(){
           $.ajax({url : "config-tool",type : "GET"}).done(updateMainBoxForDiff);
         });
+        $('a.router').click(function(){
+          $.ajax({url : "router-view",type : "GET"}).done(updateMainBoxForRouter);
+        });
       };
 
       var updateMainBox = function(response){
@@ -31,6 +34,11 @@ HomePage = function(){
         updateMainBox(response);
         new LogForm().boot();
         new LogFetch().boot();
+      };
+
+      var updateMainBoxForRouter = function(response){
+        updateMainBox(response);
+        new Router().boot();
       };
 
       this.boot = function(){

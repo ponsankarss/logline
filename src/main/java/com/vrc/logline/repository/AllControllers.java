@@ -12,6 +12,8 @@ public class AllControllers {
 
     public AllControllers() {
         controllers.add(new StaticController());
+        controllers.add(new RouterController());
+        controllers.add(new RouterUpdateController());
         controllers.add(new LogSearchController());
         controllers.add(new LogDownloadController());
         controllers.add(new LogToolController());

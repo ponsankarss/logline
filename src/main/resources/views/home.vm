@@ -30,6 +30,7 @@
                 <ul class="nav">
                     <li><a href="#" class="logs">Logs</a></li>
                     <li><a href="#" class="config">Configuration</a></li>
+                    <li><a href="#" class="router">Router</a></li>
                     <li><a href="#" class="webservice">WebServices</a></li>
                     <li><a href="#" class="settings">Settings</a></li>
                 </ul>
@@ -69,6 +70,7 @@
     <script src="/static/js/filediff.js" type="text/javascript"></script>
     <script src="/static/js/settings.js" type="text/javascript"></script>
     <script src="/static/js/home.js" type="text/javascript"></script>
+    <script src="/static/js/router.js" type="text/javascript"></script>
     <title>Logline</title>
 </head>
 #end

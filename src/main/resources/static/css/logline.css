@@ -167,3 +167,6 @@ h2{
 #tool_box{
     border-bottom: 1px solid lightgray;
 }
+#result_box{
+    padding-top:20px;
+}

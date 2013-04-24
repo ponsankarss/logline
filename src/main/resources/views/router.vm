@@ -1,0 +1,14 @@
+<div id="form_table" class="span8">
+    <div class="control-group">
+        <label for="server" class="control-label">Server</label>
+        <div class="controls"><input id="server" type="text" class="input-medium"/></div>
+    </div>
+    <div class="control-group">
+        <label for="port" class="control-label">Port</label>
+        <div class="controls"><input id="port" type="text" class="input-small"/></div>
+    </div>
+    <div id="buttons">
+        <input type="button" class="btn btn-primary" id="run" value="Start"/>
+        <input type="button" class="btn btn-primary" id="stop" value="Stop"/>
+    </div>
+</div>
