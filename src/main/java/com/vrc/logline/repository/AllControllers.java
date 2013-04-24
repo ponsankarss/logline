@@ -22,6 +22,7 @@ public class AllControllers {
         controllers.add(new FileDiffResultController());
         controllers.add(new SettingsUpdateController());
         controllers.add(new SettingsController());
+        controllers.add(new WebServiceController());
         controllers.add(new HomeController());
     }
 

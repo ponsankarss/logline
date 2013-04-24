@@ -2,42 +2,44 @@ HomePage = function(){
 
       var setupNavigation = function(){
         $('a.logs').click(function(){
-          $.ajax({url : "log-tool",type : "GET"}).done(updateMainBoxForLog);
+          $.ajax({url : "log-tool",type : "GET"}).done(updateToolBoxForLog);
         });
         $('a.settings').click(function(){
-          $.ajax({url : "settings-view",type : "GET"}).done(updateMainBoxForSettings);
+          $.ajax({url : "settings-view",type : "GET"}).done(updateToolBoxForSettings);
         });
         $('a.config').click(function(){
-          $.ajax({url : "config-tool",type : "GET"}).done(updateMainBoxForDiff);
+          $.ajax({url : "config-tool",type : "GET"}).done(updateToolBoxForDiff);
         });
         $('a.router').click(function(){
-          $.ajax({url : "router-view",type : "GET"}).done(updateMainBoxForRouter);
+          $.ajax({url : "router-view",type : "GET"}).done(updateToolBoxForRouter);
+        });
+        $('a.webservice').click(function(){
+          $.ajax({url : "webservice",type : "GET"}).done(updateToolBox);
         });
       };
 
-      var updateMainBox = function(response){
+      var updateToolBox = function(response){
         $('#tool_box').html(response);
-        $('#results').html('<p>Awaiting input...</p>');
       };
 
-      var updateMainBoxForDiff = function(response){
-        updateMainBox(response);
+      var updateToolBoxForDiff = function(response){
+        updateToolBox(response);
         new FileDiffForm().boot();
       };
 
-      var updateMainBoxForSettings = function(response){
-        updateMainBox(response);
+      var updateToolBoxForSettings = function(response){
+        updateToolBox(response);
         new Settings().boot();
       };
 
-      var updateMainBoxForLog = function(response){
-        updateMainBox(response);
+      var updateToolBoxForLog = function(response){
+        updateToolBox(response);
         new LogForm().boot();
         new LogFetch().boot();
       };
 
-      var updateMainBoxForRouter = function(response){
-        updateMainBox(response);
+      var updateToolBoxForRouter = function(response){
+        updateToolBox(response);
         new Router().boot();
       };
 
