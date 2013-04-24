@@ -10,6 +10,7 @@
                     <table class="table table-hover">
                         <tr><td><a href="#" class="logs">Logs</a></td><td><span class="link-detail">Download and analyse logs from servers</span></td></tr>
                         <tr><td><a href="#" class="config">Configuration</a></td><td><span class="link-detail">Fetch configuration files from servers and compare with CVS</span></td></tr>
+                        <tr><td><a href="#" class="router">Router</a></td><td><span class="link-detail">Router maintenance shutdown</span></td></tr>
                         <tr><td><a href="#" class="webservice">WebServices</a></td><td><span class="link-detail">Trigger tests of WebServices</span></td></tr>
                         <tr><td><a href="#" class="settings">Settings</a></td><td><span class="link-detail">Tool Settings</span></td></tr>
                     </table>
