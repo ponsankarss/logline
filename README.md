@@ -1,5 +1,6 @@
 logline - Visualization/analysis of logs
 =======
+http://vijayrc.com/vectorclocks/vrc/post/logline
 
 Logging has now got its rightful attention, best practices are listed everywhere by people, log analysers are flooding the market
 My favorite rule on logging is to append a unique-id for every logical unit of work. This unique-id should enable mapping to some valid business entity like a userid, a claim-number in a healthcare system or a call-id in IVR system. Usually defect tickets are raised mentioning just this business entity and a time window of its occurence. Now with logs that lack this mapping, the support guy must wade through a tangle of intermingling logs with multiple grep commands to pick that specific thread of error occurrence.
