@@ -5,6 +5,8 @@ Logging has now got its rightful attention, best practices are listed everywhere
 My favorite rule on logging is to append a unique-id for every logical unit of work. This unique-id should enable mapping to some valid business entity like a userid, a claim-number in a healthcare system or a call-id in IVR system. Usually defect tickets are raised mentioning just this business entity and a time window of its occurence. Now with logs that lack this mapping, the support guy must wade through a tangle of intermingling logs with multiple grep commands to pick that specific thread of error occurrence.
 In this post I wish to share a small tool I built to analyse application logs from systems I support. Been using a bunch of custom grep scripts to detect issues, but I was not able to share with Windows users. Requesting them to install zygwin and all dependent packages will lead to huge acceptance inertia, so decided to make it a browser application backed by an embedded server. Tried tools like Splunk, Chainsaw but found that huge effort is required to tailor them a lot to fit my team requirements.
 
+![Alt text](http://vijayrc.com//posts//logline/logline.jpg)
+
 ###The tool offers the following features
 * Fast and selective download of logs from remote machines using stream compression, takes usually 10% of time taken by FileZilla, WinSCP.
 Mutiple regex search keys
