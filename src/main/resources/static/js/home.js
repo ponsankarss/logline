@@ -20,6 +20,7 @@ HomePage = function(){
 
       var updateToolBox = function(response){
         $('#tool_box').html(response);
+        $('#results').html('');
       };
 
       var updateToolBoxForDiff = function(response){
