@@ -9,7 +9,6 @@ public class Blue2Support {
     public static void main(String[] list) throws Exception {
         final AppServer appServer = new AppServer();
         appServer.start();
-        //new Browser().start();
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override

@@ -1,5 +1,7 @@
 package com.vrc.logline.controller;
 
+import com.vrc.logline.container.WebClass;
+import com.vrc.logline.container.WebRequest;
 import com.vrc.logline.domain.Config;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
@@ -13,15 +15,12 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
+@WebClass("static")
 public class StaticController extends BaseController {
     private static final Logger log = Logger.getLogger(StaticController.class);
 
-    public StaticController() {
-        super("static");
-    }
-
-    @Override
-    public void act(Request request, Response response) throws Exception {
+    @WebRequest
+    public void show(Request request, Response response) throws Exception {
         String path = request.getPath().toString();
         String fileName = StringUtils.substringAfter(path, "static");
         String directory = config.runMode() ? config.userDir() : config.getPath("static");

@@ -13,7 +13,7 @@ LogForm = function(){
     $("#loading-div-background").show();
         pick();
         $.ajax({
-        	url : "analyse",
+        	url : "log/search/",
         	data : {
         		folder : folder,
         		keys : keys,
@@ -162,50 +162,6 @@ LogLight = function(){
   };
 };
 //-------------------------------------------------------------------------------------------------
-ToolDialog = function(){
-  var allKeys = $(".search");
-  var toolDialog;
-  var keyCount = 0;
-
-  var scrollTo = function (selector, time, verticalOffset) {
-      time = typeof(time) != 'undefined' ? time : 1000;
-      verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
-      element = selector;
-      offset = element.offsetTop;
-      offsetTop = offset+ verticalOffset;
-      $('html, body').animate({
-          scrollTop: offsetTop
-      }, time);
-  };
-
-  var assignButtons = function(){
-    $('#key_prev').click(function () {
-        scrollTo(allKeys[0]);
-    });
-    $('#key_next').click(function () {
-        var length = allKeys.length -1;
-        scrollTo(allKeys[length]);
-    });
-  };
-
-
-  this.boot = function(){
-     toolDialog = $("#tool-dialog").dialog({
-                        autoOpen: true,
-                        width: 200,
-                        height: 200,
-                        position: 'right top',
-                        resizable: 'false',
-                        draggable: false });
-     $(window).scroll(function () {
-        toolDialog .dialog("option","position","right top");
-     });
-     assignButtons();
-  };//end of boot
-
-  };
-
-//-------------------------------------------------------------------------------------------------
 LogFetch = function(){
     var machine, logFileNames;
 
@@ -213,7 +169,7 @@ LogFetch = function(){
         machine = $("#machine").val();
         $("#loading-div-background").show();
         $.ajax({
-            	url : "log-browse",
+            	url : "log/browse/",
             	data : {
             		machine : machine
             	},
@@ -236,7 +192,7 @@ LogFetch = function(){
 
         $("#loading-div-background").show();
         $.ajax({
-            	url : "log-download",
+            	url : "log/download/",
             	data : {
             		machine : machine,
             		logFileNames:logFileNames
