@@ -17,10 +17,8 @@ public class RouterController extends BaseController {
 
     @WebRequest("tool")
     public void showTool(Request request, Response response) throws Exception {
-        log.info(request.getPath());
         addHeaders(response);
-        Map<String, Object> model = new HashMap<String, Object>();
-        renderer.render("router", model, response);
+        renderer.render("router", new HashMap<String, Object>(), response);
     }
 
     @WebRequest("update")

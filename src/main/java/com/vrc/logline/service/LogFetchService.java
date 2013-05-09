@@ -23,11 +23,8 @@ public class LogFetchService {
 
         String regex = StringUtils.removeEnd(buffer.toString(), "|");
         log.info("selected logs regex: " + regex);
-
-        Machine machine = allMachines.getFor(machineName);
-        return machine.getLogFiles(regex);
+        return allMachines.getFor(machineName).getLogFiles(regex);
     }
-
 
     public List<String> browseFiles(String machineName) throws Exception {
         Machine machine = allMachines.getFor(machineName);

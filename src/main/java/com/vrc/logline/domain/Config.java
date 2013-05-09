@@ -1,13 +1,11 @@
 package com.vrc.logline.domain;
 
-import com.vrc.logline.controller.FileDiffResultController;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.FileSystem;
 import java.util.Properties;
 import java.util.regex.Pattern;
 

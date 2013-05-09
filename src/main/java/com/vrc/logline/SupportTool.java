@@ -3,8 +3,8 @@ package com.vrc.logline;
 import com.vrc.logline.domain.AppServer;
 import org.apache.log4j.Logger;
 
-public class Blue2Support {
-    private static final Logger log = Logger.getLogger(Blue2Support.class);
+public class SupportTool {
+    private static final Logger log = Logger.getLogger(SupportTool.class);
 
     public static void main(String[] list) throws Exception {
         final AppServer appServer = new AppServer();

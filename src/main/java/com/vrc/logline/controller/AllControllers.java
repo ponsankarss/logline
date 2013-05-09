@@ -1,4 +1,4 @@
-package com.vrc.logline.repository;
+package com.vrc.logline.controller;
 
 import com.vrc.logline.container.WebClass;
 import com.vrc.logline.container.WebRequest;
@@ -13,6 +13,14 @@ import java.util.*;
 
 public class AllControllers {
     private Map<String, Method> webMethods = new HashMap<String, Method>();
+
+    private static AllControllers instance;
+
+    public static AllControllers create() throws Exception {
+        if(instance == null)
+            instance = new AllControllers();
+        return instance;
+    }
 
     public AllControllers() throws Exception {
         Reflections reflections = new Reflections("com.vrc.logline.controller");

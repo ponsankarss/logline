@@ -105,6 +105,11 @@
             <artifactId>commons-httpclient</artifactId>
             <version>3.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -115,7 +120,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.vrc.logline.Blue2Support</mainClass>
+                            <mainClass>com.vrc.logline.SupportTool</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
