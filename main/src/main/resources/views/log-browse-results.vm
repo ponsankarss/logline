@@ -1,0 +1,19 @@
+<div class="span8">
+    <form class="form-horizontal" action="">
+    <p id="pick-log">Pick files to download</p>
+    <div class="control-group">
+         <select multiple="multiple" id="logFileNames">
+         #foreach($key in $logFileMap.keySet())
+            <optgroup label="${key}">
+            #foreach($logFile in $logFileMap.get($key))
+                <option>$logFile</option>
+            #end
+            </optgroup>
+         #end
+         </select>
+    </div>
+    <div id="buttons" class="form-actions">
+        <input type="button" class="btn btn-primary" id="download_logs" value="Download"/>
+    </div>
+    </form>
+</div>

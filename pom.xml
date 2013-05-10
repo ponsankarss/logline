@@ -3,10 +3,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.vrc</groupId>
-    <artifactId>logline</artifactId>
+    <groupId>com.vijayrc</groupId>
+    <artifactId>supportguy</artifactId>
+    <packaging>pom</packaging>
     <version>1.0</version>
+
+    <modules>
+        <module>log</module>
+        <module>config</module>
+        <module>url</module>
+        <module>db</module>
+        <module>base</module>
+        <module>main</module>
+    </modules>
 
     <repositories>
         <repository>
@@ -15,6 +24,10 @@
             <url>http://mvnrepository.com/artifact</url>
         </repository>
     </repositories>
+
+    <properties>
+        <spring.version>3.1.0.RELEASE</spring.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -52,6 +65,16 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjtools</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.7.2</version>
         </dependency>
         <dependency>
             <groupId>com.rubiconproject.oss</groupId>
@@ -110,6 +133,32 @@
             <artifactId>gson</artifactId>
             <version>2.2.3</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -120,7 +169,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.vrc.logline.SupportTool</mainClass>
+                            <mainClass>com.vijayrc.supportguy.SupportGuy</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
