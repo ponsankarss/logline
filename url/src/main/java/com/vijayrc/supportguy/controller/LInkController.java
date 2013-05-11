@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-@WebClass("router")
-public class UrlController extends BaseController {
+@WebClass("link")
+public class LinkController extends BaseController {
 
     @WebMethod("tool")
     public void showTool(Request request, Response response) throws Exception {

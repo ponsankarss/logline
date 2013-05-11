@@ -4,14 +4,11 @@ HomePage = function(){
         $('a.logs').click(function(){
           $.ajax({url : "/log/tool/",type : "GET"}).done(updateToolBoxForLog);
         });
-        $('a.settings').click(function(){
-          $.ajax({url : "/settings/tool/",type : "GET"}).done(updateToolBoxForSettings);
-        });
         $('a.config').click(function(){
           $.ajax({url : "/config/tool/",type : "GET"}).done(updateToolBoxForDiff);
         });
-        $('a.router').click(function(){
-          $.ajax({url : "/router/tool/",type : "GET"}).done(updateToolBoxForRouter);
+        $('a.link').click(function(){
+          $.ajax({url : "/link/tool/",type : "GET"}).done(updateToolBoxForRouter);
         });
         $('a.webservice').click(function(){
           $.ajax({url : "/webservice/",type : "GET"}).done(updateToolBox);

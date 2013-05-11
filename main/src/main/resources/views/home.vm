@@ -10,9 +10,8 @@
                     <table class="table table-hover">
                         <tr><td><a href="#" class="logs">Logs</a></td><td><span class="link-detail">Download and analyse logs from servers</span></td></tr>
                         <tr><td><a href="#" class="config">Configuration</a></td><td><span class="link-detail">Fetch configuration files from servers and compare with CVS</span></td></tr>
-                        <tr><td><a href="#" class="router">Router</a></td><td><span class="link-detail">Router maintenance shutdown</span></td></tr>
+                        <tr><td><a href="#" class="url">Links</a></td><td><span class="link-detail">Http URLs verification</span></td></tr>
                         <tr><td><a href="#" class="webservice">WebServices</a></td><td><span class="link-detail">Trigger tests of WebServices</span></td></tr>
-                        <tr><td><a href="#" class="settings">Settings</a></td><td><span class="link-detail">Tool Settings</span></td></tr>
                     </table>
                 </div>
                <div id="result_box" class="span12">#resultsBox()</div>
@@ -26,14 +25,13 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
-            <a class="brand" href="/home">Blue2 Support</a>
+            <a class="brand" href="/home">Support Guy</a>
             <div class="nav-collapse">
                 <ul class="nav">
                     <li><a href="#" class="logs">Logs</a></li>
                     <li><a href="#" class="config">Configuration</a></li>
-                    <li><a href="#" class="router">Router</a></li>
+                    <li><a href="#" class="url">Links</a></li>
                     <li><a href="#" class="webservice">WebServices</a></li>
-                    <li><a href="#" class="settings">Settings</a></li>
                 </ul>
             </div>
         </div>
