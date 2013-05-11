@@ -7,9 +7,9 @@
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
                            http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
-    <util:properties id="configBean" location="classpath:/config.properties"/>
+    <util:properties id="config" location="classpath:/config.properties"/>
     <context:property-placeholder location="classpath*:*.properties"/>
     <context:spring-configured/>
     <context:annotation-config/>
-    <context:component-scan base-package="com.vrc.logline"/>
+    <context:component-scan base-package="com.vijayrc.supportguy"/>
 </beans>

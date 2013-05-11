@@ -4,6 +4,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@Scope("single")
+@Scope("singleton")
 public class AllConfigs {
 }

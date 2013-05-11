@@ -10,7 +10,7 @@ FileDiffForm = function(){
         pick();
         $("#loading-div-background").show();
         $.ajax({
-            url:"config/results/",
+            url:"/config/results/",
             data:{machine:machine, release:release}
         }).done(displayResults);
     };

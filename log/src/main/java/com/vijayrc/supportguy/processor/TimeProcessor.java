@@ -15,16 +15,14 @@ import java.util.regex.Matcher;
 public class TimeProcessor implements Processor {
 
     @Override
-    public void process(Logs request) {
-        List<String> processedLines = request.lines().processedLines();
+    public void process(Logs logs) {
+        List<String> processedLines = logs.lines().processedLines();
         List<String> filteredProcessedLines = new ArrayList<String>();
-
         DateTime lineDate;
+
         for (String processedLine : processedLines) {
             lineDate = getLineDate(processedLine);
-            if (lineDate != null
-                    && lineDate.isAfter(request.startDate())
-                    && lineDate.isBefore(request.endDate()))
+            if (lineDate != null && lineDate.isAfter(logs.startDate()) && lineDate.isBefore(logs.endDate()))
                 filteredProcessedLines.add(processedLine);
         }
         processedLines.clear();

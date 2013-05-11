@@ -3,7 +3,7 @@ package com.vijayrc.supportguy.controller;
 import com.vijayrc.supportguy.domain.Lines;
 import com.vijayrc.supportguy.domain.NameGroup;
 import com.vijayrc.supportguy.meta.WebClass;
-import com.vijayrc.supportguy.meta.WebRequest;
+import com.vijayrc.supportguy.meta.WebMethod;
 import com.vijayrc.supportguy.service.LogFetchService;
 import com.vijayrc.supportguy.service.LogSearchService;
 import org.apache.commons.lang.StringUtils;
@@ -11,12 +11,14 @@ import org.apache.log4j.Logger;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 @WebClass("log")
 public class LogController extends BaseController {
     private static final Logger log = Logger.getLogger(LogController.class);
@@ -26,7 +28,7 @@ public class LogController extends BaseController {
     @Autowired
     private LogFetchService fetchService;
 
-    @WebRequest("tool")
+    @WebMethod("tool")
     public void showTool(Request request, Response response) throws Exception {
         response.setValue("Content-Type", "text/html");
 
@@ -36,7 +38,7 @@ public class LogController extends BaseController {
         log.info(request.getPath());
     }
 
-    @WebRequest("browse")
+    @WebMethod("browse")
     public void showFiles(Request request, Response response) throws Exception {
         String machine = request.getParameter("machine");
         List<String> logFiles = fetchService.browseFiles(machine);
@@ -46,7 +48,7 @@ public class LogController extends BaseController {
         renderer.render("log-browse-results", model, response);
     }
 
-    @WebRequest("download")
+    @WebMethod("download")
     public void downloadFiles(Request request, Response response) throws Exception {
         String machine = request.getParameter("machine");
         List<String> logFileNames = split(request.getParameter("logFileNames"));
@@ -57,7 +59,7 @@ public class LogController extends BaseController {
         renderer.render("log-download-results", model, response);
     }
 
-    @WebRequest("search")
+    @WebMethod("search")
     public void searchFiles(Request request, Response response) throws Exception {
         String keys = request.getParameter("keys");
         String folder = request.getParameter("folder");

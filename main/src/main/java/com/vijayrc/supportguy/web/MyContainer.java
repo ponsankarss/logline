@@ -6,10 +6,14 @@ import org.simpleframework.http.Response;
 import org.simpleframework.http.core.Container;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+@Service
+@Scope("singleton")
 public class MyContainer implements Container {
     private Executor executor;
     private AllControllers allControllers;

@@ -32,7 +32,7 @@
             <version>1.0</version>
         </dependency>
         <dependency>
-            <artifactId>base</artifactId>
+            <artifactId>log</artifactId>
             <groupId>com.vijayrc</groupId>
             <version>1.0</version>
         </dependency>

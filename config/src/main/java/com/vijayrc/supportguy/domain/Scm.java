@@ -1,7 +1,9 @@
 package com.vijayrc.supportguy.domain;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
 
+@Service
 public class Scm {
     private static final Logger log = Logger.getLogger(Scm.class);
 

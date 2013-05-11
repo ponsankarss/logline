@@ -16,13 +16,13 @@ import java.net.InetSocketAddress;
 @Scope("singleton")
 public class MyServer {
     private static final Logger log = Logger.getLogger(MyServer.class);
+
     private Integer port;
     private Server myServer;
     private MyContainer myContainer;
 
     @Autowired
-    public MyServer(Server myServer, MyContainer myContainer, @Value("#{config['server.port']}") Integer port) {
-        this.myServer = myServer;
+    public MyServer(MyContainer myContainer, @Value("#{config['server.port']}") Integer port) {
         this.myContainer = myContainer;
         this.port = port;
     }

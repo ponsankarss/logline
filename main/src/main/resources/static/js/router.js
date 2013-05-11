@@ -7,7 +7,7 @@ Router = function(){
       action = $(this).attr("id");
       $.ajax({
         type:"POST",
-        url:"router/update/",
+        url:"/router/update/",
         cache:false,
         data:{server:server, port:port, action:action},
         success: display

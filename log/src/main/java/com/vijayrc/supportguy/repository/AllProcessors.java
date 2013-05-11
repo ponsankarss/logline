@@ -7,11 +7,13 @@ import com.vijayrc.supportguy.processor.TimeProcessor;
 import com.vijayrc.supportguy.processor.XMLProcessor;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 import static java.util.Arrays.asList;
 
+@Repository
 public class AllProcessors {
     private static final Logger log = Logger.getLogger(AllProcessors.class);
 

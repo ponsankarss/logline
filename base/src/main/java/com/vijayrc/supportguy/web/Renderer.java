@@ -13,12 +13,9 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.Map;
 
-@Service
-@Scope("singleton")
 public class Renderer {
     private VelocityEngine velocityEngine;
 
-    @Autowired
     public Renderer() {
         velocityEngine = new VelocityEngine();
         velocityEngine.setProperty(VelocityEngine.RESOURCE_LOADER, "classpath");

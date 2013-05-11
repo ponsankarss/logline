@@ -18,27 +18,29 @@ public class ErrorProcessor implements Processor {
     }
 
     @Override
-    public void process(Logs request) {
+    public void process(Logs logs) {
         StringBuffer buffer = new StringBuffer();
         boolean inStack = false;
-        for (String fileLine : request.lines().fileLines()) {
+
+        for (String fileLine : logs.lines().fileLines()) {
             if (startPattern.matcher(fileLine).find() && !inStack) {
                 buffer.append(fileLine);
                 inStack = true;
                 continue;
             }
             if (inStack) {
-                if (tracePattern.matcher(fileLine).find() || isTraceLine(fileLine)) {
+                if (tracePattern.matcher(fileLine).find() || hasNoTime(fileLine)) {
                     buffer.append(fileLine).append("\n");
                 } else {
-                    request.lines().addProcessedLine("[ERROR]" + buffer.toString() + "[/ERROR]");
+                    logs.lines().addProcessedLine("[ERROR]" + buffer.toString() + "[/ERROR]");
                     inStack = false;
                 }
             }
         }
     }
 
-    private boolean isTraceLine(String fileLine) {
+    //TODO
+    private boolean hasNoTime(String fileLine) {
         return !(Constants.dateRegex1.matcher(fileLine).find()
                 || Constants.dateRegex2.matcher(fileLine).find());
     }

@@ -13,7 +13,7 @@ LogForm = function(){
     $("#loading-div-background").show();
         pick();
         $.ajax({
-        	url : "log/search/",
+        	url : "/log/search/",
         	data : {
         		folder : folder,
         		keys : keys,
@@ -169,7 +169,7 @@ LogFetch = function(){
         machine = $("#machine").val();
         $("#loading-div-background").show();
         $.ajax({
-            	url : "log/browse/",
+            	url : "/log/browse/",
             	data : {
             		machine : machine
             	},
@@ -192,7 +192,7 @@ LogFetch = function(){
 
         $("#loading-div-background").show();
         $.ajax({
-            	url : "log/download/",
+            	url : "/log/download/",
             	data : {
             		machine : machine,
             		logFileNames:logFileNames

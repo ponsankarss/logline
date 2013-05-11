@@ -1,12 +1,12 @@
 package com.vijayrc.supportguy.controller;
 
 import com.vijayrc.supportguy.meta.WebClass;
-import com.vijayrc.supportguy.meta.WebRequest;
+import com.vijayrc.supportguy.meta.WebMethod;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
+import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -14,15 +14,15 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
+@Component
 @WebClass("static")
 public class StaticController extends BaseController {
-    private static final Logger log = Logger.getLogger(StaticController.class);
 
-    @WebRequest
+    @WebMethod
     public void show(Request request, Response response) throws Exception {
         String path = request.getPath().toString();
         String fileName = StringUtils.substringAfter(path, "static");
-        String directory = "static";//config.runMode() ? config.userDir() : config.getPath("static");
+        String directory = getPath("static");
         File file = new File(directory + fileName);
         if (!file.exists()) return;
 
@@ -37,6 +37,10 @@ public class StaticController extends BaseController {
             writer.write(FileUtils.readFileToString(file));
             writer.close();
         }
-        log.info(request.getPath());
     }
+
+    public String getPath(String path) {
+        return ClassLoader.getSystemResource(path).getFile();
+    }
+
 }
