@@ -1,12 +1,7 @@
 package com.vijayrc.supportguy.rule;
 
-import com.vijayrc.supportguy.repository.AllLines;
+import com.vijayrc.supportguy.domain.Logs;
 
 public interface LineRule {
-
-    void end();
-
-    void start();
-
-    void process(AllLines allLines) throws Exception;
+    void process(Logs logs) throws Exception;
 }

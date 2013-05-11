@@ -1,10 +1,11 @@
 package com.vijayrc.supportguy.controller;
 
+import com.vijayrc.supportguy.domain.Lines;
+import com.vijayrc.supportguy.domain.NameGroup;
 import com.vijayrc.supportguy.meta.WebClass;
 import com.vijayrc.supportguy.meta.WebRequest;
-import com.vrc.logline.domain.NameGroup;
-import com.vrc.logline.service.LogFetchService;
-import com.vrc.logline.service.LogSearchService;
+import com.vijayrc.supportguy.service.LogFetchService;
+import com.vijayrc.supportguy.service.LogSearchService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.simpleframework.http.Request;
@@ -21,9 +22,9 @@ public class LogController extends BaseController {
     private static final Logger log = Logger.getLogger(LogController.class);
 
     @Autowired
-    private LogSearchService logSearchService;
+    private LogSearchService searchService;
     @Autowired
-    private LogFetchService logFetchService;
+    private LogFetchService fetchService;
 
     @WebRequest("tool")
     public void showTool(Request request, Response response) throws Exception {
@@ -38,7 +39,7 @@ public class LogController extends BaseController {
     @WebRequest("browse")
     public void showFiles(Request request, Response response) throws Exception {
         String machine = request.getParameter("machine");
-        List<String> logFiles = logFetchService.browseFiles(machine);
+        List<String> logFiles = fetchService.browseFiles(machine);
 
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("logFileMap", new NameGroup(logFiles).byName());
@@ -49,7 +50,7 @@ public class LogController extends BaseController {
     public void downloadFiles(Request request, Response response) throws Exception {
         String machine = request.getParameter("machine");
         List<String> logFileNames = split(request.getParameter("logFileNames"));
-        List<String> logNames = logFetchService.getFiles(machine, logFileNames);
+        List<String> logNames = fetchService.getFiles(machine, logFileNames);
 
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("logNames", logNames);
@@ -63,14 +64,13 @@ public class LogController extends BaseController {
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
         String option = request.getParameter("option");
-        log.info("keys=" + keys + "|folder=" + folder + "|startDate=" + startDate + "|endDate=" + endDate+"|option="+option);
+        log.info("keys=" + keys + "|folder=" + folder + "|startDate=" + startDate + "|endDate=" + endDate + "|option=" + option);
 
-        LogSearchService logSearchService = new LogSearchService(keys, folder, startDate, endDate, option);
-        logSearchService.process();
+        Lines lines = searchService.process(keys, folder, startDate, endDate, option);
 
         Map<String, Object> model = new HashMap<String, Object>();
-        model.put("keyLines", logSearchService.keyLines());
-        model.put("errorLines", logSearchService.errorLines());
+        model.put("keyLines", lines.keyLines());
+        model.put("errorLines", lines.errorLines());
         renderer.render("log-search-results", model, response);
     }
 

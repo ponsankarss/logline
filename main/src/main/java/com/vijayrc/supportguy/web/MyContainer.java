@@ -1,6 +1,6 @@
 package com.vijayrc.supportguy.web;
 
-import com.vrc.logline.controller.AllControllers;
+import com.vijayrc.supportguy.controller.AllControllers;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.simpleframework.http.core.Container;

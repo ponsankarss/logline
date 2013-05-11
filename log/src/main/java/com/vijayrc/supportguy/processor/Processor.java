@@ -1,7 +1,7 @@
 package com.vijayrc.supportguy.processor;
 
-import com.vijayrc.supportguy.repository.AllLines;
+import com.vijayrc.supportguy.domain.Logs;
 
 public interface Processor {
-    void process(AllLines allLines);
+    void process(Logs linePayload);
 }

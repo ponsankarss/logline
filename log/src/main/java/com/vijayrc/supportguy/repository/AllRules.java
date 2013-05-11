@@ -1,35 +1,35 @@
 package com.vijayrc.supportguy.repository;
 
-import com.vijayrc.supportguy.rule.BaseRule;
-import com.vijayrc.supportguy.rule.ExceptionRule;
+import com.vijayrc.supportguy.domain.Logs;
+import com.vijayrc.supportguy.rule.ErrorRule;
 import com.vijayrc.supportguy.rule.KeyRule;
 import com.vijayrc.supportguy.rule.LineRule;
-import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class AllRules {
-    private static final Logger log = Logger.getLogger(AllRules.class);
-    private List<BaseRule> lineRules = new ArrayList<BaseRule>();
+    @Autowired
+    private KeyRule keyRule;
+    @Autowired
+    private ErrorRule errorRule;
 
-    public AllRules(List<String> keys, String option) {
-        KeyRule keyRule = new KeyRule(keys);
-        ExceptionRule exceptionRule = new ExceptionRule();
+    public void process(Logs logs) throws Exception {
+        List<LineRule> rules = new ArrayList<LineRule>();
+        String option = logs.option();
 
         if (option.equals("error"))
-            lineRules.add(exceptionRule);
+            rules.add(errorRule);
         else if (option.equals("key"))
-            lineRules.add(keyRule);
+            rules.add(keyRule);
         else {
-            lineRules.add(keyRule);
-            lineRules.add(exceptionRule);
+            rules.add(keyRule);
+            rules.add(errorRule);
         }
-    }
-
-    public void process(AllLines allLines) throws Exception {
-        for (LineRule lineRule : lineRules)
-            lineRule.process(allLines);
-        log.info("rules done: " + allLines.file());
+        for (LineRule rule : rules)
+            rule.process(logs);
     }
 }

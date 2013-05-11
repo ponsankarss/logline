@@ -1,11 +1,12 @@
 package com.vijayrc.supportguy.repository;
 
-import com.vijayrc.supportguy.processor.ExceptionProcessor;
+import com.vijayrc.supportguy.domain.Logs;
+import com.vijayrc.supportguy.processor.ErrorProcessor;
 import com.vijayrc.supportguy.processor.Processor;
-import com.vijayrc.supportguy.processor.TimelineProcessor;
+import com.vijayrc.supportguy.processor.TimeProcessor;
 import com.vijayrc.supportguy.processor.XMLProcessor;
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -13,21 +14,22 @@ import static java.util.Arrays.asList;
 
 public class AllProcessors {
     private static final Logger log = Logger.getLogger(AllProcessors.class);
-    private List<Processor> processors;
 
-    public AllProcessors(String startDate, String endDate) {
-        ExceptionProcessor exceptionProcessor = new ExceptionProcessor();
-        TimelineProcessor timelineProcessor = new TimelineProcessor(startDate, endDate);
-        XMLProcessor xmlProcessor = new XMLProcessor();
+    @Autowired
+    private ErrorProcessor errorProcessor;
+    @Autowired
+    private TimeProcessor timeProcessor;
+    @Autowired
+    private XMLProcessor xmlProcessor;
 
-        processors = StringUtils.isBlank(startDate) ? asList(xmlProcessor, exceptionProcessor)
-                : asList(timelineProcessor, xmlProcessor, exceptionProcessor);
-    }
+    public void process(Logs logs) {
+        List<Processor> processors = logs.hasStartDate()
+                ? asList(timeProcessor, xmlProcessor, errorProcessor)
+                : asList(xmlProcessor, errorProcessor);
 
-    public void process(AllLines allLines) {
         for (Processor processor : processors)
-            processor.process(allLines);
-        log.info("processing done: " + allLines.file());
+            processor.process(logs);
+        log.info("processing done: " + logs.file());
     }
 
 }

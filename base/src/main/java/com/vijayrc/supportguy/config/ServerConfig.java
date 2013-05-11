@@ -8,7 +8,7 @@ public class ServerConfig {
     private String ip;
     private String logDir;
     private String configDir;
-    private UserConfig userConfig;
+    private String user;
 
     public String getName() {
         return name;
@@ -26,7 +26,4 @@ public class ServerConfig {
         return configDir;
     }
 
-    public UserConfig getUserConfig() {
-        return userConfig;
-    }
 }
