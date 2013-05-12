@@ -13,6 +13,11 @@ public class AllMachines {
 
     private List<Machine> machines = new ArrayList<Machine>();
 
+    public AllMachines add(Machine machine){
+        machines.add(machine);
+        return this;
+    }
+
     public Machine getFor(String name) {
         for (Machine machine : machines)
             if (machine.nameIs(name))

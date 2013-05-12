@@ -4,7 +4,7 @@ import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
-import org.apache.commons.lang.time.StopWatch;
+import com.vijayrc.supportguy.domain.Machine;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -15,12 +15,12 @@ import java.util.regex.Pattern;
 public class MyJsch implements MyRemote {
     private static final Logger log = Logger.getLogger(MyJsch.class);
 
-    private String machine;
     private JSch jsch;
     private ChannelSftp channelSftp;
     private Session session;
+    private Machine machine;
 
-    public MyJsch(String machine) {
+    public MyJsch(Machine machine) {
         this.machine = machine;
         this.jsch = new JSch();
     }
@@ -28,9 +28,9 @@ public class MyJsch implements MyRemote {
     @Override
     public MyRemote connect() throws Exception {
         log.info("connecting to " + machine + " as ");
-        session = jsch.getSession("username", machine, 22);
+        session = jsch.getSession(machine.user(), machine.ip(), 22);
         session.setConfig("StrictHostKeyChecking", "no");
-        session.setPassword("password");
+        session.setPassword(machine.password());
         session.setConfig("compression.s2c", "zlib@openssh.com,zlib,none");
         session.setConfig("compression.c2s", "zlib@openssh.com,zlib,none");
         session.setConfig("compression_level", "9");
@@ -68,13 +68,9 @@ public class MyJsch implements MyRemote {
 
     @Override
     public void download(String sourcePath, String targetPath, Boolean recurse, Pattern pattern) throws Exception {
-        StopWatch watch = new StopWatch();
-        watch.start();
         connect();
         downloadRecurse(sourcePath, targetPath, recurse, pattern);
         disconnect();
-        watch.stop();
-        log.info("time taken to download: " + watch);
     }
 
     private void downloadRecurse(String sourcePath, String targetPath, Boolean recurse, Pattern pattern) throws Exception {
