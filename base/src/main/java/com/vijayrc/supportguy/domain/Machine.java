@@ -25,6 +25,9 @@ public class Machine {
 
     private Pattern logPattern = Pattern.compile("[\\w]+.log(.\\d)*");
 
+    public Machine() {
+    }
+
     public Machine(String name) {
         this.name = name;
     }
@@ -78,6 +81,14 @@ public class Machine {
     private Pattern pattern(String type) {
         if (StringUtils.isBlank(type)) return Pattern.compile(".*");
         return Pattern.compile(type.replaceAll(",", "|"));
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
                                                                               

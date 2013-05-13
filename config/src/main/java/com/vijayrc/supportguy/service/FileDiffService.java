@@ -23,7 +23,7 @@ public class FileDiffService {
         List<String> machineFiles = machine.getConfigFiles("home|scripts|.properties\\z|.xml\\z|.xsd\\z|.py\\z|.sh\\z|blue2");
         for (String machineFile : machineFiles) {
             String relativePath = machineFile.replace(System.getProperty("user.dir") + "\\config\\", "");
-            String cvsFile = cvsRepo.getFor(releaseName, machine.shortName(), relativePath);
+            String cvsFile = cvsRepo.getFor(releaseName, machine.name(), relativePath);
             FileDiff fileDiff = new FileDiff(relativePath, machineFile, cvsFile).process();
             if (fileDiff.isMissing())
                 missingFileDiffs.add(fileDiff);
