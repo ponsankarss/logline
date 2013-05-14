@@ -1,8 +1,5 @@
 package com.vijayrc.supportguy.config;
 
-import com.vijayrc.supportguy.meta.ConfigClass;
-
-@ConfigClass(file = "dbs.json", order = 0)
 public class SqlConfig {
     private String name;
     private String query;

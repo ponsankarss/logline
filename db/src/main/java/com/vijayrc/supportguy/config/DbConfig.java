@@ -1,10 +1,7 @@
 package com.vijayrc.supportguy.config;
 
-import com.vijayrc.supportguy.meta.ConfigClass;
-
 import java.util.List;
 
-@ConfigClass(file="dbs.json", order = 1)
 public class DbConfig {
     private String ip;
     private String port;

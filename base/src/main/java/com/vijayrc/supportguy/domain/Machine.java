@@ -1,6 +1,5 @@
 package com.vijayrc.supportguy.domain;
 
-import com.vijayrc.supportguy.meta.ConfigClass;
 import com.vijayrc.supportguy.meta.ConfigUnit;
 import com.vijayrc.supportguy.remote.MyFile;
 import com.vijayrc.supportguy.remote.MyJsch;
@@ -11,7 +10,6 @@ import org.apache.log4j.Logger;
 import java.util.List;
 import java.util.regex.Pattern;
 
-@ConfigClass(file = "servers.json", order = 1)
 public class Machine {
     private static final Logger log = Logger.getLogger(Machine.class);
 

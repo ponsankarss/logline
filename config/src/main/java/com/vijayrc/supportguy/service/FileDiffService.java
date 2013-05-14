@@ -18,12 +18,12 @@ public class FileDiffService {
 
     public void process(String machineName, String releaseName) throws Exception {
         Machine machine = allMachines.getFor(machineName);
-        Scm cvsRepo = new Scm();
+        Scm scm = new Scm();
 
         List<String> machineFiles = machine.getConfigFiles("home|scripts|.properties\\z|.xml\\z|.xsd\\z|.py\\z|.sh\\z|blue2");
         for (String machineFile : machineFiles) {
             String relativePath = machineFile.replace(System.getProperty("user.dir") + "\\config\\", "");
-            String cvsFile = cvsRepo.getFor(releaseName, machine.name(), relativePath);
+            String cvsFile = scm.getFor(releaseName, machine.name(), relativePath);
             FileDiff fileDiff = new FileDiff(relativePath, machineFile, cvsFile).process();
             if (fileDiff.isMissing())
                 missingFileDiffs.add(fileDiff);

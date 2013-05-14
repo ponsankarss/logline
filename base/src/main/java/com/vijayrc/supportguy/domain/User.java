@@ -1,8 +1,5 @@
 package com.vijayrc.supportguy.domain;
 
-import com.vijayrc.supportguy.meta.ConfigClass;
-
-@ConfigClass(file = "users.json", order = 0)
 public class User {
     private String name;
     private String loginName;

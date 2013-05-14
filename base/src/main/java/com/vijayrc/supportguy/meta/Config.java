@@ -1,6 +1,5 @@
 package com.vijayrc.supportguy.meta;
 
-public @interface ConfigClass {
+public @interface Config {
     String file();
-    int order();
 }
