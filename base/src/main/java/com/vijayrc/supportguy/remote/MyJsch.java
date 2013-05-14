@@ -28,7 +28,7 @@ public class MyJsch implements MyRemote {
     @Override
     public MyRemote connect() throws Exception {
         log.info("connecting to " + machine + " as ");
-        session = jsch.getSession(machine.user(), machine.ip(), 22);
+        session = jsch.getSession(machine.user(), machine.getIp(), 22);
         session.setConfig("StrictHostKeyChecking", "no");
         session.setPassword(machine.password());
         session.setConfig("compression.s2c", "zlib@openssh.com,zlib,none");

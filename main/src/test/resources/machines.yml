@@ -2,3 +2,13 @@ name: p5-dev
 ip: nasnmasdev
 logDir: /was7blue2/logs
 configDir: /was7blue2/config
+---
+name: p5-mo
+ip: nasnmasmo
+logDir: /was7blue2/logs
+configDir: /was7blue2/config
+---
+name: p5-prod
+ip: nasnmas3
+logDir: /was7blue2/logs
+configDir: /was7blue2/config

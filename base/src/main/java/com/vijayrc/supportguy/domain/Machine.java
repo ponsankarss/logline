@@ -23,12 +23,6 @@ public class Machine {
 
     private Pattern logPattern = Pattern.compile("[\\w]+.log(.\\d)*");
 
-    public Machine() {
-    }
-
-    public Machine(String name) {
-        this.name = name;
-    }
 
     public List<String> browseLogFiles() throws Exception {
         return remote().browse(logDir, logPattern);
@@ -50,14 +44,6 @@ public class Machine {
 
     public boolean nameIs(String name) {
         return this.name.equals(name);
-    }
-
-    public String name() {
-        return name;
-    }
-
-    public String ip() {
-        return ip;
     }
 
     public String user() {
@@ -87,6 +73,43 @@ public class Machine {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public String getLogDir() {
+        return logDir;
+    }
+
+    public void setLogDir(String logDir) {
+        this.logDir = logDir;
+    }
+
+    public String getConfigDir() {
+        return configDir;
+    }
+
+    public void setConfigDir(String configDir) {
+        this.configDir = configDir;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Machine[name=" + name +"|ip=" + ip + "|logDir=" + logDir +"|configDir="+configDir+"]";
     }
 }
                                                                               
