@@ -6,8 +6,8 @@ import com.vijayrc.supportguy.meta.WebClass;
 import com.vijayrc.supportguy.meta.WebMethod;
 import com.vijayrc.supportguy.service.LogFetchService;
 import com.vijayrc.supportguy.service.LogSearchService;
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,8 @@ import java.util.Map;
 
 @Component
 @WebClass("log")
+@Log4j
 public class LogController extends BaseController {
-    private static final Logger log = Logger.getLogger(LogController.class);
-
     @Autowired
     private LogSearchService searchService;
     @Autowired
@@ -39,7 +38,7 @@ public class LogController extends BaseController {
     }
 
     @WebMethod("browse")
-    public void showFiles(Request request, Response response) throws Exception {
+    public void browse(Request request, Response response) throws Exception {
         String machine = request.getParameter("machine");
         List<String> logFiles = fetchService.browseFiles(machine);
 
@@ -49,9 +48,9 @@ public class LogController extends BaseController {
     }
 
     @WebMethod("download")
-    public void downloadFiles(Request request, Response response) throws Exception {
+    public void download(Request request, Response response) throws Exception {
         String machine = request.getParameter("machine");
-        List<String> logFileNames = split(request.getParameter("logFileNames"));
+        List<String> logFileNames = Arrays.asList(StringUtils.split(request.getParameter("logFileNames"), ","));
         List<String> logNames = fetchService.getFiles(machine, logFileNames);
 
         Map<String, Object> model = new HashMap<String, Object>();
@@ -60,7 +59,7 @@ public class LogController extends BaseController {
     }
 
     @WebMethod("search")
-    public void searchFiles(Request request, Response response) throws Exception {
+    public void search(Request request, Response response) throws Exception {
         String keys = request.getParameter("keys");
         String folder = request.getParameter("folder");
         String startDate = request.getParameter("startDate");
@@ -76,7 +75,4 @@ public class LogController extends BaseController {
         renderer.render("log-search-results", model, response);
     }
 
-    private List<String> split(String parameter) {
-        return Arrays.asList(StringUtils.split(parameter, ","));
-    }
 }

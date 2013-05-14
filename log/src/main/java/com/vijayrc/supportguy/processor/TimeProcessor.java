@@ -2,6 +2,7 @@ package com.vijayrc.supportguy.processor;
 
 import com.vijayrc.supportguy.config.Constants;
 import com.vijayrc.supportguy.domain.Logs;
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 
 @Component
+@Log4j
 public class TimeProcessor implements Processor {
 
     @Override

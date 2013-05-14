@@ -2,13 +2,14 @@ package com.vijayrc.supportguy.processor;
 
 import com.vijayrc.supportguy.config.Constants;
 import com.vijayrc.supportguy.domain.Logs;
+import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Pattern;
 
 @Component
+@Log4j
 public class ErrorProcessor implements Processor {
-
     private Pattern startPattern;
     private Pattern tracePattern;
 

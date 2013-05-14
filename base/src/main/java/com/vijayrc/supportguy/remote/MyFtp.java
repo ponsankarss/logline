@@ -1,5 +1,6 @@
 package com.vijayrc.supportguy.remote;
 
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -11,10 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-
+@Log4j
 public class MyFtp implements MyRemote {
-
-    private static final Logger log = Logger.getLogger(MyFtp.class);
     private String machine;
     private FTPClient ftpClient;
 
@@ -24,11 +23,11 @@ public class MyFtp implements MyRemote {
 
     @Override
     public MyRemote connect() throws Exception {
-        log.info("connecting to " + machine + " as " );
+        log.info("connecting to " + machine);
         ftpClient = new FTPClient();
         ftpClient.connect(machine);
         ftpClient.login("username", "password");
-        log.info("connected to " + machine + " as " );
+        log.info("connected to " + machine);
         return this;
     }
 
@@ -84,7 +83,7 @@ public class MyFtp implements MyRemote {
                     log.info("downloaded [" + targetFile + "]");
                 }
             } catch (Exception e) {
-                log.error("Error with fetching file: " + fileName, e);
+                log.error("error with fetching file: " + fileName, e);
             }
         }
     }

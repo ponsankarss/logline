@@ -2,6 +2,7 @@ package com.vijayrc.supportguy.controller;
 
 import com.vijayrc.supportguy.meta.WebClass;
 import com.vijayrc.supportguy.meta.WebMethod;
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.simpleframework.http.Request;
@@ -16,8 +17,8 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 @Repository
+@Log4j
 public class AllControllers implements BeanPostProcessor {
-    private static final Logger log = Logger.getLogger(AllControllers.class);
 
     private Map<String, Method> methods = new HashMap<String, Method>();;
 

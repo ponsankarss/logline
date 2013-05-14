@@ -6,6 +6,7 @@ public class NameGroup {
     private List<String> names;
     private List<String> titles;
 
+    //TODO
     public NameGroup(List<String> names) {
         this.titles = new ArrayList<String>();
         this.titles.addAll(Arrays.asList("SystemOut", "postprocess", "router", "planInt", "remediation",

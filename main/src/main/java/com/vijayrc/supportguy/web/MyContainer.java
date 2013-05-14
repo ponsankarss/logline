@@ -1,6 +1,7 @@
 package com.vijayrc.supportguy.web;
 
 import com.vijayrc.supportguy.controller.AllControllers;
+import lombok.extern.log4j.Log4j;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.simpleframework.http.core.Container;
@@ -14,6 +15,7 @@ import java.util.concurrent.Executors;
 
 @Service
 @Scope("singleton")
+@Log4j
 public class MyContainer implements Container {
     private Executor executor;
     private AllControllers allControllers;

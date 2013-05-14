@@ -2,6 +2,7 @@ package com.vijayrc.supportguy.service;
 
 import com.vijayrc.supportguy.domain.Machine;
 import com.vijayrc.supportguy.repository.AllMachines;
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Service
 @Scope("prototype")
+@Log4j
 public class LogFetchService {
     @Autowired
     private AllMachines allMachines;

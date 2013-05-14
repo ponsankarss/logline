@@ -4,17 +4,12 @@ import com.vijayrc.supportguy.remote.MyFile;
 import com.vijayrc.supportguy.remote.MyJsch;
 import com.vijayrc.supportguy.remote.MyRemote;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
-@Getter
-@Setter
 @Data
 @Log4j
 public class Machine {

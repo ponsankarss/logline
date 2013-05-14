@@ -1,44 +1,46 @@
 package com.vijayrc.supportguy.service;
 
+import com.vijayrc.supportguy.domain.Delta;
 import com.vijayrc.supportguy.domain.FileDiff;
 import com.vijayrc.supportguy.domain.Machine;
 import com.vijayrc.supportguy.domain.Scm;
 import com.vijayrc.supportguy.repository.AllMachines;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static com.vijayrc.supportguy.config.Constants.userDir;
+
+@Service
+@Log4j
 public class FileDiffService {
-    private static final Logger log = Logger.getLogger(FileDiffService.class);
-    private AllMachines allMachines = new AllMachines();
+    private AllMachines allMachines;
+    private Scm scm;
+    private String type;
 
-    private List<FileDiff> changedFileDiffs = new ArrayList<FileDiff>();
-    private List<FileDiff> missingFileDiffs = new ArrayList<FileDiff>();
+    @Autowired
+    public FileDiffService(AllMachines allMachines, Scm scm) {
+        this.allMachines = allMachines;
+        this.scm = scm;
+        this.type = "home|scripts|.properties\\z|.xml\\z|.xsd\\z|.py\\z|.sh\\z|blue2";
+    }
 
-    public void process(String machineName, String releaseName) throws Exception {
+    //TODO
+    public Delta process(String machineName, String releaseName) throws Exception {
         Machine machine = allMachines.getFor(machineName);
-        Scm scm = new Scm();
+        List<String> machineFiles = machine.getConfigFiles(type);
+        Delta delta = new Delta();
 
-        List<String> machineFiles = machine.getConfigFiles("home|scripts|.properties\\z|.xml\\z|.xsd\\z|.py\\z|.sh\\z|blue2");
         for (String machineFile : machineFiles) {
-            String relativePath = machineFile.replace(System.getProperty("user.dir") + "\\config\\", "");
-            String cvsFile = scm.getFor(releaseName, machine.getName(), relativePath);
-            FileDiff fileDiff = new FileDiff(relativePath, machineFile, cvsFile).process();
-            if (fileDiff.isMissing())
-                missingFileDiffs.add(fileDiff);
-            else
-                changedFileDiffs.add(fileDiff);
+            String relativePath = machineFile.replace(userDir + "\\config\\", "");
+            String scmFile = scm.getFor(releaseName, machine.getName(), relativePath);
+            delta.add(new FileDiff(relativePath, machineFile, scmFile).process());
         }
         log.info("completed processing");
+        return delta;
     }
 
-    public List<FileDiff> changedFileDiffs() {
-        return changedFileDiffs;
-    }
-
-    public List<FileDiff> missingFileDiffs() {
-        return missingFileDiffs;
-    }
 }
 

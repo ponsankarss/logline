@@ -1,5 +1,6 @@
 package com.vijayrc.supportguy.web;
 
+import lombok.extern.log4j.Log4j;
 import org.apache.log4j.Logger;
 import org.simpleframework.http.core.ContainerServer;
 import org.simpleframework.transport.Server;
@@ -14,9 +15,8 @@ import java.net.InetSocketAddress;
 
 @Service
 @Scope("singleton")
+@Log4j
 public class MyServer {
-    private static final Logger log = Logger.getLogger(MyServer.class);
-
     private Integer port;
     private Server myServer;
     private MyContainer myContainer;

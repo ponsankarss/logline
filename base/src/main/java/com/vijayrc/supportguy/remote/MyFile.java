@@ -1,11 +1,13 @@
 package com.vijayrc.supportguy.remote;
 
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j
 public class MyFile {
 
     private String path;

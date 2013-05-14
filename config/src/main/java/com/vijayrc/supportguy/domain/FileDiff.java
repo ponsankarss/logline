@@ -3,6 +3,8 @@ package com.vijayrc.supportguy.domain;
 import difflib.Delta;
 import difflib.DiffUtils;
 import difflib.Patch;
+import lombok.Data;
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -11,9 +13,8 @@ import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Log4j
 public class FileDiff {
-    private static final Logger log = Logger.getLogger(FileDiff.class);
-
     private Pattern pattern = Pattern.compile("lines:\\s*\\[(?<change>.*?)\\]\\]");
     private Pattern changeExistPattern = Pattern.compile("[^(,\\s+)]+");
 

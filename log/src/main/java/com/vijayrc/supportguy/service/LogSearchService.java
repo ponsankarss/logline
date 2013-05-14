@@ -4,6 +4,7 @@ import com.vijayrc.supportguy.domain.Lines;
 import com.vijayrc.supportguy.domain.Logs;
 import com.vijayrc.supportguy.repository.AllProcessors;
 import com.vijayrc.supportguy.repository.AllRules;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.io.File;
 
 @Service
 @Scope("prototype")
+@Log4j
 public class LogSearchService {
 
     @Autowired

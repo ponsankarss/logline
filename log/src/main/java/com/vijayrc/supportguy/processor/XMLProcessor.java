@@ -3,11 +3,13 @@ package com.vijayrc.supportguy.processor;
 import com.vijayrc.supportguy.config.Constants;
 import com.vijayrc.supportguy.domain.Logs;
 import com.vijayrc.supportguy.domain.Lines;
+import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Pattern;
 
 @Component
+@Log4j
 public class XMLProcessor implements Processor {
 
     private Pattern tagPattern = Pattern.compile("(:?<.+>)");
