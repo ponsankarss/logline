@@ -23,12 +23,13 @@ public class ConfigTest {
         String file = ClassLoader.getSystemResource("machines.yml").getFile();
         YamlReader reader = new YamlReader(new FileReader(file));
         List<Machine> machines = new ArrayList<Machine>();
-        while(true){
+        while (true) {
             Machine machine = reader.read(Machine.class);
-            if(machine == null) break;
+            if (machine == null) break;
             machines.add(machine);
         }
-        assertEquals(3,machines.size());
+        assertEquals(3, machines.size());
+        assertEquals("vichakra", machines.get(0).getUser().getName());
     }
 
     @Test
@@ -37,7 +38,6 @@ public class ConfigTest {
         writer.getConfig().setPropertyElementType(Machine.class, "user", User.class);
         writer.write(new Machine());
         writer.close();
-
 
 
     }

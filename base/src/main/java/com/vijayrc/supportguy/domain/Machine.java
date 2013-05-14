@@ -17,12 +17,9 @@ public class Machine {
     private String ip;
     private String logDir;
     private String configDir;
-
-    @ConfigUnit(User.class)
     private User user;
 
     private Pattern logPattern = Pattern.compile("[\\w]+.log(.\\d)*");
-
 
     public List<String> browseLogFiles() throws Exception {
         return remote().browse(logDir, logPattern);
@@ -44,14 +41,6 @@ public class Machine {
 
     public boolean nameIs(String name) {
         return this.name.equals(name);
-    }
-
-    public String user() {
-        return user.getLoginName();
-    }
-
-    public String password() {
-        return user.getLoginPassword();
     }
 
     private String getUserDir() {

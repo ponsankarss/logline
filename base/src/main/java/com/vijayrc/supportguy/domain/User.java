@@ -2,21 +2,20 @@ package com.vijayrc.supportguy.domain;
 
 public class User {
     private String name;
-    private String loginName;
-    private String loginPassword;
+    private String password;
 
+    public void setName(String name) {
+        this.name = name;
+    }
     public String getName() {
         return name;
     }
-
-    public String getLoginName() {
-        return loginName;
+    public String getPassword() {
+        return password;
     }
-
-    public String getLoginPassword() {
-        return loginPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
-
     public boolean nameIs(String name) {
         return this.name.equalsIgnoreCase(name);
     }
