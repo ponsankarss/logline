@@ -6,7 +6,7 @@ configDir: /was7blue2/config
 user:
      !com.vijayrc.supportguy.domain.User
      name: vichakra
-     password: bender555fry
+     password: xxxxx
 ---
 !com.vijayrc.supportguy.domain.Machine
 name: p5-mo
@@ -16,7 +16,7 @@ configDir: /was7blue2/config
 user:
      !com.vijayrc.supportguy.domain.User
      name: vichakra
-     password: bender555fry
+     password: xxxxx
 ---
 !com.vijayrc.supportguy.domain.Machine
 name: p5-prod
@@ -26,4 +26,4 @@ configDir: /was7blue2/config
 user:
     !com.vijayrc.supportguy.domain.User
     name: vichakra
-    password: bender555fry
+    password: xxxxx
