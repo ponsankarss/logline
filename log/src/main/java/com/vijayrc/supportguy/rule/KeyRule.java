@@ -27,6 +27,7 @@ public class KeyRule implements LineRule {
             if (!keyPattern.matcher(processedLine).find())
                 continue;
             Matcher matcher = Constants.dateRegex1.matcher(processedLine);
+
             if (matcher != null && matcher.find()) {
                 String thread = matcher.group("thread");
                 lines.addKeyLine(new Line(processedLine).ofThread(thread));
