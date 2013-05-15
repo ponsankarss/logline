@@ -2,6 +2,7 @@ package com.vijayrc.supportguy.controller;
 
 import com.vijayrc.supportguy.meta.WebClass;
 import com.vijayrc.supportguy.meta.WebMethod;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -20,7 +21,7 @@ import java.util.*;
 @Log4j
 public class AllControllers implements BeanPostProcessor {
 
-    private Map<String, Method> methods = new HashMap<String, Method>();;
+    private Map<String, ControllerMethod> methods = new HashMap<String, ControllerMethod>();;
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
@@ -30,8 +31,7 @@ public class AllControllers implements BeanPostProcessor {
             if (!method.isAnnotationPresent(WebMethod.class))
                 continue;
             String key = bean.getClass().getAnnotation(WebClass.class).value() + method.getAnnotation(WebMethod.class).value();
-            System.out.println(key);
-            methods.put(key, method);
+            methods.put(key, new ControllerMethod(bean,method));
         }
         return bean;
     }
@@ -49,9 +49,9 @@ public class AllControllers implements BeanPostProcessor {
 
             for (String key : methods.keySet()) {
                 if (!path.contains(key)) continue;
-                Method method = methods.get(key);
                 addHeaders(response);
-                method.invoke(method.getDeclaringClass().newInstance(), request, response);
+                ControllerMethod controllerMethod = methods.get(key);
+                controllerMethod.method.invoke(controllerMethod.bean, request, response);
                 return;
             }
             showError(response, new Exception("Page not found, please check the url"));
@@ -73,5 +73,15 @@ public class AllControllers implements BeanPostProcessor {
         response.setValue("Cache-Control", "no-store, no-cache, must-revalidate");
         response.setValue("Cache-Control", "post-check=0, pre-check=0");
         response.setValue("Pragma", "no-cache");
+    }
+
+    private class ControllerMethod{
+        private Object bean;
+        private Method method;
+
+        private ControllerMethod(Object bean, Method method) {
+            this.bean = bean;
+            this.method = method;
+        }
     }
 }

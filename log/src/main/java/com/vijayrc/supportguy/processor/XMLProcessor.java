@@ -1,6 +1,6 @@
 package com.vijayrc.supportguy.processor;
 
-import com.vijayrc.supportguy.config.Constants;
+import com.vijayrc.supportguy.util.Constants;
 import com.vijayrc.supportguy.domain.Logs;
 import com.vijayrc.supportguy.domain.Lines;
 import lombok.extern.log4j.Log4j;

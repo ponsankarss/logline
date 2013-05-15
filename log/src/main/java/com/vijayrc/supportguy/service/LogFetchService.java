@@ -31,4 +31,8 @@ public class LogFetchService {
         Machine machine = allMachines.getFor(machineName);
         return machine.browseLogFiles();
     }
+
+    public List<String> machineNames(){
+        return allMachines.names();
+    }
 }

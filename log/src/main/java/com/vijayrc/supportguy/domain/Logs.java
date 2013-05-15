@@ -1,6 +1,6 @@
 package com.vijayrc.supportguy.domain;
 
-import com.vijayrc.supportguy.config.Constants;
+import com.vijayrc.supportguy.util.Constants;
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 

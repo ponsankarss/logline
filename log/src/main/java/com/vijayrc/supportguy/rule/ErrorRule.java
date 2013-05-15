@@ -1,6 +1,6 @@
 package com.vijayrc.supportguy.rule;
 
-import com.vijayrc.supportguy.config.Constants;
+import com.vijayrc.supportguy.util.Constants;
 import com.vijayrc.supportguy.domain.Line;
 import com.vijayrc.supportguy.domain.Lines;
 import com.vijayrc.supportguy.domain.Logs;

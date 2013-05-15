@@ -1,4 +1,4 @@
-package com.vijayrc.supportguy.config;
+package com.vijayrc.supportguy.util;
 
 public class SqlConfig {
     private String name;

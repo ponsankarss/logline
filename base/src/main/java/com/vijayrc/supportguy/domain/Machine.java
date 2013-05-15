@@ -3,6 +3,7 @@ package com.vijayrc.supportguy.domain;
 import com.vijayrc.supportguy.remote.MyFile;
 import com.vijayrc.supportguy.remote.MyJsch;
 import com.vijayrc.supportguy.remote.MyRemote;
+import static com.vijayrc.supportguy.util.Util.*;
 import lombok.Data;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
@@ -48,10 +49,6 @@ public class Machine {
 
     public String password() {
         return user.getPassword();
-    }
-
-    private String userDir() {
-        return System.getProperty("user.dir");
     }
 
     private MyRemote remote() {

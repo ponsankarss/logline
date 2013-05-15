@@ -1,11 +1,10 @@
 package com.vijayrc.supportguy.rule;
 
-import com.vijayrc.supportguy.config.Constants;
+import com.vijayrc.supportguy.util.Constants;
 import com.vijayrc.supportguy.domain.Line;
 import com.vijayrc.supportguy.domain.Lines;
 import com.vijayrc.supportguy.domain.Logs;
 import lombok.extern.log4j.Log4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

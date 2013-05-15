@@ -6,6 +6,9 @@ import com.vijayrc.supportguy.meta.WebClass;
 import com.vijayrc.supportguy.meta.WebMethod;
 import com.vijayrc.supportguy.service.LogFetchService;
 import com.vijayrc.supportguy.service.LogSearchService;
+
+import static com.vijayrc.supportguy.util.Util.*;
+
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
 import org.simpleframework.http.Request;
@@ -29,12 +32,10 @@ public class LogController extends BaseController {
 
     @WebMethod("tool")
     public void showTool(Request request, Response response) throws Exception {
-        response.setValue("Content-Type", "text/html");
-
         Map<String, Object> model = new HashMap<String, Object>();
-        model.put("folder", System.getProperty("user.dir") + "\\logs");
+        model.put("folder", userDir() + "\\logs");
+        model.put("machines",fetchService.machineNames());
         renderer.render("log-tool", model, response);
-        log.info(request.getPath());
     }
 
     @WebMethod("browse")

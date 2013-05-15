@@ -1,12 +1,10 @@
-package com.vijayrc.supportguy.config;
+package com.vijayrc.supportguy.util;
 
 import java.util.regex.Pattern;
 
 public interface Constants {
     String formatForLongLogTimeWindow = "MM/dd/yyyy HH:mm:ss";
     String formatForShortLogTimeWindow = "MM/dd/yyyy";
-
-    String userDir = System.getProperty("user.dir");
 
 
     //TODO move them out to json

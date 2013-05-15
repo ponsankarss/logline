@@ -5,13 +5,12 @@ import com.vijayrc.supportguy.domain.FileDiff;
 import com.vijayrc.supportguy.domain.Machine;
 import com.vijayrc.supportguy.domain.Scm;
 import com.vijayrc.supportguy.repository.AllMachines;
+import com.vijayrc.supportguy.util.Util;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static com.vijayrc.supportguy.config.Constants.userDir;
 
 @Service
 @Log4j
@@ -34,7 +33,7 @@ public class FileDiffService {
         Delta delta = new Delta();
 
         for (String machineFile : machineFiles) {
-            String relativePath = machineFile.replace(userDir + "\\config\\", "");
+            String relativePath = machineFile.replace(Util.userDir() + "\\config\\", "");
             String scmFile = scm.getFor(releaseName, machine.getName(), relativePath);
             delta.add(new FileDiff(relativePath, machineFile, scmFile).process());
         }

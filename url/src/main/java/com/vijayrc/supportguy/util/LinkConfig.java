@@ -1,4 +1,4 @@
-package com.vijayrc.supportguy.config;
+package com.vijayrc.supportguy.util;
 
 public class LinkConfig {
     private String address;

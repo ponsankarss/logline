@@ -49,9 +49,9 @@
      <label for="folder" class="control-label">Machine</label>
      <div class="controls">
         <select id="machine">
-            <option>nasnmasdev</option>
-            <option>nasnmasmo</option>
-            <option>nasnmas3</option>
+            #foreach($machine in $machines)
+                <option>$machine</option>
+            #end
         </select>
      </div>
 </div>
