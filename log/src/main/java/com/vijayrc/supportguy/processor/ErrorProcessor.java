@@ -20,12 +20,12 @@ public class ErrorProcessor implements Processor {
 
     @Override
     public void process(Logs logs) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuffer buffer = null;
         boolean inStack = false;
 
         for (String fileLine : logs.lines().fileLines()) {
             if (startPattern.matcher(fileLine).find() && !inStack) {
-                buffer.append(fileLine);
+                buffer = new StringBuffer().append(fileLine);
                 inStack = true;
                 continue;
             }

@@ -71,8 +71,8 @@ public class LogController extends BaseController {
         Lines lines = searchService.process(keys, folder, startDate, endDate, option);
 
         Map<String, Object> model = new HashMap<String, Object>();
-        model.put("keyLines", lines.keyLines());
-        model.put("errorLines", lines.errorLines());
+        model.put("keyLines", lines.byThread());
+        model.put("errorLines", lines.byError());
         renderer.render("log-search-results", model, response);
     }
 

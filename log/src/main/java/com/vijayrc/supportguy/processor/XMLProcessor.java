@@ -22,12 +22,12 @@ public class XMLProcessor implements Processor {
     @Override
     public void process(Logs logs) {
         Lines lines = logs.lines();
-        StringBuffer buffer = new StringBuffer();
+        StringBuffer buffer = null;
         boolean inXml = false;
 
         for (String fileLine : lines.fileLines()) {
             if (startPattern.matcher(fileLine).find()) {
-                buffer.append(fileLine);
+                buffer = new StringBuffer().append(fileLine);
                 inXml = true;
                 continue;
             }
