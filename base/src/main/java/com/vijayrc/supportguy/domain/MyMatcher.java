@@ -1,0 +1,38 @@
+package com.vijayrc.supportguy.domain;
+
+import org.apache.commons.lang.StringUtils;
+
+import java.util.regex.Matcher;
+
+public class MyMatcher {
+    private MyRegex myRegex;
+    private Matcher matcher;
+    private boolean match;
+
+    public MyMatcher() {
+        this.match = false;
+    }
+
+    public MyMatcher(MyRegex myRegex, Matcher matcher) {
+        this.myRegex = myRegex;
+        this.matcher = matcher;
+        this.match = matcher != null && matcher.find();
+    }
+
+    public boolean isMatch() {
+        return match;
+    }
+
+    public String group(String name) {
+        return match ? matcher.group(name) : null;
+    }
+
+    public boolean hasGroup(String name) {
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "[myRegex=" + myRegex + "|match=" + match + "]";
+    }
+}
