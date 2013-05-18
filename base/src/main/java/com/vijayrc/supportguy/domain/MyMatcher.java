@@ -1,7 +1,5 @@
 package com.vijayrc.supportguy.domain;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.regex.Matcher;
 
 public class MyMatcher {
@@ -28,7 +26,7 @@ public class MyMatcher {
     }
 
     public boolean hasGroup(String name) {
-        return false;
+        return match && myRegex.hasGroup(name);
     }
 
     @Override

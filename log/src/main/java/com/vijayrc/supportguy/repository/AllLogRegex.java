@@ -4,6 +4,7 @@ import com.esotericsoftware.yamlbeans.YamlReader;
 import com.vijayrc.supportguy.domain.MyMatcher;
 import com.vijayrc.supportguy.domain.MyRegex;
 import com.vijayrc.supportguy.util.Util;
+import lombok.extern.log4j.Log4j;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +18,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 @Repository
 @Scope("singleton")
+@Log4j
 public class AllLogRegex {
 
     private List<MyRegex> regexes = new ArrayList<MyRegex>();
@@ -28,6 +30,7 @@ public class AllLogRegex {
             MyRegex myRegex = reader.read(MyRegex.class);
             if (myRegex == null) break;
             regexes.add(myRegex.compile());
+            log.info("added " + myRegex);
         }
     }
 

@@ -7,14 +7,11 @@ import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.*;
 
 public class MyRegexTest {
 
