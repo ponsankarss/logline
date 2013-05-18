@@ -15,30 +15,33 @@ import static junit.framework.Assert.*;
 
 public class MyRegexTest {
 
+    MyRegex myRegex = new MyRegex();
+
     @Test
-    public void shouldPickGroupsFromRegex(){
-        Pattern pattern = Pattern.compile("\\?<([a-z]+)>");
-        Matcher matcher = pattern.matcher("(?<timestamp>[0-9]{4}-[0-9]{2}-[0-9]{2}\\s*[0-9]{1,2}:[0-9]{2}:[0-9]{2},[0-9]{0,3})]\\s*(?<thread>.*)\\s*(INFO|WARN|FATAL|ERROR|DEBUG)");
-        assertTrue(matcher != null && matcher.find());
-        assertEquals("timestamp", matcher.group(1));
-        assertTrue(matcher != null && matcher.find());
-        assertEquals("thread", matcher.group(1));
+    public void matchForPattern1(){
+        myRegex.setRegex("(?<timestamp>[0-9]{4}-[0-9]{2}-[0-9]{2}\\s*[0-9]{1,2}:[0-9]{2}:[0-9]{2},[0-9]{0,3})]\\s+\\[(?<thread>.*)\\]\\s+");
+        myRegex.compile();
+        MyMatcher myMatcher = myRegex.on("[2013-01-23 10:43:05,906] [WebContainer : 23613] INFO  com.bcbsa.blue2.web.action.SccfSearchAction ");
+        assertTrue(myMatcher.isMatch());
+        System.out.println(myMatcher.group("timestamp")+"|"+myMatcher.group("thread"));
     }
 
     @Test
-    public void shouldMatchDatePattern1AndPickThreadName() throws ParseException {
-        Pattern pattern = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s*[0-9]{1,2}:[0-9]{2}:[0-9]{2},[0-9]{0,3}]\\s*(?<thread>.*)\\s*INFO");
-        Matcher matcher = pattern.matcher("[2013-02-04 09:57:58,574] [WebContainer : 3538] INFO  com.xxx.xxx.web.action.SFClaimSummaryAction - UI sccfNum input:2345343");
-        assertTrue(matcher != null && matcher.find());
-        System.out.println(matcher.group("thread"));
+    public void matchForPattern2(){
+        myRegex.setRegex("(?<timestamp>[0-9]{1,2}/[0-9]{1,2}/[0-9]{2}\\s*[0-9]{1,2}:[0-9]{2}:[0-9]{2}:[0-9]{0,3})\\s*(EDT)\\]\\s+(?<thread>[\\S]+)\\s+");
+        myRegex.compile();
+        MyMatcher myMatcher = myRegex.on("[5/1/13 4:45:00:803 EDT] 00000035 SchedulerDaem W   SCHD0103W: The Scheduler Datanet Lite Scheduler (scheduler/dnlScheduler) was unable to run task 2788");
+        assertTrue(myMatcher.isMatch());
+        System.out.println(myMatcher.group("timestamp")+"|"+myMatcher.group("thread"));
     }
 
     @Test
-    public void shouldMatchDatePattern2() throws Exception {
-        Pattern pattern = Pattern.compile("[0-9]{2}\\s*(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s*[0-9]{4}\\s*[0-9]{1,2}:[0-9]{2}:[0-9]{2}");
-        Matcher matcher = pattern.matcher("04 Feb 2013 09:55:10  INFO JaxmRouterManager:64 - authority is matching.");
-        assertTrue(matcher != null && matcher.find());
-        System.out.println(matcher.group());
+    public void matchForPattern3(){
+        myRegex.setRegex("(?<timestamp>[0-9]{2}\\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s+[0-9]{4}\\s+[0-9]{1,2}:[0-9]{2}:[0-9]{2})");
+        myRegex.compile();
+        MyMatcher myMatcher = myRegex.on("15 May 2013 14:33:58  INFO RemediationMDBBean:47 - Start");
+        assertTrue(myMatcher.isMatch());
+        System.out.println(myMatcher.group("timestamp")+"|"+myMatcher.group("thread"));
     }
 
     @Test

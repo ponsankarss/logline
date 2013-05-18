@@ -22,7 +22,7 @@ public class MyMatcher {
     }
 
     public String group(String name) {
-        return match ? matcher.group(name) : null;
+        return hasGroup(name)? matcher.group(name):null;
     }
 
     public boolean hasGroup(String name) {
