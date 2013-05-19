@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -22,7 +23,9 @@ public class FileDiffController extends BaseController {
 
     @WebMethod("tool")
     public void showTool(Request request, Response response) throws Exception {
-        Map<String, Object> model = new HashMap<String, Object>();
+        Map<String, Object> model = new HashMap<>();
+        model.put("scms", fileDiffService.fetchAllScms());
+        model.put("machines", fileDiffService.fetchAllMachines());
         renderer.render("diff-tool", model, response);
     }
 
@@ -33,7 +36,7 @@ public class FileDiffController extends BaseController {
 
         Delta delta = fileDiffService.process(machineName, scmName);
 
-        Map<String, Object> model = new HashMap<String, Object>();
+        Map<String, Object> model = new HashMap<>();
         model.put("changedFileDiffs", delta.getChanged());
         model.put("missingFileDiffs", delta.getMissing());
         renderer.render("diff-results", model, response);

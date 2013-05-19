@@ -6,7 +6,6 @@ import com.vijayrc.supportguy.domain.Machine;
 import com.vijayrc.supportguy.domain.Scm;
 import com.vijayrc.supportguy.repository.AllMachines;
 import com.vijayrc.supportguy.repository.AllScms;
-import com.vijayrc.supportguy.util.Util;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +39,13 @@ public class FileDiffService {
         return delta;
     }
 
+
+    public List<String> fetchAllScms() {
+        return allScms.names();
+    }
+
+    public List<String> fetchAllMachines() {
+        return allMachines.names();
+    }
 }
 

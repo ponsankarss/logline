@@ -11,9 +11,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ch.lambdaj.Lambda.filter;
-import static ch.lambdaj.Lambda.having;
-import static ch.lambdaj.Lambda.on;
+import static ch.lambdaj.Lambda.*;
 import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -37,5 +35,9 @@ public class AllScms {
     public Scm getFor(String name) {
         List<Scm> filter = filter(having(on(Scm.class).getName(), equalTo(name)), scms);
         return isNotEmpty(filter) ? filter.get(0) : null;
+    }
+
+    public List<String> names() {
+        return extract(scms,on(Scm.class).getName());
     }
 }
