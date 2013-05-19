@@ -25,7 +25,7 @@ public class MyRegex {
     public MyRegex compile() {
         pattern = Pattern.compile(regex);
         groupPattern = Pattern.compile("\\?<([a-z]+)>");
-        groups = new ArrayList<String>();
+        groups = new ArrayList<>();
         Matcher matcher = groupPattern.matcher(regex);
         while (matcher.find())
             groups.add(matcher.group(1));

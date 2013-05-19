@@ -1,14 +1,20 @@
 package com.vijayrc.supportguy.domain;
 
-import lombok.extern.log4j.Log4j;
-import org.apache.log4j.Logger;
-import org.springframework.stereotype.Service;
+import lombok.Data;
 
-@Service
-@Log4j
+import static com.vijayrc.supportguy.util.Util.fileSeparator;
+import static com.vijayrc.supportguy.util.Util.userDir;
+
+@Data
 public class Scm {
 
-    public String getFor(String release, String environment, String path) {
-        return "";
+    private String name;
+    private String location;
+    private String type;
+
+    public String getFileFor(String peerFile) {
+        return location + peerFile.replace(userDir() + "config" + fileSeparator(), "");
     }
+
+
 }

@@ -5,6 +5,7 @@ import com.vijayrc.supportguy.domain.FileDiff;
 import com.vijayrc.supportguy.domain.Machine;
 import com.vijayrc.supportguy.domain.Scm;
 import com.vijayrc.supportguy.repository.AllMachines;
+import com.vijayrc.supportguy.repository.AllScms;
 import com.vijayrc.supportguy.util.Util;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,26 +17,24 @@ import java.util.List;
 @Log4j
 public class FileDiffService {
     private AllMachines allMachines;
-    private Scm scm;
-    private String type;
+    private AllScms allScms;
 
     @Autowired
-    public FileDiffService(AllMachines allMachines, Scm scm) {
+    public FileDiffService(AllMachines allMachines, AllScms allScms) {
         this.allMachines = allMachines;
-        this.scm = scm;
-        this.type = "home|scripts|.properties\\z|.xml\\z|.xsd\\z|.py\\z|.sh\\z|blue2";
+        this.allScms = allScms;
     }
 
-    //TODO
-    public Delta process(String machineName, String releaseName) throws Exception {
+    public Delta process(String machineName, String scmName) throws Exception {
         Machine machine = allMachines.getFor(machineName);
-        List<String> machineFiles = machine.getConfigFiles(type);
+        Scm scm = allScms.getFor(scmName);
+
+        List<String> machineFiles = machine.getConfigFiles(scm.getType());
         Delta delta = new Delta();
 
         for (String machineFile : machineFiles) {
-            String relativePath = machineFile.replace(Util.userDir() + "\\config\\", "");
-            String scmFile = scm.getFor(releaseName, machine.getName(), relativePath);
-            delta.add(new FileDiff(relativePath, machineFile, scmFile).process());
+            String scmFile = scm.getFileFor(machineFile);
+            delta.add(new FileDiff(machineFile, scmFile).process());
         }
         log.info("completed processing");
         return delta;

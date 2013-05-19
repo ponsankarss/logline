@@ -29,9 +29,9 @@ public class FileDiffController extends BaseController {
     @WebMethod("results")
     public void showResults(Request request, Response response) throws Exception {
         String machineName = request.getParameter("machine");
-        String releaseName = request.getParameter("release");
+        String scmName = request.getParameter("scm");
 
-        Delta delta = fileDiffService.process(machineName, releaseName);
+        Delta delta = fileDiffService.process(machineName, scmName);
 
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("changedFileDiffs", delta.getChanged());
