@@ -7,7 +7,6 @@ import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 
 import java.io.File;
-import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,7 +14,7 @@ import static junit.framework.Assert.*;
 
 public class MyRegexTest {
 
-    MyRegex myRegex = new MyRegex();
+    MyRegex myRegex = new MyRegex("(:?<.+>)");
 
     @Test
     public void matchForPattern1(){

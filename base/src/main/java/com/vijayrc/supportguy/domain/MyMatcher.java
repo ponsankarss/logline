@@ -1,5 +1,9 @@
 package com.vijayrc.supportguy.domain;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.regex.Matcher;
 
 public class MyMatcher {
@@ -22,7 +26,7 @@ public class MyMatcher {
     }
 
     public String group(String name) {
-        return hasGroup(name)? matcher.group(name):null;
+        return hasGroup(name) ? matcher.group(name) : null;
     }
 
     public boolean hasGroup(String name) {
@@ -32,5 +36,13 @@ public class MyMatcher {
     @Override
     public String toString() {
         return "[myRegex=" + myRegex + "|match=" + match + "]";
+    }
+
+    public boolean notMatched() {
+        return !isMatch();
+    }
+
+    public DateTime getTime() {
+        return DateTimeFormat.forPattern(myRegex.getDateFormat()).parseDateTime(matcher.group("timestamp"));
     }
 }

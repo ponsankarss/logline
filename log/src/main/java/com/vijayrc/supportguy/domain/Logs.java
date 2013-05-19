@@ -1,6 +1,5 @@
 package com.vijayrc.supportguy.domain;
 
-import com.vijayrc.supportguy.util.Constants;
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 
@@ -18,12 +17,12 @@ public class Logs {
     private String option;
     private DateTime startDate;
     private DateTime endDate;
-    private List<String> keys;
+    private Pattern searchKeyPattern;
 
     public Logs(Lines lines, String startDateString, String endDateString, String keys, String option) {
         this.lines = lines;
         this.option = option;
-        this.keys = split(keys);
+        this.searchKeyPattern = keyPattern(keys);
         this.startDate = parse(startDateString);
         this.endDate = parse(endDateString);
     }
@@ -60,19 +59,19 @@ public class Logs {
         if (StringUtils.isBlank(date)) return DateTime.now();
         date = date.trim();
         return date.contains(":") ?
-                forPattern(Constants.formatForLongLogTimeWindow).parseDateTime(date) :
-                forPattern(Constants.formatForShortLogTimeWindow).parseDateTime(date);
+                forPattern("MM/dd/yyyy HH:mm:ss").parseDateTime(date) :
+                forPattern("MM/dd/yyyy").parseDateTime(date);
     }
 
-    private List<String> split(String keys) {
+    private Pattern keyPattern(String keys) {
         List<String> splitKeys = new ArrayList<String>();
         for (String key : StringUtils.split(keys, ","))
             splitKeys.add(StringUtils.deleteWhitespace(key));
-        return splitKeys;
+        return Pattern.compile("(?i)" + StringUtils.join(splitKeys.toArray(), "|"));
     }
 
-    public Pattern keyPattern() {
-        return Pattern.compile("(?i)" + StringUtils.join(keys.toArray(), "|"));
+    public boolean hasNoSearchKey(String line) {
+        return !searchKeyPattern.matcher(line).find();
     }
 
     public void addFileLinesFrom(File file) throws Exception {

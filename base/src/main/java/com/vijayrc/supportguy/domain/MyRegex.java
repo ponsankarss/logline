@@ -1,6 +1,7 @@
 package com.vijayrc.supportguy.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Data
+@NoArgsConstructor
 public class MyRegex {
     private String name;
     private String regex;
@@ -15,6 +17,10 @@ public class MyRegex {
     private Pattern pattern;
     private Pattern groupPattern;
     private List<String> groups;
+
+    public MyRegex(String regex) {
+        this.regex = regex;
+    }
 
     public MyRegex compile() {
         pattern = Pattern.compile(regex);

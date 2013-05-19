@@ -86,11 +86,12 @@ public class Line implements Comparable<Line> {
         return timestamp;
     }
 
-    public void markTime(String timestamp) {
+    public Line timeIs(String timestamp) {
         this.timestamp = timestamp;
+        return this;
     }
 
-    public void markErrorTitle(String errorTitle) {
+    public void titleIs(String errorTitle) {
         this.errorTitle = errorTitle;
     }
 }
