@@ -98,51 +98,19 @@ LogLight = function(){
             return;
         }
         //sql
-        var dbMatch = html.match("Blue2Dao*");
-         if(dbMatch){
-            $(this).css("color","#104E8B");
-            var schemaMatch = html.match("(PNASCO|PNASCMOD|T6QJDBA|NAXJRB1).[A-Z|_]+");
-            if(schemaMatch){ html = html.replace(schemaMatch[0],"<span class='sccf'>"+schemaMatch[0]+"</span>")};
-         }
-        //jms message
-        if(html.match("JMSSender|DispatchQSender|MessageDispatcher|jms/")){
-            $(this).css("color","#1874CD");
+        var dbMatch = html.match("\\bSELECT\\b|\\bINSERT\\b|\\bUPDATE\\b|\\bDELETE\\b");
+        if(dbMatch){
+           $(this).css("color","#104E8B");
         }
         //error
         if(html.match("\\[ERROR\\]")){
             $(this).css("color","maroon");
         }
-
-        //user-id
-        var userMatch = html.match("[A-Z0-9]{6,7}");
-        if(userMatch){
-           var keyNotMatch = splits.indexOf(userMatch[0])== -1;
-           if(keyNotMatch && userMatch[0].match('[A-Z]+')&& userMatch[0].match('[0-9]*')&& !userMatch[0].match('SELECT|INSERT|UPDATE') ){
-                html = html.replace(userMatch[0],"<span class='sccf'>"+userMatch[0]+"</span>");
-           }
-        }
-        //sccf
-        var sccfMatch = html.match("[0-9]{17}");
-        if(sccfMatch){
-          var keyNotMatch = splits.indexOf(sccfMatch[0])== -1;
-          if(keyNotMatch){
-                html = html.replace(sccfMatch[0],"<span class='sccf'>"+sccfMatch[0]+"</span>");
-          }
-        } else{
-           //boid
-           var boidMatch = html.match("780[12][\D]+|534[12]|542[12]|560[12]|690[12]|090[12]|580[12]|671[12]|701[12]|710[12]|430[12]|936[12]|134[12]|104[12]|834[12]|184[12]|273[12]|064[12]|308[12]|428[12]|104[12]|249[12]|456[12]|268[12]|053[12]|046[12]|720[12]");
-           if(boidMatch){html = html.replace(boidMatch[0],"<span class='sccf'>"+boidMatch[0]+"</span>")};
-        }
-        //time-color
-        var timeMatch = html.match("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s*[0-9]{1,2}:[0-9]{2}:[0-9]{2},[0-9]{0,3}");
-        if(timeMatch){html = html.replace(timeMatch[0],"<span class='time'>"+timeMatch[0]+"</span>")}
-        else{
-            timeMatch = html.match("[0-9]{2}\\s*(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s*[0-9]{4}\\s*[0-9]{1,2}:[0-9]{2}:[0-9]{2}");
-            if(timeMatch){html = html.replace(timeMatch[0],"<span class='time'>"+timeMatch[0]+"</span>")}
-        }
         //file
         var fileMatch = html.match("\\[.*?\\]");
-        if(fileMatch){html = html.replace(fileMatch[0],"<span class='file'>"+fileMatch[0]+"</span>")};
+        if(fileMatch){
+            html = html.replace(fileMatch[0],"<span class='file'>"+fileMatch[0]+"</span>")
+        };
 
         $(this).html(html);
 
