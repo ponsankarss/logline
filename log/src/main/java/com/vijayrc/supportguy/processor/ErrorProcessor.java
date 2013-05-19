@@ -16,12 +16,14 @@ public class ErrorProcessor implements Processor {
     private AllLogRegex allLogRegex;
     private Pattern startPattern;
     private Pattern tracePattern;
+    private Pattern xmlPattern;
 
     @Autowired
     public ErrorProcessor(AllLogRegex allLogRegex) {
         this.allLogRegex = allLogRegex;
         startPattern = Pattern.compile("(?i)exception");
         tracePattern = Pattern.compile("\\s*at\\s+");
+        xmlPattern = Pattern.compile("(:?<.+>)");
     }
 
     @Override
@@ -30,7 +32,7 @@ public class ErrorProcessor implements Processor {
         boolean inStack = false;
 
         for (String fileLine : logs.lines().fileLines()) {
-            if (startPattern.matcher(fileLine).find() && !inStack) {
+            if (startPattern.matcher(fileLine).find() && !xmlPattern.matcher(fileLine).find() && !inStack) {
                 buffer = new StringBuffer().append(fileLine);
                 inStack = true;
                 continue;
@@ -45,6 +47,7 @@ public class ErrorProcessor implements Processor {
             }
         }
     }
+
     private boolean hasNoTimePrefix(String fileLine) {
         return !allLogRegex.findMatched(fileLine).hasGroup("timestamp");
     }
