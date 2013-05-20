@@ -2,26 +2,26 @@ package com.vijayrc.supportguy.controller;
 
 import com.vijayrc.supportguy.meta.WebClass;
 import com.vijayrc.supportguy.meta.WebMethod;
-import lombok.Getter;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 @Repository
 @Log4j
-public class AllControllers implements BeanPostProcessor {
+public class AllControllers implements BeanPostProcessor, ApplicationListener<ContextRefreshedEvent> {
 
-    private Map<String, ControllerMethod> methods = new HashMap<String, ControllerMethod>();;
+    private Map<String, ControllerMethod> methods = new TreeMap<>();
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
@@ -31,8 +31,7 @@ public class AllControllers implements BeanPostProcessor {
             if (!method.isAnnotationPresent(WebMethod.class))
                 continue;
             String key = bean.getClass().getAnnotation(WebClass.class).value() + method.getAnnotation(WebMethod.class).value();
-            methods.put(key, new ControllerMethod(bean,method));
-            log.info(key);
+            methods.put(key, new ControllerMethod(bean, method));
         }
         return bean;
     }
@@ -76,7 +75,13 @@ public class AllControllers implements BeanPostProcessor {
         response.setValue("Pragma", "no-cache");
     }
 
-    private class ControllerMethod{
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        for (String urlKey : methods.keySet())
+            log.info(urlKey);
+    }
+
+    private class ControllerMethod {
         private Object bean;
         private Method method;
 
