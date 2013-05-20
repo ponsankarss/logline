@@ -28,6 +28,7 @@ public class AllMachines {
             Machine machine = reader.read(Machine.class);
             if (machine == null) break;
             machines.add(machine);
+            log.info(machine);
         }
     }
 

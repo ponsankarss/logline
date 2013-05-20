@@ -1,12 +1,16 @@
 package com.vijayrc.supportguy.controller;
 
+import com.vijayrc.supportguy.domain.Link;
 import com.vijayrc.supportguy.meta.WebClass;
 import com.vijayrc.supportguy.meta.WebMethod;
+import com.vijayrc.supportguy.repository.AllLinks;
+import com.vijayrc.supportguy.service.LinkService;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.log4j.Logger;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -16,6 +20,9 @@ import java.util.Map;
 @WebClass("link")
 public class LinkController extends BaseController {
 
+    @Autowired
+    private LinkService linkService;
+
     @WebMethod("tool")
     public void showTool(Request request, Response response) throws Exception {
         renderer.render("router", new HashMap<String, Object>(), response);
@@ -23,16 +30,14 @@ public class LinkController extends BaseController {
 
     @WebMethod("update")
     public void post(Request request, Response response) throws Exception {
-        String server = request.getParameter("server");
-        String port = request.getParameter("port");
-        String action = request.getParameter("action");
+        String linkName = request.getParameter("link");
+        Link link = linkService.getFor(linkName);
+        for (String param : link.getParams())
+                link.addParam(param,request.getParameter(param));
 
-        PostMethod postMethod = new PostMethod("http://" + server + ":" + port + "/blue2_wsrouterWeb/B2KillRouter");
-        postMethod.addParameter("action", action);
-        new HttpClient().executeMethod(postMethod);
-
-        Map<String, Object> model = new HashMap<String, Object>();
-        model.put("result", postMethod.getResponseBodyAsString());
+        String result = linkService.process(link);
+        Map<String, Object> model = new HashMap<>();
+        model.put("result",result);
         renderer.render("router-result", model, response);
     }
 }
