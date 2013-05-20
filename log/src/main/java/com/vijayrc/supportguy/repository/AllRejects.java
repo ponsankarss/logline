@@ -1,6 +1,7 @@
 package com.vijayrc.supportguy.repository;
 
 import com.vijayrc.supportguy.util.Util;
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,7 @@ import static ch.lambdaj.Lambda.join;
 
 @Repository
 @Scope("singleton")
+@Log4j
 public class AllRejects {
 
     private List<String> rejects;
@@ -22,8 +24,8 @@ public class AllRejects {
         String file = Util.resource("log-rejects.yml");
         rejects = FileUtils.readLines(new File(file));
         String regex = join(rejects, "|");
-        System.out.println(regex);
         pattern = Pattern.compile(regex);
+        log.info(regex);
     }
 
     public boolean matches(String line) {

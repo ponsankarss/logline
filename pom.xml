@@ -11,7 +11,7 @@
     <modules>
         <module>log</module>
         <module>config</module>
-        <module>url</module>
+        <module>link</module>
         <module>db</module>
         <module>base</module>
         <module>main</module>

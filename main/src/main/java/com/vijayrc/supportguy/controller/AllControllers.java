@@ -32,6 +32,7 @@ public class AllControllers implements BeanPostProcessor {
                 continue;
             String key = bean.getClass().getAnnotation(WebClass.class).value() + method.getAnnotation(WebMethod.class).value();
             methods.put(key, new ControllerMethod(bean,method));
+            log.info(key);
         }
         return bean;
     }

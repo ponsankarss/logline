@@ -1,0 +1,11 @@
+name: google
+url: http://www.google.com
+method: get
+--
+name: vijayrc
+url: http://www.vijayrc.com
+method: get
+
+
+
+
