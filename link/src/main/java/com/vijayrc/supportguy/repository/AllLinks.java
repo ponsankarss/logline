@@ -43,10 +43,6 @@ public class AllLinks {
     }
 
     public Group<Link> groupByEnv(){
-        Group<Link> group = group(links, by(on(Link.class).getEnvironment()));
-
-        System.out.println(group.findAll().size()+"|"+group.subgroups());
-
-        return group;
+        return group(links, by(on(Link.class).getEnvironment()));
     }
 }

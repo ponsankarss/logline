@@ -26,7 +26,7 @@ public class LinkController extends BaseController {
     @WebMethod("tool")
     public void showTool(Request request, Response response) throws Exception {
         HashMap<String, Object> model = new HashMap<>();
-        model.put("linkGroup",linkService.getAll());
+        model.put("group",linkService.getAll());
         renderer.render("link-tool", model, response);
     }
 

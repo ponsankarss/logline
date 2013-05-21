@@ -16,7 +16,7 @@ public class Link {
     private Map<String,String> paramsMap =  new HashMap<>();
 
     public boolean hasParams() {        
-        return params == null || params.isEmpty();
+        return params != null && !params.isEmpty();
     }
 
     public boolean isGet(){
