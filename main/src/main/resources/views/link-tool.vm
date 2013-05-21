@@ -9,13 +9,19 @@
                 #if($link.hasParams())
                     <ul>
                     #foreach($param in $link.getParams())
-                        <li><span>$param</span><span><input class="link-small-btn" name="${param}" type="text"/></span></li>
+                        <li><span>$param :</span><span><input class="link-param-input" name="${param}" type="text"/></span></li>
                     #end
                     </ul>
                 #end
             </td>
-            <td><input type="button" class="btn-info btn-mini" value="hit"/></td>
+            <td>
+                <input url="${link.getName()}"type="button" class="btn-info btn-mini link-small-btn" value="hit"/>
+            </td>
         </tr>
+        <tr>
+            <div id="${link.getName()}"></div>
+        </tr>
+
      #end
     </table>
 #end

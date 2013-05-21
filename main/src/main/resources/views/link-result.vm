@@ -1,1 +1,2 @@
-<p>$result</p>
+<div><span class="link">$linkHit.getLink()</span><span class="link-code">$linkHit.getStatusCode()</span></div>
+<div>$link.getResponse()</div>

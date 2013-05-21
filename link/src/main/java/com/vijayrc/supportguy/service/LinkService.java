@@ -2,6 +2,7 @@ package com.vijayrc.supportguy.service;
 
 import ch.lambdaj.group.Group;
 import com.vijayrc.supportguy.domain.Link;
+import com.vijayrc.supportguy.domain.LinkHit;
 import com.vijayrc.supportguy.repository.AllLinks;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.httpclient.HttpClient;
@@ -25,12 +26,11 @@ public class LinkService {
     @Autowired
     private AllLinks allLinks;
 
-    public String process(Link link) throws Exception {
+    public LinkHit process(Link link) throws Exception {
         NameValuePair[] nameValuePairs = nameValuePairsFor(link);
         HttpMethod httpMethod = link.isGet() ? getMethodFor(link, nameValuePairs) : postMethodFor(link, nameValuePairs);
         int statusCode = new HttpClient().executeMethod(httpMethod);
-        log.info("url= " + link.getUrl() + "|status code= " + statusCode);
-        return httpMethod.getResponseBodyAsString();
+        return new LinkHit(link.getName(), statusCode, httpMethod.getResponseBodyAsString());
     }
 
     private NameValuePair[] nameValuePairsFor(Link link) {

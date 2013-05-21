@@ -38,7 +38,7 @@ HomePage = function(){
 
       var updateToolBoxForRouter = function(response){
         updateToolBox(response);
-        new Router().boot();
+        new LinkHit().boot();
       };
 
       this.boot = function(){
