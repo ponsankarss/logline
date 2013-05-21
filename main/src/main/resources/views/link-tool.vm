@@ -1,0 +1,22 @@
+#foreach($group in $linkGroup.subgroups())
+<div id="link-groups" class="span8">
+    <div class="link-group-title">$group.findAll().get(0).getEnvironment()</div>
+    <ul>
+    #foreach($link in $group.findAll())
+        <li>
+            <div class="link-name">$link.getName()</div>
+            <div class="link-url">$link.getUrl()</div>
+            #if($link.hasParams())
+                <div class="link-params">
+                      #foreach($param in $link.getParams())
+                          <label for="${param}">$param</label>
+                          <input name="${param}" type="text"/>
+                      #end
+                </div>
+            #end
+            <input type="button" class="btn-mini" value="hit"/>
+        </li>
+     #end
+    </ul>
+</div>
+#end

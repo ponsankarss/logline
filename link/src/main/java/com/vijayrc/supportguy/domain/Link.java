@@ -11,6 +11,7 @@ public class Link {
     private String name;
     private String url;
     private String method;
+    private String environment;
     private List<String> params;
     private Map<String,String> paramsMap =  new HashMap<>();
 

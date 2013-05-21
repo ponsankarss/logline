@@ -1,5 +1,6 @@
 package com.vijayrc.supportguy.repository;
 
+import ch.lambdaj.group.Group;
 import com.esotericsoftware.yamlbeans.YamlReader;
 import com.vijayrc.supportguy.domain.Link;
 import com.vijayrc.supportguy.util.Util;
@@ -12,9 +13,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ch.lambdaj.Lambda.filter;
-import static ch.lambdaj.Lambda.having;
-import static ch.lambdaj.Lambda.on;
+import static ch.lambdaj.Lambda.*;
+import static ch.lambdaj.group.Groups.by;
+import static ch.lambdaj.group.Groups.group;
 import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -39,5 +40,13 @@ public class AllLinks {
     public Link getFor(String name) {
         List<Link> filter = filter(having(on(Link.class).getName(), equalTo(name)), links);
         return isNotEmpty(filter) ? filter.get(0) : null;
+    }
+
+    public Group<Link> groupByEnv(){
+        Group<Link> group = group(links, by(on(Link.class).getEnvironment()));
+
+        System.out.println(group.findAll().size()+"|"+group.subgroups());
+
+        return group;
     }
 }

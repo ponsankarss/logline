@@ -1,5 +1,6 @@
 package com.vijayrc.supportguy.service;
 
+import ch.lambdaj.group.Group;
 import com.vijayrc.supportguy.domain.Link;
 import com.vijayrc.supportguy.repository.AllLinks;
 import lombok.extern.log4j.Log4j;
@@ -12,6 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+
+import static ch.lambdaj.Lambda.on;
+import static ch.lambdaj.group.Groups.by;
+import static ch.lambdaj.group.Groups.group;
 
 @Service
 @Log4j
@@ -53,5 +58,9 @@ public class LinkService {
 
     public Link getFor(String linkName) {
         return allLinks.getFor(linkName);
+    }
+
+    public Group<Link> getAll() {
+        return allLinks.groupByEnv();
     }
 }
