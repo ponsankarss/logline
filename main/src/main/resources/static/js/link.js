@@ -1,4 +1,13 @@
 LinkHit = function(){
+
+    var hitAllUrl = function(){
+      var environment = $(this).siblings('span').text();
+      var selector  = '.link-small-btn[env="'+environment+'"]';
+      $(selector).each(function(){
+         $(this).click();
+      });
+    };
+
     var hitUrl = function(){
       var linkName = $(this).attr("url");
       var environment = $(this).attr("env");
@@ -26,6 +35,7 @@ LinkHit = function(){
 
     this.boot = function(){
       $(".link-small-btn").click(hitUrl);
+      $(".link-main-btn").click(hitAllUrl);
     };
 
 };
