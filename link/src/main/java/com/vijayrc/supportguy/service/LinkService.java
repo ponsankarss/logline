@@ -29,8 +29,9 @@ public class LinkService {
     public LinkHit process(Link link) throws Exception {
         NameValuePair[] nameValuePairs = nameValuePairsFor(link);
         HttpMethod httpMethod = link.isGet() ? getMethodFor(link, nameValuePairs) : postMethodFor(link, nameValuePairs);
+
         int statusCode = new HttpClient().executeMethod(httpMethod);
-        return new LinkHit(link.getName(), statusCode, httpMethod.getResponseBodyAsString());
+        return new LinkHit(link.getFullName(), statusCode, httpMethod.getResponseBodyAsString());
     }
 
     private NameValuePair[] nameValuePairsFor(Link link) {
@@ -57,8 +58,8 @@ public class LinkService {
         return getMethod;
     }
 
-    public Link getFor(String linkName) {
-        return allLinks.getFor(linkName);
+    public Link getFor(String linkName, String environment) {
+        return allLinks.getFor(linkName, environment);
     }
 
     public Group<Link> getAll() {

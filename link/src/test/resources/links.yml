@@ -1,11 +1,66 @@
-name: google
-url: http://www.google.com
-method: get
+name: router-state-change
+url: http://nasnmasdev:9107/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p5-dev
+params:
+    - action
 ---
-name: vijayrc
-url: http://www.vijayrc.com
+name: postprocessor
+url: http://nasnmasdev:9107/blue2_wsrouterWeb/B2KillRouter
 method: get
-
+environment: b2-p5-dev
+---
+name: remediation
+url: http://nasnmasdev:9107/blue2_plan_remediationWeb/b2remediation/transfer/show/
+method: get
+environment: b2-p5-dev
+---
+name: terminate
+url: http://nasnmasdev:9107/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p5-dev
+---
+name: claimsadmin
+url: https://nasnmasdev:9503/cacert/service/soap/sf
+method: get
+environment: b2-p5-dev
+---
+name: serviceprocessor
+url: https://nasnmasdev:9503/blue2/services/ServiceProcessor
+method: get
+environment: b2-p5-dev
+---
+name: router-state-change
+url: http://nasnmasdev:9107/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p5-mo
+params:
+    - action
+---
+name: postprocessor
+url: http://nasnmasmo:81/blue2_wsrouterWeb/B2KillRouter
+method: get
+environment: b2-p5-mo
+---
+name: remediation
+url: http://nasnmasmo:81/blue2_plan_remediationWeb/b2remediation/transfer/show
+method: get
+environment: b2-p5-mo
+---
+name: terminate
+url: http://nasnmasmo:81/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p5-mo
+---
+name: claimsadmin
+url: https://nasnmasmo:9454/cacert/service/soap/sf
+method: get
+environment: b2-p5-mo
+---
+name: serviceprocessor
+url: https://nasnmasmo:9454/blue2/services/ServiceProcessor
+method: get
+environment: b2-p5-mo
 
 
 

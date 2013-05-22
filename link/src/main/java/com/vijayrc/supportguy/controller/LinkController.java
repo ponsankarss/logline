@@ -36,7 +36,11 @@ public class LinkController extends BaseController {
     @WebMethod("hit")
     public void post(Request request, Response response) throws Exception {
         String linkName = request.getParameter("link");
-        Link link = linkService.getFor(linkName);
+        String environment = request.getParameter("env");
+
+        Link link = linkService.getFor(linkName, environment);
+        log.info("processing:" + link);
+
         if (link.hasParams())
             for (String param : link.getParams())
                 link.addParam(param, request.getParameter(param));

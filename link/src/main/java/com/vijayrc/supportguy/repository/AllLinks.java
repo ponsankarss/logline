@@ -37,9 +37,10 @@ public class AllLinks {
         }
     }
 
-    public Link getFor(String name) {
-        List<Link> filter = filter(having(on(Link.class).getName(), equalTo(name)), links);
-        return isNotEmpty(filter) ? filter.get(0) : null;
+    public Link getFor(String name, String environment) {
+        List<Link> filteredByName = filter(having(on(Link.class).getName(), equalTo(name)), links);
+        List<Link> filtered = filter(having(on(Link.class).getEnvironment(), equalTo(environment)), filteredByName);
+        return isNotEmpty(filtered) ? filtered.get(0) : null;
     }
 
     public Group<Link> groupByEnv(){

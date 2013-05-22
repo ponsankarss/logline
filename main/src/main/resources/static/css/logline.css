@@ -147,13 +147,35 @@ h2{
     overflow-y: hidden;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
-#link-table{
+.link-table{
     font-size:13px;
-    width: 80%;
-}
-#link-table tr{
-    padding: 2px !important;
+    width: auto;
 }
 .link-main-btn, .link-small-btn, .link-param-input{
     margin-left: 10px;
+}
+.link-name-col{
+    padding: 2px !important;
+    width:40%;
+}
+.link-params-col{
+    padding: 2px !important;
+    width:40%;
+}
+.link-hit-col{
+    padding: 2px !important;
+    width:10%;
+}
+.link-hit-result-col{
+    padding: 2px !important;
+    width:10%;
+}
+.link-200{
+    background-color:#76EE00;
+}
+.link-not-200{
+    background-color:#FF7F50
+}
+.link-table-head{
+    font-weight: bold;
 }

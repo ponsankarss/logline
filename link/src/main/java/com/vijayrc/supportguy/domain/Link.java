@@ -13,22 +13,25 @@ public class Link {
     private String method;
     private String environment;
     private List<String> params;
-    private Map<String,String> paramsMap =  new HashMap<>();
+    private Map<String, String> paramsMap = new HashMap<>();
 
-    public boolean hasParams() {        
+    public boolean hasParams() {
         return params != null && !params.isEmpty();
     }
 
-    public boolean isGet(){
+    public boolean isGet() {
         return method.equalsIgnoreCase("get");
     }
 
-    public boolean isPost(){
+    public boolean isPost() {
         return method.equalsIgnoreCase("post");
     }
-    
-    public void addParam(String key, String value){
+
+    public void addParam(String key, String value) {
         paramsMap.put(key, value);
     }
 
+    public String getFullName() {
+        return environment + "-" + name;
+    }
 }
