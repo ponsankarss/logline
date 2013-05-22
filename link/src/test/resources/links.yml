@@ -6,7 +6,7 @@ params:
     - action
 ---
 name: postprocessor
-url: http://nasnmasdev:9107/blue2_wsrouterWeb/B2KillRouter
+url: http://nasnmasdev:9107/blue2_plan_postprocessorWeb/services/ServiceProcessor
 method: get
 environment: b2-p5-dev
 ---
@@ -38,7 +38,7 @@ params:
     - action
 ---
 name: postprocessor
-url: http://nasnmasmo:81/blue2_wsrouterWeb/B2KillRouter
+url: http://nasnmasmo:81/blue2_plan_postprocessorWeb/services/ServiceProcessor
 method: get
 environment: b2-p5-mo
 ---

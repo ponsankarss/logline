@@ -16,6 +16,11 @@
             <groupId>com.vijayrc</groupId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>com.springsource.org.apache.httpcomponents.httpclient</artifactId>
+            <version>4.1.1</version>
+        </dependency>
     </dependencies>
 
 

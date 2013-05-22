@@ -10,9 +10,12 @@ import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.protocol.Protocol;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Map;
 
 import static ch.lambdaj.Lambda.on;
@@ -30,8 +33,13 @@ public class LinkService {
         NameValuePair[] nameValuePairs = nameValuePairsFor(link);
         HttpMethod httpMethod = link.isGet() ? getMethodFor(link, nameValuePairs) : postMethodFor(link, nameValuePairs);
 
-        int statusCode = new HttpClient().executeMethod(httpMethod);
-        return new LinkHit(link.getFullName(), statusCode, httpMethod.getResponseBodyAsString());
+        try {
+            int statusCode = new HttpClient().executeMethod(httpMethod);
+            return new LinkHit(link.getFullName(), statusCode, httpMethod.getResponseBodyAsString());
+        } catch (IOException e) {
+            log.error(ExceptionUtils.getFullStackTrace(e));
+            return new LinkHit(link.getFullName(), 0, e.getMessage());
+        }
     }
 
     private NameValuePair[] nameValuePairsFor(Link link) {
