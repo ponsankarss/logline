@@ -34,6 +34,7 @@ public class LinkService {
     }
 
     private NameValuePair[] nameValuePairsFor(Link link) {
+        if (!link.hasParams()) return new NameValuePair[0];
         NameValuePair[] nameValuePairs = new NameValuePair[link.getParams().size()];
         Map<String, String> paramsMap = link.getParamsMap();
         int i = 0;

@@ -37,14 +37,15 @@ public class LinkController extends BaseController {
     public void post(Request request, Response response) throws Exception {
         String linkName = request.getParameter("link");
         Link link = linkService.getFor(linkName);
-        for (String param : link.getParams())
-                link.addParam(param,request.getParameter(param));
+        if (link.hasParams())
+            for (String param : link.getParams())
+                link.addParam(param, request.getParameter(param));
 
         LinkHit linkHit = linkService.process(link);
         log.info(linkHit);
 
         Map<String, Object> model = new HashMap<>();
-        model.put("linkHit",linkHit);
+        model.put("linkHit", linkHit);
         renderer.render("link-result", model, response);
     }
 }

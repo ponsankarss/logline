@@ -4,6 +4,7 @@ import com.vijayrc.supportguy.meta.WebClass;
 import com.vijayrc.supportguy.meta.WebMethod;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.springframework.beans.BeansException;
@@ -56,7 +57,7 @@ public class AllControllers implements BeanPostProcessor, ApplicationListener<Co
             }
             showError(response, new Exception("Page not found, please check the url"));
         } catch (Exception e) {
-            log.error(e);
+            log.error(ExceptionUtils.getFullStackTrace(e));
             showError(response, e);
         }
     }
