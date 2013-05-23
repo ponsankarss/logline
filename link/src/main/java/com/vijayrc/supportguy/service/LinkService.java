@@ -10,17 +10,12 @@ import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.protocol.Protocol;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Map;
-
-import static ch.lambdaj.Lambda.on;
-import static ch.lambdaj.group.Groups.by;
-import static ch.lambdaj.group.Groups.group;
 
 @Service
 @Log4j
