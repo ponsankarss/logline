@@ -172,9 +172,11 @@ h2{
 }
 .link-200{
     background-color:#76EE00;
+    padding-left: 5px;
 }
 .link-not-200{
-    background-color:#FF7F50
+    background-color:#FF7F50;
+    padding-left: 5px;
 }
 .link-table-head{
     font-weight: bold;

@@ -1,16 +1,9 @@
 package com.vijayrc.supportguy.service;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.conn.scheme.Scheme;
-import org.apache.http.conn.scheme.SchemeRegistry;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.SingleClientConnManager;
 import org.junit.Test;
 
 import javax.net.ssl.*;
 import java.net.URL;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -18,7 +11,7 @@ import java.security.cert.X509Certificate;
 public class LinkServiceTest {
 
     @Test
-    public void shouldAcccessASSLLink() throws Exception {
+    public void shouldAccessSSLLink() throws Exception {
         SSLContext ctx = SSLContext.getInstance("TLS");
         ctx.init(new KeyManager[0], new TrustManager[]{new DefaultTrustManager()}, new SecureRandom());
         SSLContext.setDefault(ctx);

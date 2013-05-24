@@ -1,6 +1,7 @@
 package com.vijayrc.supportguy.domain;
 
 import lombok.Data;
+import org.apache.commons.httpclient.NameValuePair;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,5 +34,29 @@ public class Link {
 
     public String getFullName() {
         return environment + "-" + name;
+    }
+
+    public  NameValuePair[] nameValuePairs() {
+        if (!hasParams()) return new NameValuePair[0];
+        NameValuePair[] nameValuePairs = new NameValuePair[getParams().size()];
+        Map<String, String> paramsMap = getParamsMap();
+        int i = 0;
+        for (String paramKey : paramsMap.keySet()) {
+            nameValuePairs[i] = new NameValuePair(paramKey, paramsMap.get(paramKey));
+            ++i;
+        }
+        return nameValuePairs;
+    }
+
+    public boolean isNotPost() {
+        return isGet() || isSSL();
+    }
+
+    public boolean isNotGet() {
+        return isPost() || isSSL();
+    }
+
+    public boolean isSSL() {
+        return url.contains("https");
     }
 }
