@@ -14,6 +14,7 @@ public class GetWorker implements LinkWorker {
         if (link.isNotGet())
             return LinkHit.noAction();
 
+        log.info("processing "+link);
         GetMethod getMethod = new GetMethod(link.getUrl());
         getMethod.setQueryString(link.nameValuePairs());
         int statusCode = new HttpClient().executeMethod(getMethod);

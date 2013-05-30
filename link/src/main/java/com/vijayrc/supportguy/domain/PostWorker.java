@@ -13,11 +13,10 @@ public class PostWorker implements LinkWorker{
     public LinkHit process(Link link) throws Exception {
         if(link.isNotPost())
             return LinkHit.noAction();
-
+        log.info("processing "+link);
         PostMethod postMethod = new PostMethod(link.getUrl());
         postMethod.addParameters(link.nameValuePairs());
         int statusCode = new HttpClient().executeMethod(postMethod);
-
         return new LinkHit(link.getFullName(), statusCode, postMethod.getResponseBodyAsString());
     }
 }

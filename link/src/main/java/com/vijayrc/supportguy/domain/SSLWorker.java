@@ -29,13 +29,14 @@ public class SSLWorker implements LinkWorker {
         if(!link.isSSL())
             return LinkHit.noAction();
 
+        log.info("processing "+link);
         URL url = new URL(link.getUrl());
         HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
         connection.setHostnameVerifier(hostnameVerifier);
+
         String responseMessage = connection.getResponseMessage();
         int statusCode = connection.getResponseCode();
         connection.disconnect();
-
         return new LinkHit(link.getFullName(), statusCode, responseMessage);
     }
 

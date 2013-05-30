@@ -11,12 +11,20 @@ LinkHit = function(){
     var hitUrl = function(){
       var linkName = $(this).attr("url");
       var environment = $(this).attr("env");
+      var allInputs = $(this).parent().siblings('td[class="link-params-col"]').find('input');
+
+      var paramsMap = {};
+      allInputs.each(function(){
+        paramsMap[$(this).attr('name')] = $(this).val();
+      });
+      paramsMap['link']= linkName;
+      paramsMap['env']= environment;
 
       $.ajax({
         type:"POST",
         url:"/link/hit/",
         cache:false,
-        data:{link:linkName, env: environment},
+        data:paramsMap,
         success: display
       });
     };
