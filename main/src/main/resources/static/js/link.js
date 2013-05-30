@@ -12,6 +12,8 @@ LinkHit = function(){
       var linkName = $(this).attr("url");
       var environment = $(this).attr("env");
       var allInputs = $(this).parent().siblings('td[class="link-params-col"]').find('input');
+      var resultDiv = $(this).parent().siblings('td[class="link-hit-result-col"]').find('div');
+      resultDiv.removeClass('link-200 link-not-200');
 
       var paramsMap = {};
       allInputs.each(function(){
