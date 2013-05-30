@@ -1,3 +1,6 @@
+#*********************************************************************
+#B2-P5-DEV
+#*********************************************************************
 name: router-state-change
 url: http://nasnmasdev:9107/blue2_wsrouterWeb/B2KillRouter
 method: post
@@ -30,8 +33,11 @@ url: https://nasnmasdev:9503/blue2/services/ServiceProcessor
 method: get
 environment: b2-p5-dev
 ---
+#*********************************************************************
+#B2-P5-MO
+#*********************************************************************
 name: router-state-change
-url: http://nasnmasdev:9107/blue2_wsrouterWeb/B2KillRouter
+url: http://nasnmasmo:81/blue2_wsrouterWeb/B2KillRouter
 method: post
 environment: b2-p5-mo
 params:
@@ -61,6 +67,120 @@ name: serviceprocessor
 url: https://nasnmasmo:9454/blue2/services/ServiceProcessor
 method: get
 environment: b2-p5-mo
+---
+#*********************************************************************
+#B2-P5-PROD
+#*********************************************************************
+name: router-state-change
+url: http://nasnmas3/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p5-prod
+params:
+    - action
+---
+name: postprocessor
+url: http://nasnmas3/blue2_plan_postprocessorWeb/services/ServiceProcessor
+method: get
+environment: b2-p5-prod
+---
+name: remediation
+url: http://nasnmas3/blue2_plan_remediationWeb/b2remediation/transfer/show
+method: get
+environment: b2-p5-prod
+---
+name: terminate
+url: http://nasnmas3/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p5-prod
+---
+name: claimsadmin
+url: https://nasnmas3:9454/cacert/service/soap/sf
+method: get
+environment: b2-p5-prod
+---
+name: serviceprocessor
+url: https://nasnmas3:9454/blue2/services/ServiceProcessor
+method: get
+environment: b2-p5-prod
+#*********************************************************************
+#B2-P7-DEV
+#*********************************************************************
+name: router-state-change
+url: http://naswasdev02:18010//blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p7-dev
+params:
+    - action
+---
+name: postprocessor
+url: http://naswasdev02:18010/blue2_plan_postprocessorWeb/services/ServiceProcessor
+method: get
+environment: b2-p7-dev
+---
+name: remediation
+url: http://naswasdev02:18010/blue2_plan_remediationWeb/b2remediation/transfer/show/
+method: get
+environment: b2-p7-dev
+---
+name: terminate
+url: http://naswasdev02:18010/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p7-dev
+---
+name: claimsadmin
+url: https://naswasdev02:18011/cacert/service/soap/sf
+method: get
+environment: b2-p7-dev
+---
+name: serviceprocessor
+url: https://naswasdev02:18011/blue2/services/ServiceProcessor
+method: get
+environment: b2-p7-dev
+---
+#*********************************************************************
+#DNL
+#*********************************************************************
+name: dnl-login
+url: http://206.201.99.252/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-dev
+---
+name: dnl-login-mo1
+url: http://naswasmo01:14010/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-mo
+---
+name: dnl-login-mo2
+url: http://naswasmo02:14010/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-mo
+---
+name: dnl-login-mo3
+url: http://naswasmo03:14010/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-mo
+---
+name: dnl-login-mo-lb
+url: https://solutions-mo.nasco.bluesnet.net/datanet-lite
+method: get
+environment: dnl-p7-mo
+---
+name: dnl-login-prod1
+url: http://naswas01:14010/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-prod
+---
+name: dnl-login-prod2
+url: http://naswas02:14010/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-prod
+---
+name: dnl-login-prod3
+url: http://naswas03:14010/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-prod
+---
+
 
 
 
