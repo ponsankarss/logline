@@ -1,7 +1,7 @@
 LinkHit = function(){
 
     var hitAllUrl = function(){
-      var environment = $(this).siblings('span').text();
+      var environment = $(this).attr('environment');
       var selector  = '.link-small-btn[env="'+environment+'"]';
       $(selector).each(function(){
          $(this).click();
@@ -49,9 +49,22 @@ LinkHit = function(){
 
     };
 
+    var linkTabs = function(){
+        $('.expand-link').click(function(e){
+           $(this).siblings('.content-link').slideToggle('slow');
+           e.preventDefault();
+        });
+    };
+
+    var closeAllLinkTabs = function(){
+        $('.content-link').slideToggle('fast');
+    };
+
     this.boot = function(){
       $(".link-small-btn").click(hitUrl);
       $(".link-main-btn").click(hitAllUrl);
+      linkTabs();
+      closeAllLinkTabs();
     };
 
 };

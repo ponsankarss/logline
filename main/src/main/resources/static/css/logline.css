@@ -149,7 +149,7 @@ h2{
 }
 .link-table{
     font-size:13px;
-    width: auto;
+    width: 70%;
 }
 .link-main-btn, .link-small-btn, .link-param-input{
     margin-left: 10px;
@@ -180,6 +180,7 @@ h2{
 }
 .link-table-head{
     font-weight: bold;
+    background: none repeat scroll 0 0 #ADD8E6;
 }
 .link-hit-result{
 

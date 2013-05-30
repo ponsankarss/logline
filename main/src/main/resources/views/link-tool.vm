@@ -1,8 +1,7 @@
 #foreach($key in $group.keySet())
-    <h3>
-        <span>$key</span>
-        <input class="link-main-btn btn-primary" value="hit all" type="button"/>
-    </h3>
+    <div class="expand-link"><h3>$key</h3></div>
+    <div class="content-link">
+    <input environment="${key}" class="link-main-btn btn-primary" value="hit all" type="button"/>
 
     <table class="table table-striped link-table">
         <thead class="link-table-head">
@@ -40,5 +39,5 @@
          #end
          </tbody>
     </table>
-
+   </div>
 #end
