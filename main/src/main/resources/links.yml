@@ -180,7 +180,130 @@ url: http://naswas03:14010/datanet-lite/assets/login.jsp
 method: get
 environment: dnl-p7-prod
 ---
+#*********************************************************************
+#DP-MO
+#*********************************************************************
+name: claimsaadmin-service-external
+url: https://206.201.99.175/Blue2ClaimsAdminMediationExtWeb/sca/ClaimsAdministrationSfExt
+method: get
+environment: dp-mo
+---
+name: claimsaadmin-external-service-ssl
+url: https://206.201.96.36:8005/Blue2ClaimsAdminMediationExtWeb/sca/ClaimsAdministrationSfExt
+method: get
+environment: dp-mo
+---
+name: claimsaadmin-service-external
+url: http://206.201.96.36:8301/Blue2ClaimsAdminMediationExtWeb/sca/ClaimsAdministrationSfExt
+method: get
+environment: dp-mo
+---
+name: claims-service-external
+url: https://206.201.99.175/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-mo
+---
+name: claims-external-service-ssl
+url: https://206.201.96.36:8005/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-mo
+---
+name: claims-service-external
+url: http://206.201.96.36:8301/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-mo
+---
+name: serviceprocessor-external-lb
+url: https://206.201.99.175/Blue2ServiceProcessorMediationExtWeb/sca/ServiceProcessorExt
+method: get
+environment: dp-mo
+---
+name: serviceprocessor-external-ssl
+url: https://206.201.96.36:8005/Blue2ServiceProcessorMediationExtWeb/sca/ServiceProcessorExt
+method: get
+environment: dp-mo
+---
+name: serviceprocessor-external-service
+url: http://206.201.96.36:8301/Blue2ServiceProcessorMediationExtWeb/sca/ServiceProcessorExt
+method: get
+environment: dp-mo
+---
+name: serviceprocessor-internal-service
+url: http://206.201.96.36:8301/Blue2ServiceProcessorMediationIntWeb/sca/ServiceProcessorInt
+method: get
+environment: dp-mo
+---
+#*********************************************************************
+#DP-PROD
+#*********************************************************************
+name: claimsaadmin-service-external
+url: https://206.201.99.13/Blue2ClaimsAdminMediationExtWeb/sca/ClaimsAdministrationSfExt
+method: get
+environment: dp-prod
+---
+name: claimsaadmin-service-external-ssl
+url: https://206.201.96.51:8005/Blue2ClaimsAdminMediationExtWeb/sca/ClaimsAdministrationSfExt
+method: get
+environment: dp-prod
+---
+name: claimsaadmin-service-external-services
+url: http://206.201.96.52:8301/Blue2ClaimsAdminMediationExtWeb/sca/ClaimsAdministrationSfExt
+method: get
+environment: dp-prod
+---
+name: claims-service-external
+url: https://206.201.99.13/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-prod
+---
+name: claims-service-external-ssl
+url: https://206.201.96.51:8005/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-prod
+---
+name: claims-service-external-services-1
+url: http://206.201.96.51:8301/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-prod
+---
+name: claims-service-external-services-2
+url: http://206.201.96.52:8301/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-prod
+---
+name: serviceprocessor-external-services-lb
+url: https://206.201.99.13/Blue2ServiceProcessorMediationExtWeb/sca/ServiceProcessorExt
+method: get
+environment: dp-prod
+---
+name: serviceprocessor-external-services-1
+url: http://206.201.96.51:8301/Blue2ServiceProcessorMediationExtWeb/sca/ServiceProcessorExt
+method: get
+environment: dp-prod
+---
+name: serviceprocessor-external-services-2
+url: http://206.201.96.52:8301/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-prod
+---
+name: serviceprocessor-internal-service
+url: http://10.39.15.159:8301/Blue2ServiceProcessorMediationIntWeb/sca/ServiceProcessorInt
+method: get
+environment: dp-prod
+---
 
 
+
+
+
+
+
+
+
+
+
+#*********************************************************************
+#DP-DEV
+#*********************************************************************
 
 
