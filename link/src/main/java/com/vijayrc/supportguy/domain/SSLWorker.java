@@ -36,7 +36,7 @@ public class SSLWorker implements LinkWorker {
         int statusCode = connection.getResponseCode();
         connection.disconnect();
 
-        return new LinkHit(link.getName(), statusCode, responseMessage);
+        return new LinkHit(link.getFullName(), statusCode, responseMessage);
     }
 
     private static class MyTrustManager implements X509TrustManager {
