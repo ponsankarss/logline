@@ -1,1 +1,5 @@
-<div><span class="link-name">$linkHit.getName()</span><span class="link-code">$linkHit.getStatusCode()</span></div>
+<div>
+    <span class="link-name">$linkHit.getName()</span>
+    <span class="link-code">$linkHit.getStatusCode()</span>
+    <span class="link-response">$linkHit.getResponse()</span>
+</div>

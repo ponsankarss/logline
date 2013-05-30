@@ -34,6 +34,9 @@
                     </div>
                 </td>
             </tr>
+            <td colspan="4" class="link-hit-result">
+                <div id="${link.getEnvironment()}-${link.getName()}-response"></div>
+            </td>
          #end
          </tbody>
     </table>

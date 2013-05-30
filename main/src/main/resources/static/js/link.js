@@ -33,14 +33,20 @@ LinkHit = function(){
 
     var display = function(data){
       var response= $(data);
-      var element = "#"+response.find(".link-name").text();
-      var status = response.find(".link-code").text();
 
-      $(element).html(status);
+      var statusElement = "#"+response.find(".link-name").text();
+      var responseElement = statusElement+"-response"
+      var status = response.find(".link-code").text();
+      var html =  response.find(".link-response").text();
+
+      $(statusElement).html(status);
       if(status == 200)
-        $(element).addClass('link-200')
+        $(statusElement).addClass('link-200')
       else
-        $(element).addClass('link-not-200')
+        $(statusElement).addClass('link-not-200')
+
+      $(responseElement).html(html);
+
     };
 
     this.boot = function(){
