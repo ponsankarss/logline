@@ -19,7 +19,7 @@ public class AllQueriesTest {
 
     @Test
     public void shouldLoadQueriesAlongWithDbs() {
-        Query query = allQueries.findByName("blog-posts-count");
+        Query query = allQueries.findByName("blog-posts-count", "vectorclocks");
         assertNotNull(query);
         assertEquals("org.postgresql.Driver", query.getDatabase().getDriver());
     }

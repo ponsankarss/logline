@@ -1,0 +1,8 @@
+name: blog-posts-count
+sql: SELECT COUNT(*) FROM BLOG.POSTS
+db: vectorclocks
+---
+name: blog-tags-count
+sql: SELECT COUNT(*) FROM BLOG.TAG
+db: vectorclocks
+---
