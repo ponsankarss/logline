@@ -41,7 +41,7 @@ public class AllQueries {
         }
     }
 
-    public Query findByName(String name, String db) {
+    public Query findBy(String name, String db) {
         List<Query> filteredByName = filter(having(on(Query.class).getName(), equalTo(name)), queries);
         List<Query> filteredByDb = filter(having(on(Query.class).getDb(), equalTo(db)), filteredByName);
         return isNotEmpty(filteredByDb) ? filteredByDb.get(0) : null;

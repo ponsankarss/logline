@@ -15,7 +15,7 @@ public class DbServiceTest {
 
     @Test
     public void shouldRunAQuery() throws Exception {
-        dbService.process("blog-posts-count","vectorclocks");
+        dbService.process("blog-tags","vectorclocks");
 
     }
 }

@@ -14,7 +14,6 @@ import java.sql.*;
 @Service
 @Log4j
 public class DbService {
-
     private AllQueries allQueries;
     private MyClassLoader loader;
 
@@ -25,10 +24,11 @@ public class DbService {
         this.loader = new MyClassLoader(urls);
     }
 
-    public QueryHit process(String name, String environment) throws Exception {
+    public MyRecordSet process(String name, String environment) throws Exception {
+        MyRecordSet myRecordSet = new MyRecordSet();
         Connection connection = null;
         try {
-            Query query = allQueries.findByName(name, environment);
+            Query query = allQueries.findBy(name, environment);
             log.info("execute: " + query.getSql());
 
             Database database = query.getDatabase();
@@ -36,27 +36,30 @@ public class DbService {
             Statement statement = connection.createStatement();
             schemaSetup(database, statement);
             ResultSet resultSet = statement.executeQuery(query.getSql());
-
             ResultSetMetaData metaData = resultSet.getMetaData();
-            int columnCount = metaData.getColumnCount();
 
-            for (int c = 1; c <= columnCount; c++) {
-                log.info(metaData.getColumnClassName(c) + "|"
-                        + metaData.getColumnLabel(c) + "|"
-                        + metaData.getColumnName(c) + "|"
-                        + metaData.getColumnTypeName(c));
+            for (int c = 1; c <= metaData.getColumnCount(); c++)
+                myRecordSet.addColumn(metaData.getColumnName(c));
+
+            while (resultSet.next()) {
+                MyTuple myTuple = new MyTuple();
+                for (String column : myRecordSet.columns())
+                    myTuple.add(resultSet.getString(column));
+                myRecordSet.addTuple(myTuple);
             }
+
         } catch (Exception e) {
             log.error(ExceptionUtils.getFullStackTrace(e));
+            throw e;
         } finally {
             if (connection != null) connection.close();
         }
-        return null;
+        return myRecordSet;
     }
 
     private void schemaSetup(Database database, Statement statement) throws SQLException {
         String schemaQuery = database.schemaQuery();
-        if(StringUtils.isNotBlank(schemaQuery))
+        if (StringUtils.isNotBlank(schemaQuery))
             statement.execute(schemaQuery);
     }
 
