@@ -1,6 +1,5 @@
 package com.vijayrc.supportguy.repository;
 
-
 import com.vijayrc.supportguy.domain.Link;
 import org.junit.Before;
 import org.junit.Test;

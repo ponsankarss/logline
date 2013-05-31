@@ -1,0 +1,13 @@
+package com.vijayrc.supportguy.domain;
+
+import lombok.Data;
+
+@Data
+public class Database {
+    private String name;
+    private String driver;
+    private String url;
+    private String user;
+    private String password;
+
+}
