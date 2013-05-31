@@ -3,14 +3,13 @@ package com.vijayrc.supportguy.service;
 import com.vijayrc.supportguy.domain.*;
 import com.vijayrc.supportguy.repository.AllQueries;
 import lombok.extern.log4j.Log4j;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.net.URL;
 import java.sql.*;
-import java.util.Properties;
-import java.util.logging.Logger;
 
 @Service
 @Log4j
@@ -30,15 +29,18 @@ public class DbService {
         Connection connection = null;
         try {
             Query query = allQueries.findByName(name, environment);
+            log.info("execute: " + query.getSql());
+
             Database database = query.getDatabase();
             connection = connectTo(database);
-
-            log.info("executing: "+query.getSql());
-            ResultSet resultSet = connection.createStatement().executeQuery(query.getSql());
+            Statement statement = connection.createStatement();
+            schemaSetup(database, statement);
+            ResultSet resultSet = statement.executeQuery(query.getSql());
 
             ResultSetMetaData metaData = resultSet.getMetaData();
             int columnCount = metaData.getColumnCount();
-            for (int c = 0; c < columnCount; c++) {
+
+            for (int c = 1; c <= columnCount; c++) {
                 log.info(metaData.getColumnClassName(c) + "|"
                         + metaData.getColumnLabel(c) + "|"
                         + metaData.getColumnName(c) + "|"
@@ -52,10 +54,17 @@ public class DbService {
         return null;
     }
 
+    private void schemaSetup(Database database, Statement statement) throws SQLException {
+        String schemaQuery = database.schemaQuery();
+        if(StringUtils.isNotBlank(schemaQuery))
+            statement.execute(schemaQuery);
+    }
+
     private Connection connectTo(Database database) throws Exception {
         Driver driver = (Driver) Class.forName(database.getDriver(), true, loader).newInstance();
         DriverManager.registerDriver(new MyDriver(driver));
-        return DriverManager.getConnection(database.getUrl(), database.getUser(), database.getPassword());
+        Connection connection = DriverManager.getConnection(database.getUrl(), database.getUser(), database.getPassword());
+        return connection;
     }
 
 }
