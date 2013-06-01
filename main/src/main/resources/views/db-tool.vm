@@ -4,7 +4,7 @@
     <a class="expand-db" href="#"><h3>$key</h3></a>
     <div class="content-db">
     <input db="${key}" class="query-main-btn btn-primary" value="run all" type="button"/>
-    <table class="table table-striped query-table">
+    <table class="table query-table table-condensed">
         <thead class="query-table-head">
            <tr><td>name</td><td>sql</td><td>database</td><td>action</td></tr>
         </thead>

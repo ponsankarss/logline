@@ -215,3 +215,11 @@ h2{
 .query-hit-result{
 
 }
+.query-result-table{
+    font-size:13px;
+}
+
+.query-result-header{
+    font-weight:bold;
+    background: none repeat scroll 0 0 #ADD8E6;;
+}

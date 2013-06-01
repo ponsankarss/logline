@@ -4,7 +4,7 @@
     <a class="expand-link" href="#"><h3>$key</h3></a>
     <div class="content-link">
         <input environment="${key}" class="link-main-btn btn-primary"  value="hit all" type="button"/>
-        <table class="table table-striped link-table">
+        <table class="table  link-table table-condensed">
             <thead class="link-table-head">
                <tr><td>name</td><td>params</td><td>action</td><td>status</td></tr>
             </thead>

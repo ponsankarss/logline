@@ -1,8 +1,8 @@
 <div>
     <span class="query-name">$recordSet.getName()</span>
     <span class="query-response">
-        <table>
-            <thead>
+        <table class="query-result-table table-bordered table-condensed">
+            <thead class="query-result-header">
                     <tr>
                             #foreach($col in $recordSet.getColumns())
                                    <td>$col</td>
