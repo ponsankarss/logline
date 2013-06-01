@@ -10,6 +10,9 @@ HomePage = function(){
         $('a.link').click(function(){
           $.ajax({url : "/link/tool/",type : "GET"}).done(updateToolBoxForRouter);
         });
+        $('a.db').click(function(){
+            $.ajax({url : "/db/tool/",type : "GET"}).done(updateToolBox);
+        });
         $('a.webservice').click(function(){
           $.ajax({url : "/webservice/",type : "GET"}).done(updateToolBox);
         });

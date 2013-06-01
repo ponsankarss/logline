@@ -1,5 +1,6 @@
 package com.vijayrc.supportguy.service;
 
+import ch.lambdaj.group.Group;
 import com.vijayrc.supportguy.domain.*;
 import com.vijayrc.supportguy.repository.AllQueries;
 import lombok.extern.log4j.Log4j;
@@ -70,5 +71,8 @@ public class DbService {
         return connection;
     }
 
+    public Group<Query> getAll() {
+        return allQueries.groupByDb();
+    }
 }
 

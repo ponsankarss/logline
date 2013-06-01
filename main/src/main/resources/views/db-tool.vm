@@ -1,0 +1,36 @@
+<ol>
+#foreach($key in $group.keySet())
+<li>
+    <a class="expand-db" href="#"><h3>$key</h3></a>
+    <div class="content-db">
+    <input environment="${key}" class="query-main-btn btn-primary" value="run all" type="button"/>
+    <table class="table table-striped query-table">
+        <thead class="query-table-head">
+           <tr><td>name</td><td>sql</td><td>database</td><td>action</td></tr>
+        </thead>
+        <tbody>
+        #foreach($query in $group.findGroup($key).findAll())
+            <tr>
+                <td class="query-name-col">$query.getName()</td>
+                <td class="query-sql-col">$query.getSql()</td>
+                <td class="query-db-col">$query.getDb() </td>
+                <td class="query-hit-col">
+                       <input
+                           url="${query.getName()}"
+                           db="${query.getDb()}"
+                           type="button"
+                           class="btn-info btn-mini query-small-btn"
+                           value="run"/>
+                 </td>
+            </tr>
+            <tr>
+            <td colspan="4" class="query-hit-result">
+                <div id="${query.getDb()}-${query.getName()}-response"></div>
+            </td>
+            </tr>
+         #end
+         </tbody>
+    </table>
+   </div>
+</li>
+#end

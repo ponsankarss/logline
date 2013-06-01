@@ -185,3 +185,33 @@ h2{
 .link-hit-result{
 
 }
+.query-table{
+    font-size:13px;
+    width: 80%;
+}
+.query-main-btn, .query-small-btn{
+    margin-left: 10px;
+}
+.query-name-col{
+    padding: 2px !important;
+    width:20%;
+}
+.query-db-col{
+    padding: 2px !important;
+    width:20%;
+}
+.query-sql-col{
+    padding: 2px !important;
+    width:50%;
+}
+.query-hit-col{
+    padding: 2px !important;
+    width:10%;
+}
+.query-table-head{
+    font-weight: bold;
+    background: none repeat scroll 0 0 #ADD8E6;
+}
+.query-hit-result{
+
+}

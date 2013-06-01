@@ -1,5 +1,6 @@
 package com.vijayrc.supportguy.repository;
 
+import ch.lambdaj.group.Group;
 import com.esotericsoftware.yamlbeans.YamlReader;
 import com.vijayrc.supportguy.domain.Database;
 import com.vijayrc.supportguy.domain.Query;
@@ -16,6 +17,8 @@ import java.util.List;
 import static ch.lambdaj.Lambda.filter;
 import static ch.lambdaj.Lambda.having;
 import static ch.lambdaj.Lambda.on;
+import static ch.lambdaj.group.Groups.by;
+import static ch.lambdaj.group.Groups.group;
 import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -45,5 +48,9 @@ public class AllQueries {
         List<Query> filteredByName = filter(having(on(Query.class).getName(), equalTo(name)), queries);
         List<Query> filteredByDb = filter(having(on(Query.class).getDb(), equalTo(db)), filteredByName);
         return isNotEmpty(filteredByDb) ? filteredByDb.get(0) : null;
+    }
+
+    public Group<Query> groupByDb(){
+        return group(queries, by(on(Query.class).getDb()));
     }
 }
