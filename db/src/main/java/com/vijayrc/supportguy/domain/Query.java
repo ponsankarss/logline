@@ -8,4 +8,8 @@ public class Query {
     private String sql;
     private String db;
     private Database database;
+
+    public String getFullName() {
+        return db + "-" + name;
+    }
 }

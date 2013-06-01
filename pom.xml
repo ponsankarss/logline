@@ -15,7 +15,6 @@
         <module>db</module>
         <module>base</module>
         <module>main</module>
-        <module>load</module>
     </modules>
 
     <repositories>

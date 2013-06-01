@@ -1,6 +1,7 @@
 package com.vijayrc.supportguy.controller;
 
 import ch.lambdaj.group.Group;
+import com.vijayrc.supportguy.domain.MyRecordSet;
 import com.vijayrc.supportguy.domain.Query;
 import com.vijayrc.supportguy.meta.WebClass;
 import com.vijayrc.supportguy.meta.WebMethod;
@@ -29,4 +30,17 @@ public class DbController extends BaseController{
         model.put("group",group);
         renderer.render("db-tool", model, response);
     }
+
+    @WebMethod("run")
+    public void run(Request request, Response response) throws Exception{
+        String query = request.getParameter("query");
+        String db = request.getParameter("db");
+        MyRecordSet recordSet = dbService.process(query, db);
+
+        HashMap<String, Object> model = new HashMap<>();
+        model.put("recordSet",recordSet);
+        renderer.render("db-result", model, response);
+    }
+
+
 }

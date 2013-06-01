@@ -25,11 +25,12 @@ public class DbService {
         this.loader = new MyClassLoader(urls);
     }
 
-    public MyRecordSet process(String name, String environment) throws Exception {
-        MyRecordSet myRecordSet = new MyRecordSet();
+    public MyRecordSet process(String name, String db) throws Exception {
         Connection connection = null;
+        MyRecordSet myRecordSet = null;
         try {
-            Query query = allQueries.findBy(name, environment);
+            Query query = allQueries.findBy(name, db);
+            myRecordSet = new MyRecordSet(query);
             log.info("execute: " + query.getSql());
 
             Database database = query.getDatabase();
@@ -44,10 +45,11 @@ public class DbService {
 
             while (resultSet.next()) {
                 MyTuple myTuple = new MyTuple();
-                for (String column : myRecordSet.columns())
+                for (String column : myRecordSet.getColumns())
                     myTuple.add(resultSet.getString(column));
                 myRecordSet.addTuple(myTuple);
             }
+            log.info("fetched:" + myRecordSet);
 
         } catch (Exception e) {
             log.error(ExceptionUtils.getFullStackTrace(e));

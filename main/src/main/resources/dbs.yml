@@ -1,6 +1,7 @@
 name: vectorclocks
-url: jdbc:postgresql://localhost/vectorclocks/
+url: jdbc:postgresql://localhost/vectorclocks
 user: postgres
 password: password
 driver: org.postgresql.Driver
+schema: blog
 ---
