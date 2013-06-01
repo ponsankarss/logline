@@ -26,7 +26,7 @@ public class AllProcessors {
 
     public void process(Logs logs) {
         List<Processor> processors = logs.hasStartDate()
-                ? asList(timeProcessor, xmlProcessor, errorProcessor)
+                ? asList(xmlProcessor, errorProcessor, timeProcessor)
                 : asList(xmlProcessor, errorProcessor);
 
         for (Processor processor : processors)
