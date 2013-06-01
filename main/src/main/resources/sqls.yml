@@ -1,8 +1,13 @@
 name: blog-posts-count
 sql: SELECT COUNT(*) FROM POST
-db: vectorclocks
+db: vectorclocks-postgres
 ---
 name: blog-tags
 sql: SELECT NAME,DISPLAY FROM TAG
-db: vectorclocks
+db: vectorclocks-postgres
+---
+#sql is case-sensitive in mysql database
+name: all-handsets
+sql: select * from  handset
+db: dealsite-mysql
 ---

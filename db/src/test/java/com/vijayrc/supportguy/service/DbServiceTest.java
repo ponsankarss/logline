@@ -14,7 +14,7 @@ public class DbServiceTest {
     private DbService dbService;
 
     @Test
-    public void shouldRunAQuery() throws Exception {
+    public void shouldRunPSQLQuery() throws Exception {
         dbService.process("blog-tags","vectorclocks");
 
     }

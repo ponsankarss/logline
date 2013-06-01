@@ -1,7 +1,14 @@
-name: vectorclocks
+name: vectorclocks-postgres
 url: jdbc:postgresql://localhost/vectorclocks
 user: postgres
 password: password
 driver: org.postgresql.Driver
 schema: blog
+---
+name: dealsite-mysql
+url: jdbc:mysql://localhost/dealsite
+user: vijayrc
+password: password
+driver: com.mysql.jdbc.Driver
+schema: mobile
 ---
