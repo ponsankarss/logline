@@ -6,8 +6,11 @@ name: blog-tags
 sql: SELECT NAME,DISPLAY FROM TAG
 db: vectorclocks-postgres
 ---
-#sql is case-sensitive in mysql database
 name: all-handsets
 sql: select * from  handset
 db: dealsite-mysql
+---
+name: messages-count
+sql: SELECT count(*) FROM IPP_MSG_SEARCH;
+db: b2-dev
 ---

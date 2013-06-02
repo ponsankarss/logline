@@ -13,7 +13,7 @@ public class Database {
 
     public String schemaQuery() {
         if (url.contains("postgres")) return "SET search_path = " + schema;
-        if (url.contains("db2")) return "SET currentschema = " + schema;
+        if (url.contains("db2")) return "SET CURRENT SCHEMA = '" + schema+"'";
         if (url.contains("mysql")) return "use " + schema;
         return null;
     }

@@ -12,3 +12,10 @@ password: password
 driver: com.mysql.jdbc.Driver
 schema: mobile
 ---
+name: b2-dev
+url: jdbc:db2://206.201.111.99:3610/A51DD2T4
+user: XXXXX
+password: XXXXX
+driver: com.ibm.db2.jcc.DB2Driver
+schema: T6QJDBA
+---
