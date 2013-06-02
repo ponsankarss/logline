@@ -15,6 +15,7 @@
         <module>db</module>
         <module>base</module>
         <module>main</module>
+        <module>metrics</module>
     </modules>
 
     <repositories>
