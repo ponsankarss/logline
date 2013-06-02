@@ -11,7 +11,7 @@
                         <tr><td><a href="#" class="logs">Logs</a></td><td><span class="link-detail">Download and analyse logs from servers</span></td></tr>
                         <tr><td><a href="#" class="config">Configuration</a></td><td><span class="link-detail">Fetch configuration files from servers and compare with CVS</span></td></tr>
                         <tr><td><a href="#" class="link">Links</a></td><td><span class="link-detail">Http URLs verification</span></td></tr>
-                        <tr><td><a href="#" class="db">DB</a></td><td><span class="link-detail">SQL Data to Monitor</span></td></tr>
+                        <tr><td><a href="#" class="db">Db</a></td><td><span class="link-detail">SQL Data to Monitor</span></td></tr>
                         <tr><td><a href="#" class="webservice">WebServices</a></td><td><span class="link-detail">Trigger tests of WebServices</span></td></tr>
                     </table>
                 </div>
@@ -32,7 +32,7 @@
                     <li><a href="#" class="logs">Logs</a></li>
                     <li><a href="#" class="config">Configuration</a></li>
                     <li><a href="#" class="link">Links</a></li>
-                    <li><a href="#" class="db">DB</a></li>
+                    <li><a href="#" class="db">Db</a></li>
                     <li><a href="#" class="webservice">WebServices</a></li>
                 </ul>
             </div>

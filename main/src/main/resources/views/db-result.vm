@@ -1,23 +1,27 @@
 <div>
     <span class="query-name">$recordSet.getName()</span>
-    <span class="query-response">
-        <table class="query-result-table table-bordered table-condensed">
-            <thead class="query-result-header">
+    #if($recordSet.hasError())
+        <span class="query-response"><pre>$recordSet.getError()</pre></span>
+    #else
+        <span class="query-response">
+            <table class="query-result-table table-bordered table-condensed">
+                <thead class="query-result-header">
                     <tr>
-                            #foreach($col in $recordSet.getColumns())
-                                   <td>$col</td>
-                            #end
+                        #foreach($col in $recordSet.getColumns())
+                            <td>$col</td>
+                        #end
                     </tr>
-            </thead>
-            <tbody>
-                       #foreach($tuple in $recordSet.getTuples())
-                                <tr>
-                                    #foreach($item in $tuple.getItems())
-                                    <td>$item</td>
-                                     #end
-                                 </tr>
-                       #end
-            </tbody>
-        </table>
-    </span>
+                </thead>
+                <tbody>
+                    #foreach($tuple in $recordSet.getTuples())
+                        <tr>
+                        #foreach($item in $tuple.getItems())
+                            <td>$item</td>
+                        #end
+                        </tr>
+                    #end
+                </tbody>
+            </table>
+        </span>
+    #end
 </div>

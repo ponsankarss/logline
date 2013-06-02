@@ -28,9 +28,9 @@ public class DbService {
     public MyRecordSet process(String name, String db) throws Exception {
         Connection connection = null;
         MyRecordSet myRecordSet = null;
+        Query query = allQueries.findBy(name, db);
+        myRecordSet = new MyRecordSet(query);
         try {
-            Query query = allQueries.findBy(name, db);
-            myRecordSet = new MyRecordSet(query);
             log.info("execute: " + query.getSql());
 
             Database database = query.getDatabase();
@@ -53,7 +53,7 @@ public class DbService {
 
         } catch (Exception e) {
             log.error(ExceptionUtils.getFullStackTrace(e));
-            throw e;
+            myRecordSet.addError(e);
         } finally {
             if (connection != null) connection.close();
         }
