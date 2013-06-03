@@ -34,15 +34,14 @@ public class MyExecJsch {
     }
 
     public void tail(String file) throws Exception {
-        InputStream in = channelExec.getInputStream();
-        channelExec.setCommand("ls -l " + file);
+        InputStream stream = channelExec.getInputStream();
+        channelExec.setCommand("tail -f " + file);
         channelExec.connect();
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
         String line;
         while ((line = reader.readLine()) != null) {
            log.info(line);
-            System.out.println(line);
         }
         int exitCode = channelExec.getExitStatus();
         log.info(ExitStatus.getFor(exitCode).message());
