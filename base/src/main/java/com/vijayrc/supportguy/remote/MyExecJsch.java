@@ -1,6 +1,7 @@
 package com.vijayrc.supportguy.remote;
 
 import com.jcraft.jsch.*;
+import com.vijayrc.supportguy.domain.ExecBuffer;
 import com.vijayrc.supportguy.domain.ExitStatus;
 import com.vijayrc.supportguy.domain.Machine;
 import lombok.extern.log4j.Log4j;
@@ -34,7 +35,7 @@ public class MyExecJsch {
         return this;
     }
 
-    public void execute(String command) throws Exception {
+    public void execute(String command, ExecBuffer execQueue) throws Exception {
         flag = true;
         log.info("executing: " + command);
         InputStream stream = channelExec.getInputStream();
@@ -44,12 +45,13 @@ public class MyExecJsch {
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
         String line;
         while ((line = reader.readLine()) != null && flag)
-            log.info("tail: "+line);
-        log.info("execution..");
+            execQueue.push(line);
+        log.info("execution continues");
     }
 
     public MyExecJsch stop(){
         this.flag = false;
+        log.info("execution stopped");
         return this;
     }
 
@@ -62,5 +64,7 @@ public class MyExecJsch {
         return this;
     }
 
-
+    public String name() {
+        return machine.getName();
+    }
 }
