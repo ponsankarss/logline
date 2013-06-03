@@ -5,9 +5,7 @@ import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import com.vijayrc.supportguy.domain.Machine;
-import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j;
-import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,19 +13,19 @@ import java.util.Vector;
 import java.util.regex.Pattern;
 
 @Log4j
-public class MyJsch implements MyRemote {
+public class MyFtpJsch implements MyFtpRemote {
     private JSch jsch;
     private ChannelSftp channelSftp;
     private Session session;
     private Machine machine;
 
-    public MyJsch(Machine machine) {
+    public MyFtpJsch(Machine machine) {
         this.machine = machine;
         this.jsch = new JSch();
     }
 
     @Override
-    public MyRemote connect() throws Exception {
+    public MyFtpRemote connect() throws Exception {
         log.info("connecting to " + machine);
         session = jsch.getSession(machine.user(), machine.getIp(), 22);
         session.setConfig("StrictHostKeyChecking", "no");
@@ -45,7 +43,7 @@ public class MyJsch implements MyRemote {
     }
 
     @Override
-    public MyRemote disconnect() throws Exception {
+    public MyFtpRemote disconnect() throws Exception {
         if (channelSftp != null) channelSftp.exit();
         if (session != null) session.disconnect();
         log.info("disconnected from " + machine);

@@ -1,8 +1,8 @@
 package com.vijayrc.supportguy.domain;
 
 import com.vijayrc.supportguy.remote.MyFile;
-import com.vijayrc.supportguy.remote.MyJsch;
-import com.vijayrc.supportguy.remote.MyRemote;
+import com.vijayrc.supportguy.remote.MyFtpJsch;
+import com.vijayrc.supportguy.remote.MyFtpRemote;
 import static com.vijayrc.supportguy.util.Util.*;
 import lombok.Data;
 import lombok.extern.log4j.Log4j;
@@ -51,8 +51,8 @@ public class Machine {
         return user.getPassword();
     }
 
-    private MyRemote remote() {
-        return new MyJsch(this);
+    private MyFtpRemote remote() {
+        return new MyFtpJsch(this);
     }
 
     private Pattern pattern(String type) {

@@ -47,7 +47,7 @@ public class RemoteTest {
         JSch jsch = new JSch();
         Session session = null;
         try {
-            session = jsch.getSession("vichakra", "nasnmas3", 22);
+            session = jsch.getSession("vichakra", "nasnmasdev", 22);
             session.setConfig("StrictHostKeyChecking", "no");
             session.setPassword("######");
             session.connect();

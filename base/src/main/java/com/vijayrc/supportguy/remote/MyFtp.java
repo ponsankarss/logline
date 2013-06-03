@@ -4,7 +4,6 @@ import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
-import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 @Log4j
-public class MyFtp implements MyRemote {
+public class MyFtp implements MyFtpRemote {
     private String machine;
     private FTPClient ftpClient;
 
@@ -22,7 +21,7 @@ public class MyFtp implements MyRemote {
     }
 
     @Override
-    public MyRemote connect() throws Exception {
+    public MyFtpRemote connect() throws Exception {
         log.info("connecting to " + machine);
         ftpClient = new FTPClient();
         ftpClient.connect(machine);
@@ -32,7 +31,7 @@ public class MyFtp implements MyRemote {
     }
 
     @Override
-    public MyRemote disconnect() throws Exception {
+    public MyFtpRemote disconnect() throws Exception {
         if (ftpClient != null) ftpClient.disconnect();
         log.info("disconnected from " + machine);
         return this;
