@@ -15,6 +15,7 @@ public class MyExecJsch {
     private ChannelExec channelExec;
     private Session session;
     private Machine machine;
+    private boolean flag;
 
     public MyExecJsch(Machine machine) {
         this.machine = machine;
@@ -34,6 +35,7 @@ public class MyExecJsch {
     }
 
     public void execute(String command) throws Exception {
+        flag = true;
         log.info("executing: " + command);
         InputStream stream = channelExec.getInputStream();
         channelExec.setCommand(command);
@@ -41,14 +43,19 @@ public class MyExecJsch {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
         String line;
-        while ((line = reader.readLine()) != null) {
-            log.info(line);
-        }
-        int exitCode = channelExec.getExitStatus();
-        log.info(ExitStatus.getFor(exitCode).message());
+        while ((line = reader.readLine()) != null && flag)
+            log.info("tail: "+line);
+        log.info("execution..");
+    }
+
+    public MyExecJsch stop(){
+        this.flag = false;
+        return this;
     }
 
     public MyExecJsch disconnect() throws Exception {
+        int exitCode = channelExec.getExitStatus();
+        log.info(ExitStatus.getFor(exitCode).message());
         if (channelExec != null) channelExec.disconnect();
         if (session != null) session.disconnect();
         log.info("disconnected from " + machine);
