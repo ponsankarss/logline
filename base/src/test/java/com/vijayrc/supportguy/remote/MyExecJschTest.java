@@ -20,6 +20,6 @@ public class MyExecJschTest {
 
         execJsch = new MyExecJsch(machine);
 
-        execJsch.connect().tail("/was7blue2/logs/SystemOut.log");
+        execJsch.connect().execute("tail -f /was7blue2/logs/SystemOut.log");
     }
 }

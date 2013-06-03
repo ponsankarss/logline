@@ -33,15 +33,16 @@ public class MyExecJsch {
         return this;
     }
 
-    public void tail(String file) throws Exception {
+    public void execute(String command) throws Exception {
+        log.info("executing: " + command);
         InputStream stream = channelExec.getInputStream();
-        channelExec.setCommand("tail -f " + file);
+        channelExec.setCommand(command);
         channelExec.connect();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
         String line;
         while ((line = reader.readLine()) != null) {
-           log.info(line);
+            log.info(line);
         }
         int exitCode = channelExec.getExitStatus();
         log.info(ExitStatus.getFor(exitCode).message());
