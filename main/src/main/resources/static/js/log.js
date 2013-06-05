@@ -146,7 +146,9 @@ LogFetch = function(){
     };
 
     var displayResults = function(response){
-       $("#results").html(response);
+       $("#browse-logs-dialog").html(response);
+       $("#browse-logs-dialog").dialog({height:"auto", width: 600});
+       $(".ui-dialog").show();
        $("#loading-div-background").hide();
        $('#download_logs').click(downloadLogs);
     };
@@ -157,7 +159,7 @@ LogFetch = function(){
         $("#logFileNames option:selected").each(function () {
             logFileNames += $(this).text() + ",";
         });
-
+        $(".ui-dialog").hide();
         $("#loading-div-background").show();
         $.ajax({
             	url : "/log/download/",

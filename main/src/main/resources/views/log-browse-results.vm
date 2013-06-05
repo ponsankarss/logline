@@ -1,4 +1,4 @@
-<div class="span8">
+<div class="span4">
     <form class="form-horizontal" action="">
     <p id="pick-log">Pick files to download</p>
     <div class="control-group">
@@ -10,6 +10,7 @@
     </div>
     <div id="buttons" class="form-actions">
         <input type="button" class="btn btn-primary" id="download_logs" value="Download"/>
+        <input type="button" class="btn btn-primary" id="tail_logs" value="Tail"/>
     </div>
     </form>
 </div>

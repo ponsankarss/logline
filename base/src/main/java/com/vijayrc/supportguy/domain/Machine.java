@@ -26,14 +26,14 @@ public class Machine {
     }
 
     public List<String> getLogFiles(String type) throws Exception {
-        String downloadDir = userDir() + "/logs/";
+        String downloadDir = userDir() + "logs";
         remote().download(logDir, downloadDir, false, pattern(type));
         log.info("all log files downloaded");
         return new MyFile(downloadDir).getChildren();
     }
 
     public List<String> getConfigFiles(String type) throws Exception {
-        String downloadDir = userDir() + "/config/";
+        String downloadDir = userDir() + "config";
         remote().download(configDir, downloadDir, true, pattern(type));
         log.info("all config files downloaded");
         return new MyFile(downloadDir).getChildren();

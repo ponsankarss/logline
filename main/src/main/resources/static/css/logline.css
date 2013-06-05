@@ -62,8 +62,8 @@ h2{
    width: 100px;
 }
 .ui-widget-content{
-    background: lightgrey  !important;
     font-size: 12px;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
 .file{
   color:green;

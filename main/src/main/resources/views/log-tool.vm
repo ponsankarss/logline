@@ -59,4 +59,5 @@
     <input type="button" class="btn btn-primary" id="browse_logs" value="Browse"/>
 </div>
 </form>
+<div id="browse-logs-dialog"></div>
 #end
