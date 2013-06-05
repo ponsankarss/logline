@@ -10,7 +10,7 @@
         </thead>
         <tbody>
         #foreach($query in $group.findGroup($key).findAll())
-            <tr>
+            <tr class="query-row">
                 <td class="query-name-col">$query.getName()</td>
                 <td class="query-sql-col">$query.getSql()</td>
                 <td class="query-db-col">$query.getDb() </td>

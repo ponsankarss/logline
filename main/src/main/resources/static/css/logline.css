@@ -218,8 +218,9 @@ h2{
 .query-result-table{
     font-size:13px;
 }
-
 .query-result-header{
     font-weight:bold;
-    background: none repeat scroll 0 0 #ADD8E6;;
+    background: none repeat scroll 0 0 #66CDAA;
+}
+.query-row{
 }
