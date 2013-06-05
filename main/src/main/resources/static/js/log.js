@@ -147,7 +147,7 @@ LogFetch = function(){
 
     var displayResults = function(response){
        $("#browse-logs-dialog").html(response);
-       $("#browse-logs-dialog").dialog({height:"auto", width: 600});
+       $("#browse-logs-dialog").dialog({height:"auto", width: 600, modal: true});
        $(".ui-dialog").show();
        $("#loading-div-background").hide();
        $('#download_logs').click(downloadLogs);
