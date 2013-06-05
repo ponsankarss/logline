@@ -8,18 +8,18 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 public class Tailer implements Runnable {
     private MyExecJsch execJsch;
     private String file;
-    private ExecBuffer execQueue;
+    private ExecBuffer execBuffer;
 
     public Tailer(Machine machine, String file, int size){
         this.file = file;
-        this.execQueue = new ExecBuffer(size);
+        this.execBuffer = new ExecBuffer(size);
         this.execJsch = new MyExecJsch(machine);
     }
 
     @Override
     public void run() {
         try {
-            execJsch.connect().execute("tail -f " + file, execQueue);
+            execJsch.connect().execute("tail -f " + file, execBuffer);
         } catch (Exception e) {
             log.error(ExceptionUtils.getFullStackTrace(e));
         }
@@ -30,7 +30,7 @@ public class Tailer implements Runnable {
     }
 
     public String pop(){
-        return execQueue.pop();
+        return execBuffer.pop();
     }
 
     public String name(){
