@@ -56,7 +56,7 @@ public class Logs {
     }
 
     private DateTime parse(String date) {
-        if (StringUtils.isBlank(date)) return DateTime.now();
+        if (StringUtils.isBlank(date)) return null;
         date = date.trim();
         return date.contains(":") ?
                 forPattern("MM/dd/yyyy HH:mm:ss").parseDateTime(date) :

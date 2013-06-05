@@ -1,5 +1,6 @@
 package com.vijayrc.supportguy.processor;
 
+import com.vijayrc.supportguy.domain.MyMatcher;
 import com.vijayrc.supportguy.repository.AllLogRegex;
 import com.vijayrc.supportguy.domain.Logs;
 import lombok.extern.log4j.Log4j;
@@ -24,7 +25,10 @@ public class TimeProcessor implements Processor {
         DateTime lineDate;
 
         for (String processedLine : processedLines) {
-            lineDate = allLogRegex.findMatched(processedLine).getTime();
+            MyMatcher myMatcher = allLogRegex.findMatched(processedLine);
+            if (myMatcher.notMatched())
+                continue;
+            lineDate = myMatcher.getTime();
             if (lineDate != null && lineDate.isAfter(logs.startDate()) && lineDate.isBefore(logs.endDate()))
                 filteredProcessedLines.add(processedLine);
         }

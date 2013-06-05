@@ -26,6 +26,7 @@ LogForm = function(){
     };
 
     var displayResults = function(response){
+        $("#tail-log").hide();
         $("#results").html(response);
         $("#loading-div-background").hide();
         new LogLight().boot(keys);
