@@ -1,5 +1,6 @@
 <div id="fetch-log" class="span4">#logFetch()</div>
-<div class="span6">#logSearch()</div>
+<div id="search-log" class="span6">#logSearch()</div>
+<div id="tail-log" class="span12">#logTail()</div>
 
 #macro(logSearch)
 <h3>Search Logs<img src="/static/images/search.gif"/></h3>
@@ -60,4 +61,17 @@
 </div>
 </form>
 <div id="browse-logs-dialog"></div>
+#end
+
+#macro(logTail)
+<div id="tail-tabs">
+   <ul>
+        <li><a href="#tail-index"><img src="/static/images/log.gif"/>tails</a></li>
+   </ul>
+   <div id="tail-index">
+        <ul id="tail-list">
+            <li></li>
+        <ul>
+   </div>
+</div>
 #end

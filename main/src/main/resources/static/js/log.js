@@ -37,6 +37,7 @@ LogForm = function(){
         $("#loading-div-background").css({ opacity: 0.7 });
         $("#start_date").datetimepicker();
         $("#end_date").datetimepicker();
+        $("#tail-tabs").tabs();
     };
 };
 //-------------------------------------------------------------------------------------------------
@@ -151,6 +152,7 @@ LogFetch = function(){
        $(".ui-dialog").show();
        $("#loading-div-background").hide();
        $('#download_logs').click(downloadLogs);
+       $('#tail_logs').click(downloadLogs);
     };
 
     var downloadLogs = function(){
@@ -169,6 +171,26 @@ LogFetch = function(){
             	},
             	type : "POST"
             }).done(displayResults);
+    };
+    var tailLogs = function(){
+        machine = $("#machine").val();
+        logFileNames = "";
+        $("#logFileNames option:selected").each(function () {
+            logFileNames += $(this).text() + ",";
+        });
+        $(".ui-dialog").hide();
+        $("#loading-div-background").show();
+        $.ajax({
+            	url : "/log/tail/",
+            	data : {
+            		machine : machine,
+            		logFileNames:logFileNames
+            	},
+            	type : "POST"
+            }).done(updateLogTailTabs);
+    };
+
+    var updateLogTailTabs = function(){
     };
 
     this.boot = function(){
