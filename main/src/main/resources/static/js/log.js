@@ -38,7 +38,7 @@ LogForm = function(){
         $("#loading-div-background").css({ opacity: 0.7 });
         $("#start_date").datetimepicker();
         $("#end_date").datetimepicker();
-        $("#tail-tabs").tabs();
+
     };
 };
 //-------------------------------------------------------------------------------------------------
@@ -182,16 +182,17 @@ LogFetch = function(){
         $(".ui-dialog").hide();
         $("#loading-div-background").show();
         $.ajax({
-            	url : "/log/tail/",
-            	data : {
-            		machine : machine,
-            		logFileNames:logFileNames
-            	},
-            	type : "POST"
-            }).done(updateLogTailTabs);
+            url : "/log/tail/start",
+            data : {
+            	machine : machine,
+            	logFileNames:logFileNames
+            },
+            type : "POST"
+        }).done(updateLogTailTabs);
     };
 
     var updateLogTailTabs = function(){
+        $("#tail-log").show();
     };
 
     this.boot = function(){
@@ -199,3 +200,47 @@ LogFetch = function(){
     };
 };
 //-------------------------------------------------------------------------------------------------
+LogTailTabs=  function(){
+
+    var tailers = {};
+
+    this.add = function(machine, logFile){
+
+    };
+
+    this.remove = function(machine, logFiles){
+
+    };
+
+    this.hideTabs = function(){
+      $("#tail-log").hide();
+      $("#tail-tabs").hide();
+    };
+
+    this.boot = function(){
+      $("#tail-tabs").tabs();
+    };
+};
+//-------------------------------------------------------------------------------------------------
+LogTailer = function(){
+   var machine;
+   var logFile;
+   var tabId;
+
+   this.start = function(){
+        $.ajax({
+            url:"/log/tail/pull",
+            data:{machine:machine, logFile:logFile}
+        }).done(updateLogTab);
+   };
+
+   var updateLogTab = function(){
+
+   };
+
+   this.boot = function(machineArg, logFileArg){
+       machine = machineArg;
+       logFile = logFileArg;
+       tabId = machine+"-"+logFileArg;
+   };
+};

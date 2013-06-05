@@ -242,4 +242,9 @@ h2{
     margin-bottom: 1px !important;
 }
 #tail-tabs{
+
+}
+input{
+    -webkit-border-radius: 0px !important;
+    border-radius:0px !important;
 }
