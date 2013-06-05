@@ -2,7 +2,7 @@
 <div class="span6">#logSearch()</div>
 
 #macro(logSearch)
-<h3>Search Logs</h3>
+<h3>Search Logs<img src="/static/images/search.gif"/></h3>
 <div id="form_table" class="span8">
     <form id="log_form" class="form-horizontal" action="">
         <div class="control-group">
@@ -44,7 +44,7 @@
 
 #macro(logFetch)
 <form id="log_fetch_form" class="form-horizontal" action="">
-<h3>Fetch Logs</h3>
+<h3>Fetch Logs<img src="/static/images/download.png"/></h3>
 <div class="control-group">
      <label for="folder" class="control-label">Machine</label>
      <div class="controls">

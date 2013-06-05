@@ -235,3 +235,9 @@ h2{
    color:  #0088cc;
    font-size:18px;
 }
+.form-actions{
+    margin-top:1px !important;
+}
+.form-horizontal .control-group{
+    margin-bottom: 1px !important;
+}

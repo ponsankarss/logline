@@ -27,7 +27,8 @@ public class StaticController extends BaseController {
         if (!file.exists()) return;
 
         if (path.contains("images")) {
-            response.setValue("Content-Type", "image/GIF");
+            String contentType = path.contains("gif") ?"image/GIF":"image/PNG";
+            response.setValue("Content-Type", contentType);
             OutputStream out = response.getOutputStream();
             ImageIO.write(ImageIO.read(file), "gif", out);
             out.close();
