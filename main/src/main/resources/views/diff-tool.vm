@@ -1,5 +1,5 @@
 <form id="diff_tool_form" class="form-horizontal" action="">
-<h3>Configuration Matcher</h3>
+<h3>Configuration Matcher<img src="/static/images/settings.png"/></h3>
 <div class="control-group">
      <label for="machine" class="control-label">Machine</label>
      <div class="controls">
