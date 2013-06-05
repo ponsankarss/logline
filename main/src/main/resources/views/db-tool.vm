@@ -1,7 +1,7 @@
 <ol>
 #foreach($key in $group.keySet())
 <li>
-    <a class="expand-db" href="#"><h3>$key</h3></a>
+    <a  class="expand-db" href="#"><img src="/static/images/db.png"/><span class="header">$key</span></a>
     <div class="content-db">
     <input db="${key}" class="query-main-btn btn-primary" value="run all" type="button"/>
     <table class="table query-table table-condensed">

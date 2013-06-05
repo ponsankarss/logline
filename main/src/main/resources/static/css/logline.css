@@ -154,6 +154,9 @@ h2{
 .link-main-btn, .link-small-btn, .link-param-input{
     margin-left: 10px;
 }
+.link-main-btn{
+    margin-top: 5px;
+}
 .link-name-col{
     padding: 2px !important;
     width:40%;
@@ -192,6 +195,9 @@ h2{
 .query-main-btn, .query-small-btn{
     margin-left: 10px;
 }
+.query-main-btn{
+    margin-top: 5px;
+}
 .query-name-col{
     padding: 2px !important;
     width:20%;
@@ -223,4 +229,9 @@ h2{
     background: none repeat scroll 0 0 #66CDAA;
 }
 .query-row{
+}
+.header{
+    width:auto !important;
+   color:  #0088cc;
+   font-size:18px;
 }
