@@ -6,6 +6,7 @@ import com.vijayrc.supportguy.domain.Logs;
 import com.vijayrc.supportguy.domain.MyMatcher;
 import com.vijayrc.supportguy.repository.AllLogRegex;
 import lombok.extern.log4j.Log4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,12 +32,18 @@ public class KeyRule implements LineRule {
             if (myMatcher.notMatched())
                 continue;
             String thread = myMatcher.group("thread");
-            for (int j = i + 20; j != i && j < processedLines.size(); j--)
-                if (processedLines.get(j).contains(thread))
-                    lines.addKeyLine(new Line(processedLines.get(j)).ofThread(thread));
-            for (int k = i - 20; k != i && k > 0; k++)
-                if (processedLines.get(k).contains(thread))
-                    lines.addKeyLine(new Line(processedLines.get(k)).ofThread(thread));
+            if (StringUtils.isBlank(thread)) continue;
+
+            for (int j = i + 20; j != i && j < processedLines.size(); j--) {
+                String line = processedLines.get(j);
+                if (line != null && line.contains(thread))
+                    lines.addKeyLine(new Line(line).ofThread(thread));
+            }
+            for (int k = i - 20; k != i && k > 0; k++) {
+                String line = processedLines.get(k);
+                if (line != null && line.contains(thread))
+                    lines.addKeyLine(new Line(line).ofThread(thread));
+            }
         }
     }
 

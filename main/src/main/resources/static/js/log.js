@@ -120,6 +120,10 @@ LogLight = function(){
   };
 
   var keysUp = function(){
+    var option = $("#option").val();
+    if(option == 'error'){
+        return;
+    }
     $("#results").highlight(searchKeys.split(","));
     $(".highlight").wrap("<a class='search' href='#'></a>");
   };
@@ -182,7 +186,7 @@ LogFetch = function(){
         });
         $(".ui-dialog").hide();
         $("#loading-div-background").show();
-         tailTabs. tellServerToStartTailing(machine, logFileNames);
+         tailTabs.tellServerToStartTailing(machine, logFileNames);
     };
 
     this.boot = function(){
@@ -205,14 +209,14 @@ LogTailTabs=  function(){
     };
 
     this.tellServerToStartTailing = function(machine, logFileNames){
-            $.ajax({
-                        url : "/log/tail/start",
-                        data : {
-                        	machine : machine,
-                        	logFileNames:logFileNames
-                        },
-                        type : "POST"
-            }).done(showAll);
+     $.ajax({
+       url : "/log/tail/start",
+       data : {
+       	machine : machine,
+       	logFileNames:logFileNames
+       },
+       type : "POST"
+     }).done(showAll);
     };
 
     this.showAll = function(){
@@ -223,7 +227,7 @@ LogTailTabs=  function(){
     this.hideAll = function(){
         $("#tail-log").hide();
         $("#tail-tabs").hide();
-     };
+    };
 
     this.boot = function(){
       $("#tail-tabs").tabs();
@@ -234,8 +238,8 @@ LogTailer = function(){
    var machine;
    var logFile;
    var tabId;
-                                          l
-   this.start = function(){
+
+   this.pullFromServer = function(){
         $.ajax({
             url:"/log/tail/pull",
             type:"GET",
@@ -243,7 +247,7 @@ LogTailer = function(){
         }).done(updateTab);
    };
 
-   this.stop = function(){
+   this.stopPullingFromServer = function(){
            $.ajax({
                url:"/log/tail/stop",
                type:"GET" ,

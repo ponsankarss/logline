@@ -76,7 +76,7 @@ configDir: /was7datanet/localProperties
 user:
     u::
     name: vichakra
-    password: tindrum210x
+    password: tindrum210
 ---
 m::
 name: dnl:p7-prod01
