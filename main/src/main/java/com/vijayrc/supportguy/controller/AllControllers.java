@@ -32,7 +32,7 @@ public class AllControllers implements BeanPostProcessor, ApplicationListener<Co
             if (!method.isAnnotationPresent(WebMethod.class))
                 continue;
             String key = bean.getClass().getAnnotation(WebClass.class).value() + method.getAnnotation(WebMethod.class).value();
-            methods.put(key, new ControllerMethod(bean, method));
+            methods.put(StringUtils.remove(key, "/"), new ControllerMethod(bean, method));
         }
         return bean;
     }

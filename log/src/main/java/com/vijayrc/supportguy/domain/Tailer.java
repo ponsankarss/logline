@@ -19,6 +19,7 @@ public class Tailer implements Runnable {
     @Override
     public void run() {
         try {
+            log.info("started tailing "+name());
             execJsch.connect().execute("tail -f " + file, execBuffer);
         } catch (Exception e) {
             log.error(ExceptionUtils.getFullStackTrace(e));
@@ -27,6 +28,7 @@ public class Tailer implements Runnable {
 
     public void stop() throws Exception {
         execJsch.stop().disconnect();
+        log.info("stopped tailing "+name());
     }
 
     public String pop(){

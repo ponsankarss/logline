@@ -181,18 +181,23 @@ LogFetch = function(){
     var tailLogs = function(){
         machine = $("#machine").val();
         logFileNames = "";
+
+        var logFiles = new Array();
+        var i =0;
+
         $("#logFileNames option:selected").each(function () {
             logFileNames += $(this).text() + ",";
+            logFiles[i] = $(this).text();
+            i++;
         });
         $(".ui-dialog").hide();
         $("#loading-div-background").show();
-         tailTabs.tellServerToStartTailing(machine, logFileNames);
+         tailTabs.tellServerToStartTailing(machine, logFileNames, logFiles);
     };
 
     this.boot = function(){
         $('#browse_logs').click(browseLogs);
         tailTabs.boot();
-        tailTabs.hideAll();
     };
 };
 //-------------------------------------------------------------------------------------------------
@@ -200,28 +205,31 @@ LogTailTabs=  function(){
 
     var logTailers = {};
 
-    this.add = function(machine, logFile){
-
+    var add = function(machine, logFile){
+        alert("added "+machine+"-"+logFile)
     };
 
-    this.remove = function(machine, logFiles){
-
+    var remove = function(machine, logFiles){
+        alert("removed "+machine+"-"+logFile)
     };
 
-    this.tellServerToStartTailing = function(machine, logFileNames){
+    this.tellServerToStartTailing = function(machine, logFileNames, logFiles){
      $.ajax({
        url : "/log/tail/start",
-       data : {
-       	machine : machine,
-       	logFileNames:logFileNames
-       },
+       data : {machine : machine,logFileNames:logFileNames},
        type : "POST"
-     }).done(showAll);
+     }).done(updateTabs);
+
+     for(var i=0;i<logFiles.length ;i++){
+        add(machine, logFiles[i]);
+     }
     };
 
-    this.showAll = function(){
+    var updateTabs = function(response){
         $("#tail-log").show();
         $("#tail-tabs").show();
+        $("#tail-index").html(response);
+        $("#loading-div-background").hide();
     };
 
     this.hideAll = function(){
@@ -230,7 +238,8 @@ LogTailTabs=  function(){
     };
 
     this.boot = function(){
-      $("#tail-tabs").tabs();
+        $("#tail-tabs").tabs();
+        this.hideAll();
     };
 };
 //-------------------------------------------------------------------------------------------------

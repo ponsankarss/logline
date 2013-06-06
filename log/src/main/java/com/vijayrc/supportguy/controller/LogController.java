@@ -5,6 +5,7 @@ import com.vijayrc.supportguy.meta.WebClass;
 import com.vijayrc.supportguy.meta.WebMethod;
 import com.vijayrc.supportguy.service.LogFetchService;
 import com.vijayrc.supportguy.service.LogSearchService;
+import com.vijayrc.supportguy.service.LogTailService;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
 import org.simpleframework.http.Request;
@@ -27,6 +28,8 @@ public class LogController extends BaseController {
     private LogSearchService searchService;
     @Autowired
     private LogFetchService fetchService;
+    @Autowired
+    private LogTailService tailService;
 
     @WebMethod("tool")
     public void showTool(Request request, Response response) throws Exception {
@@ -55,6 +58,37 @@ public class LogController extends BaseController {
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("logNames", logNames);
         renderer.render("log-download-results", model, response);
+    }
+
+    @WebMethod("tail/start")
+    public void startTail(Request request, Response response) throws Exception {
+        String machine = request.getParameter("machine");
+        List<String> logFileNames = Arrays.asList(StringUtils.split(request.getParameter("logFileNames"), ","));
+        List<String> tails = tailService.startTailing(machine, logFileNames);
+
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("tails", tails);
+        renderer.render("log-tail-list", model, response);
+    }
+
+    @WebMethod("tail/pull")
+       public void pullTail(Request request, Response response) throws Exception {
+        String tailName = request.getParameter("tailName");
+        String tailLine = tailService.pullTail(tailName);
+
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("tailLine", tailLine);
+        renderer.render("log-tail-line", model, response);
+    }
+
+    @WebMethod("tail/stop")
+    public void stopTail(Request request, Response response) throws Exception {
+        String tailName = request.getParameter("tailName");
+        String tailStop = tailService.stopTail(tailName);
+
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("tailStop", tailStop);
+        renderer.render("log-tail-stop", model, response);
     }
 
     @WebMethod("search")

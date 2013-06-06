@@ -69,9 +69,6 @@
         <li><a href="#tail-index"><img src="/static/images/log.gif"/>tails</a></li>
    </ul>
    <div id="tail-index">
-        <ul id="tail-list">
-            <li></li>
-        <ul>
    </div>
 </div>
 #end
