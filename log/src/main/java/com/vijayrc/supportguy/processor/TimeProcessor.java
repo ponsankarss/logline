@@ -8,6 +8,7 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class TimeProcessor implements Processor {
     private AllLogRegex allLogRegex;
 
     @Override
-    public void process(Logs logs) {
+    public void process(Logs logs) throws Exception {
         List<String> processedLines = logs.lines().processedLines();
         List<String> filteredProcessedLines = new ArrayList<String>();
         DateTime lineDate;

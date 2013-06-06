@@ -24,7 +24,7 @@ public class AllProcessors {
     @Autowired
     private XMLProcessor xmlProcessor;
 
-    public void process(Logs logs) {
+    public void process(Logs logs) throws Exception {
         List<Processor> processors = logs.hasStartDate()
                 ? asList(xmlProcessor, errorProcessor, timeProcessor)
                 : asList(xmlProcessor, errorProcessor);

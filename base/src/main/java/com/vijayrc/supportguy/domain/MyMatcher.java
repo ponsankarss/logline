@@ -3,6 +3,9 @@ package com.vijayrc.supportguy.domain;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 
 public class MyMatcher {
@@ -41,7 +44,13 @@ public class MyMatcher {
         return !isMatch();
     }
 
-    public DateTime getTime() {
-        return DateTimeFormat.forPattern(myRegex.getDateFormat()).parseDateTime(matcher.group("timestamp"));
+    public DateTime getTime() throws ParseException {
+        try {
+            Date date = myRegex.getDateFormatter().parse(matcher.group("timestamp"));
+            return new DateTime(date);
+        } catch (ParseException e) {
+            System.out.println(myRegex.getDateFormatter().toPattern()+"|"+matcher.group("timestamp"));
+            return null;
+        }
     }
 }
