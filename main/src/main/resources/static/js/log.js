@@ -38,7 +38,6 @@ LogForm = function(){
         $("#loading-div-background").css({ opacity: 0.7 });
         $("#start_date").datetimepicker();
         $("#end_date").datetimepicker();
-
     };
 };
 //-------------------------------------------------------------------------------------------------
@@ -134,6 +133,7 @@ LogLight = function(){
 //-------------------------------------------------------------------------------------------------
 LogFetch = function(){
     var machine, logFileNames;
+    var tailTabs = new LogTailTabs();
 
     var browseLogs = function(){
         machine = $("#machine").val();
@@ -153,7 +153,7 @@ LogFetch = function(){
        $(".ui-dialog").show();
        $("#loading-div-background").hide();
        $('#download_logs').click(downloadLogs);
-       $('#tail_logs').click(downloadLogs);
+       $('#tail_logs').click(tailLogs);
     };
 
     var downloadLogs = function(){
@@ -173,6 +173,7 @@ LogFetch = function(){
             	type : "POST"
             }).done(displayResults);
     };
+
     var tailLogs = function(){
         machine = $("#machine").val();
         logFileNames = "";
@@ -181,28 +182,19 @@ LogFetch = function(){
         });
         $(".ui-dialog").hide();
         $("#loading-div-background").show();
-        $.ajax({
-            url : "/log/tail/start",
-            data : {
-            	machine : machine,
-            	logFileNames:logFileNames
-            },
-            type : "POST"
-        }).done(updateLogTailTabs);
-    };
-
-    var updateLogTailTabs = function(){
-        $("#tail-log").show();
+         tailTabs. tellServerToStartTailing(machine, logFileNames);
     };
 
     this.boot = function(){
         $('#browse_logs').click(browseLogs);
+        tailTabs.boot();
+        tailTabs.hideAll();
     };
 };
 //-------------------------------------------------------------------------------------------------
 LogTailTabs=  function(){
 
-    var tailers = {};
+    var logTailers = {};
 
     this.add = function(machine, logFile){
 
@@ -212,10 +204,26 @@ LogTailTabs=  function(){
 
     };
 
-    this.hideTabs = function(){
-      $("#tail-log").hide();
-      $("#tail-tabs").hide();
+    this.tellServerToStartTailing = function(machine, logFileNames){
+            $.ajax({
+                        url : "/log/tail/start",
+                        data : {
+                        	machine : machine,
+                        	logFileNames:logFileNames
+                        },
+                        type : "POST"
+            }).done(showAll);
     };
+
+    this.showAll = function(){
+        $("#tail-log").show();
+        $("#tail-tabs").show();
+    };
+
+    this.hideAll = function(){
+        $("#tail-log").hide();
+        $("#tail-tabs").hide();
+     };
 
     this.boot = function(){
       $("#tail-tabs").tabs();
@@ -226,21 +234,34 @@ LogTailer = function(){
    var machine;
    var logFile;
    var tabId;
-
+                                          l
    this.start = function(){
         $.ajax({
             url:"/log/tail/pull",
+            type:"GET",
             data:{machine:machine, logFile:logFile}
-        }).done(updateLogTab);
+        }).done(updateTab);
    };
 
-   var updateLogTab = function(){
+   this.stop = function(){
+           $.ajax({
+               url:"/log/tail/stop",
+               type:"GET" ,
+               data:{machine:machine, logFile:logFile}
+           }).done(closeTab);
+      };
 
+   var updateTab = function(response){
+           $(tabId).append(response);
+   };
+
+   var closeTab = function(){
+           $(tabId).remove();
    };
 
    this.boot = function(machineArg, logFileArg){
        machine = machineArg;
        logFile = logFileArg;
-       tabId = machine+"-"+logFileArg;
+       tabId = "#"+machine+"-"+logFileArg;
    };
 };
