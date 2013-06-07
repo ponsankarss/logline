@@ -206,11 +206,16 @@ LogTailTabs=  function(){
     var logTailers = {};
 
     var add = function(machine, logFile){
-        alert("added "+machine+"-"+logFile)
+        var tabId = machine+"-"+logFile;
+        $('#tail-list').append("<li><a href='#"+tabId+"'><img src='/static/images/log.gif'/>"+tabId+"</a></li>")
+        $('#tail-tabs').append("<div id='"+tabId+"'><div><input type='button' value='stop' class='"+tabId+"'/></div><div class='tails'></div></div>");
+        var logTailer = new LogTailer();
+        logTailer.boot();
+        logTailers[tabId] = logTailer;
     };
 
-    var remove = function(machine, logFiles){
-        alert("removed "+machine+"-"+logFile)
+    var remove = function(machine, logFile){
+
     };
 
     this.tellServerToStartTailing = function(machine, logFileNames, logFiles){
@@ -218,18 +223,19 @@ LogTailTabs=  function(){
        url : "/log/tail/start",
        data : {machine : machine,logFileNames:logFileNames},
        type : "POST"
-     }).done(updateTabs);
+     }).done(refreshTabs);
 
      for(var i=0;i<logFiles.length ;i++){
         add(machine, logFiles[i]);
      }
     };
 
-    var updateTabs = function(response){
+    var refreshTabs = function(response){
+        $("#loading-div-background").hide();
         $("#tail-log").show();
+        $("#tail-tabs").tabs("refresh");
         $("#tail-tabs").show();
         $("#tail-index").html(response);
-        $("#loading-div-background").hide();
     };
 
     this.hideAll = function(){
@@ -248,33 +254,40 @@ LogTailer = function(){
    var logFile;
    var tabId;
 
-   this.pullFromServer = function(){
+   var poll = function(){
         $.ajax({
             url:"/log/tail/pull",
             type:"GET",
-            data:{machine:machine, logFile:logFile}
+            data:{machine:machine, logFile:logFile},
+            complete:poll
         }).done(updateTab);
    };
 
-   this.stopPullingFromServer = function(){
-           $.ajax({
-               url:"/log/tail/stop",
-               type:"GET" ,
-               data:{machine:machine, logFile:logFile}
-           }).done(closeTab);
-      };
-
    var updateTab = function(response){
-           $(tabId).append(response);
+        $(tabId).find('div[class="tails"]').append(response);
    };
 
    var closeTab = function(){
-           $(tabId).remove();
+        $(tabId).remove();
+        //todo remove item from first tab list,
+   };
+
+   this.start = function(){
+        setTimeout(poll,5000);
+   };
+
+   this.stop = function(){
+         $.ajax({
+             url:"/log/tail/stop",
+             type:"GET" ,
+             data:{machine:machine, logFile:logFile}
+         }).done(closeTab);
    };
 
    this.boot = function(machineArg, logFileArg){
        machine = machineArg;
        logFile = logFileArg;
        tabId = "#"+machine+"-"+logFileArg;
+       this.start();
    };
 };

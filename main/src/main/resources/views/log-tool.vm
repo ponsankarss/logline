@@ -65,7 +65,7 @@
 
 #macro(logTail)
 <div id="tail-tabs">
-   <ul>
+   <ul id="tail-list">
         <li><a href="#tail-index"><img src="/static/images/log.gif"/>tails</a></li>
    </ul>
    <div id="tail-index">
