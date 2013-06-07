@@ -14,8 +14,15 @@ schema: mobile
 ---
 name: b2-dev
 url: jdbc:db2://206.201.111.99:3610/A51DD2T4
-user: XXXXX
+user: WSADB2G
 password: XXXXX
 driver: com.ibm.db2.jcc.DB2Driver
 schema: T6QJDBA
+---
+name: b2-mo
+url: jdbc:db2://206.201.111.97:3510/A51DD2T3
+user: WSADB2H
+password: XXXXXX
+driver: com.ibm.db2.jcc.DB2Driver
+schema: PNASCMOD
 ---

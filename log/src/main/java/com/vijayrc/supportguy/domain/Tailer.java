@@ -9,9 +9,11 @@ public class Tailer implements Runnable {
     private MyExecJsch execJsch;
     private String file;
     private ExecBuffer execBuffer;
+    private String name;
 
-    public Tailer(Machine machine, String file, int size){
-        this.file = file;
+    public Tailer(Machine machine, String file, int size) {
+        this.file = machine.getLogDir() + "/" + file;
+        this.name = machine.getName() + "-" + file;
         this.execBuffer = new ExecBuffer(size);
         this.execJsch = new MyExecJsch(machine);
     }
@@ -19,7 +21,7 @@ public class Tailer implements Runnable {
     @Override
     public void run() {
         try {
-            log.info("started tailing "+name());
+            log.info("started tailing " + name());
             execJsch.connect().execute("tail -f " + file, execBuffer);
         } catch (Exception e) {
             log.error(ExceptionUtils.getFullStackTrace(e));
@@ -28,15 +30,15 @@ public class Tailer implements Runnable {
 
     public void stop() throws Exception {
         execJsch.stop().disconnect();
-        log.info("stopped tailing "+name());
+        log.info("stopped tailing " + name());
     }
 
-    public String pop(){
+    public String pop() {
         return execBuffer.pop();
     }
 
-    public String name(){
-        return execJsch.name()+":"+file;
+    public String name() {
+        return name;
     }
 
 }
