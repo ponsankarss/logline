@@ -23,7 +23,8 @@ public class LogTailService {
     public List<String> startTailing(String machineName, List<String> logFileNames) {
         Machine machine = allMachines.getFor(machineName);
         for (String logFileName : logFileNames) {
-            Tailer tailer = new Tailer(machine, machine.getLogDir() + "/" + logFileName, 30);
+            logFileName = removeTimeStamp(logFileName);
+            Tailer tailer = new Tailer(machine, logFileName, 30);
             Thread t = new Thread(tailer);
             t.start();
             allTailers.add(tailer);
@@ -32,6 +33,7 @@ public class LogTailService {
     }
 
     public String pullTail(String tailName) {
+        tailName = removeTimeStamp(tailName);
         Tailer tailer = allTailers.find(tailName);
         return tailer != null ? tailer.pop() : tailName + " not present";
     }
@@ -42,5 +44,9 @@ public class LogTailService {
             return "No tailer present";
         tailer.stop();
         return tailName + " stopped";
+    }
+
+    private String removeTimeStamp(String logFileName) {
+        return logFileName.replaceAll("\\[.*\\]", "").trim();
     }
 }

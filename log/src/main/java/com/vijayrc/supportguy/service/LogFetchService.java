@@ -21,7 +21,7 @@ public class LogFetchService {
     public List<String> getFiles(String machineName, List<String> files) throws Exception {
         StringBuffer buffer = new StringBuffer();
         for (String file : files)
-            buffer.append(file.replaceAll("\\[.*\\]", "").trim() + "\\z|");
+            buffer.append(removeTimeStamp(file) + "\\z|");
 
         String regex = StringUtils.removeEnd(buffer.toString(), "|");
         return allMachines.getFor(machineName).getLogFiles(regex);
@@ -34,5 +34,9 @@ public class LogFetchService {
 
     public List<String> machineNames(){
         return allMachines.names();
+    }
+
+    private String removeTimeStamp(String logFileName) {
+        return logFileName.replaceAll("\\[.*\\]", "").trim();
     }
 }
