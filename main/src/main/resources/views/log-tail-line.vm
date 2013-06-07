@@ -1,1 +1,3 @@
-$tailLine
+#if($tailLine != "nil")
+    <p>$tailLine</p>
+#end

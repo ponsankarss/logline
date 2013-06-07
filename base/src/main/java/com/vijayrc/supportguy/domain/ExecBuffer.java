@@ -16,6 +16,6 @@ public class ExecBuffer {
     }
 
     public String pop() {
-        return lines.isEmpty() ? "No lines to buffer" : lines.pop();
+        return lines.isEmpty() ? "nil" : lines.pop();
     }
 }

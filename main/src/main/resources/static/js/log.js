@@ -190,7 +190,7 @@ LogFetch = function(){
             logFiles[i] = $(this).text();
             i++;
         });
-        $(".ui-dialog").hide();
+        $("#browse-logs-dialog").dialog("close");
          tailTabs.tellServerToStartTailing(machine, logFileNames, logFiles);
     };
 
@@ -263,9 +263,8 @@ LogTailer = function(){
             $.ajax({
                  url:"/log/tail/pull",
                  type:"POST",
-                 data:{tailName:machine+"-"+logFile},
-                 complete:updateTab
-            });
+                 data:{tailName:machine+"-"+logFile}
+            }).done(updateTab);
         },2000);
    };
 
