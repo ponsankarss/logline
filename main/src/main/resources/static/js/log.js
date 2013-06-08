@@ -262,7 +262,7 @@ LogTailer = function(){
                  type:"POST",
                  data:{tailName:machine+"-"+logFile}
             }).done(updateTab);
-        },2000);
+        },1000);
    };
 
    var updateTab = function(response){
@@ -271,7 +271,7 @@ LogTailer = function(){
    };
 
    this.start = function(){
-        setTimeout(poll,2000);
+        setTimeout(poll,1000);
         toContinue = true;
    };
 
