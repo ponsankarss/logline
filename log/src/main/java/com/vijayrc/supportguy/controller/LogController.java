@@ -71,6 +71,15 @@ public class LogController extends BaseController {
         renderer.render("log-tail-list", model, response);
     }
 
+    @WebMethod("tail/status")
+    public void statusTail(Request request, Response response) throws Exception {
+        List<String> tails = tailService.allTails();
+
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("tails", tails);
+        renderer.render("log-tail-list", model, response);
+    }
+
     @WebMethod("tail/pull")
        public void pullTail(Request request, Response response) throws Exception {
         String tailName = request.getParameter("tailName");

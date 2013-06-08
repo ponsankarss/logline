@@ -44,10 +44,15 @@ public class LogTailService {
         if (tailer == null)
             return "No tailer present for "+tailName;
         tailer.stop();
+        allTailers.remove(tailer);
         return tailName + " stopped";
     }
 
     private String removeTimeStamp(String logFileName) {
         return logFileName.replaceAll("\\[.*\\]", "").trim();
+    }
+
+    public List<String> allTails() {
+        return allTailers.allNames();
     }
 }

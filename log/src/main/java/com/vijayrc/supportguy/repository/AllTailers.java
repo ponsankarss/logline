@@ -30,4 +30,8 @@ public class AllTailers {
         List<Tailer> list = filter(having(on(Tailer.class).name(), equalTo(tailName)), tailers);
         return isNotEmpty(list) ? list.get(0) : null;
     }
+
+    public void remove(Tailer tailer) {
+        tailers.remove(tailer);
+    }
 }

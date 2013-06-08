@@ -251,3 +251,7 @@ input{
 tr:hover{
     background:white !important;
 }
+.tail-line{
+    font-size: 12px;
+    line-height:11px;
+}

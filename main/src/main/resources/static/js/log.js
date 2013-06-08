@@ -210,7 +210,7 @@ LogTailTabs=  function(){
         var tabId = "tail-tab-"+tabCount;
 
         $('#tail-list').append("<li class='"+tabId+"'><a href='#"+tabId+"'><img src='/static/images/log.gif'/>"+tabName+"</a></li>")
-        $('#tail-tabs').append("<div id='"+tabId+"'><div><input type='button' value='stop' class='"+tabId+"'/></div><div class='tails'></div></div>");
+        $('#tail-tabs').append("<div id='"+tabId+"'><div><input type='button' value='stop' tab='"+tabId+"' class='btn btn-info'/></div><div class='tails'></div></div>");
 
         var logTailer = new LogTailer();
         logTailer.boot(machine,logFile,tabId);
@@ -285,16 +285,21 @@ LogTailer = function(){
 
    var closeTab = function(){
      $('#'+tabId).remove();
-     $('#tail-list').children("li[class='"+tabId+"']").remove();
-     $( "#tabs" ).tabs("refresh");
+     $('#tail-list').children("li."+tabId).remove();
+     $("#tabs").tabs("refresh");
      toContinue = false;
+
+     $.ajax({
+            url : "/log/tail/status",
+            type : "GET"
+          }).done(function(response){$("#tail-index").html(response);});
    };
 
    this.boot = function(machineArg, logFileArg, tabIdArg){
        machine = machineArg;
        logFile = logFileArg;
        tabId = tabIdArg;
-       $("input[class='"+tabId+"']").click(stop);
+       $("input[tab='"+tabId+"']").click(stop);
        this.start();
    };
 };
