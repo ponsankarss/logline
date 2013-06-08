@@ -28,7 +28,7 @@ public class FileDiffService {
         Machine machine = allMachines.getFor(machineName);
         Scm scm = allScms.getFor(scmName);
 
-        List<String> machineFiles = machine.getConfigFiles(scm.getType());
+        List<String> machineFiles = machine.getConfigFiles();
         Delta delta = new Delta();
 
         for (String machineFile : machineFiles) {

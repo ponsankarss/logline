@@ -79,7 +79,9 @@ public class MyFtpJsch implements MyFtpRemote {
             ChannelSftp.LsEntry lsEntry = (ChannelSftp.LsEntry) o;
             String fileName = lsEntry.getFilename();
             try {
-                if (!pattern.matcher(fileName).find()) {
+                if (pattern != null && !pattern.matcher(fileName).find()) {
+                    continue;
+                } else if (fileName.equals(".") || fileName.equals("..")){
                     continue;
                 } else if (lsEntry.getAttrs().isDir() && recurse) {
                     String sourceDir = sourcePath + "/" + fileName;

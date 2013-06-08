@@ -32,9 +32,9 @@ public class Machine {
         return new MyFile(downloadDir).getChildren();
     }
 
-    public List<String> getConfigFiles(String type) throws Exception {
-        String downloadDir = userDir() + "config";
-        remote().download(configDir, downloadDir, true, pattern(type));
+    public List<String> getConfigFiles() throws Exception {
+        String downloadDir = userDir() + "diffs";
+        remote().download(configDir, downloadDir, true, null);
         log.info("all config files downloaded");
         return new MyFile(downloadDir).getChildren();
     }
