@@ -39,9 +39,10 @@ public class LogTailService {
     }
 
     public String stopTail(String tailName) throws Exception {
+        tailName = removeTimeStamp(tailName);
         Tailer tailer = allTailers.find(tailName);
         if (tailer == null)
-            return "No tailer present";
+            return "No tailer present for "+tailName;
         tailer.stop();
         return tailName + " stopped";
     }

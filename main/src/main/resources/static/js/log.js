@@ -209,17 +209,13 @@ LogTailTabs=  function(){
         var tabName = machine+"-"+logFile;
         var tabId = "tail-tab-"+tabCount;
 
-        $('#tail-list').append("<li><a href='#"+tabId+"'><img src='/static/images/log.gif'/>"+tabName+"</a></li>")
-        $('#tail-tabs').append("<div id='"+tabId+"'><div><input type='button' value='stop' class='"+tabName+"'/></div><div class='tails'></div></div>");
+        $('#tail-list').append("<li class='"+tabId+"'><a href='#"+tabId+"'><img src='/static/images/log.gif'/>"+tabName+"</a></li>")
+        $('#tail-tabs').append("<div id='"+tabId+"'><div><input type='button' value='stop' class='"+tabId+"'/></div><div class='tails'></div></div>");
 
         var logTailer = new LogTailer();
         logTailer.boot(machine,logFile,tabId);
         logTailers[tabCount] = logTailer;
         tabCount++;
-    };
-
-    var remove = function(machine, logFile){
-
     };
 
     this.tellServerToStartTailing = function(machine, logFileNames, logFiles){
@@ -257,6 +253,7 @@ LogTailer = function(){
    var machine;
    var logFile;
    var tabId;
+   var toContinue;
 
    var poll = function(){
         setTimeout(function(){
@@ -270,30 +267,34 @@ LogTailer = function(){
 
    var updateTab = function(response){
         $('#'+tabId).find('div[class="tails"]').append(response);
-        poll();
-   };
-
-   var closeTab = function(){
-        $(tabId).remove();
-        //todo remove item from first tab list,
+        if(toContinue == true){poll()};
    };
 
    this.start = function(){
         setTimeout(poll,2000);
+        toContinue = true;
    };
 
-   this.stop = function(){
+   var stop = function(){
          $.ajax({
              url:"/log/tail/stop",
-             type:"GET" ,
-             data:{machine:machine, logFile:logFile}
+             type:"POST" ,
+             data:{tailName:machine+"-"+logFile}
          }).done(closeTab);
+   };
+
+   var closeTab = function(){
+     $('#'+tabId).remove();
+     $('#tail-list').children("li[class='"+tabId+"']").remove();
+     $( "#tabs" ).tabs("refresh");
+     toContinue = false;
    };
 
    this.boot = function(machineArg, logFileArg, tabIdArg){
        machine = machineArg;
        logFile = logFileArg;
        tabId = tabIdArg;
+       $("input[class='"+tabId+"']").click(stop);
        this.start();
    };
 };
