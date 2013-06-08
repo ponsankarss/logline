@@ -1,9 +1,9 @@
 FileDiffForm = function(){
-    var machine, release;
+    var machine, scm;
 
     var pick = function() {
 		machine = $("#machine").val();
-		release = $("#release").val();
+		scm = $("#scm").val();
 	};
 
     var post = function(){
@@ -11,7 +11,7 @@ FileDiffForm = function(){
         $("#loading-div-background").show();
         $.ajax({
             url:"/config/results/",
-            data:{machine:machine, release:release}
+            data:{machine:machine, scm:scm}
         }).done(displayResults);
     };
 
