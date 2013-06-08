@@ -1,4 +1,4 @@
-<h2>Changed Files [Server] to [CVS]</h2>
+<h2>Changed Files [Server] to [SCM]</h2>
 <ul>
 #foreach($fileDiff in $changedFileDiffs)
 #if($fileDiff.hasResult())
@@ -11,7 +11,7 @@
 #end
 #end
 </ul>
-<h2>Missing Files [CVS]</h2>
+<h2>Missing Files [SCM]</h2>
 <ul>
 #foreach($fileDiff in $missingFileDiffs)
 <li>

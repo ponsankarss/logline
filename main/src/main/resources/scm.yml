@@ -1,3 +1,6 @@
 name: b2-r13.0-dev
 location : C:/Work/code/Blue2Release/13.0/configuration/dev/b2home
 ---
+name: b2-r13.0-mo
+location : C:/Work/code/Blue2Release/13.0/configuration/mo/b2home
+---
