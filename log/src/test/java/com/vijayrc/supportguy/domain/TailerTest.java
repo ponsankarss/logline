@@ -10,7 +10,7 @@ public class TailerTest {
     public void shouldStartAndStopATailer() throws Exception {
         User user = new User();
         user.setName("vichakra");
-        user.setPassword("tindrum210");
+        user.setPassword("xxxxxx");
 
         Machine machine = new Machine();
         machine.setUser(user);

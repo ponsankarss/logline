@@ -6,7 +6,7 @@ configDir: /was7blue2/config
 user:
      u::
      name: vichakra
-     password: tindrum210
+     password: xxxxxx
 ---
 m::
 name: b2-p5-mo
@@ -16,7 +16,7 @@ configDir: /was7blue2/config
 user:
      u::
      name: vichakra
-     password: tindrum210
+     password: xxxxxx
 ---
 m::
 name: b2-p5-prod
@@ -26,7 +26,7 @@ configDir: /was7blue2/config
 user:
     u::
     name: vichakra
-    password: tindrum210
+    password: xxxxxx
 ---
 m::
 name: b2-p7-dev02
@@ -36,7 +36,7 @@ configDir: /was7blue2/config
 user:
     u::
     name: vichakra
-    password: tindrum210
+    password: xxxxxx
 ---
 m::
 name: dnl-p7-dev01
@@ -46,7 +46,7 @@ configDir: /was7datanet/localProperties
 user:
     u::
     name: vichakra
-    password: tindrum210
+    password: xxxxxx
 ---
 m::
 name: dnl-p7-mo01
@@ -56,7 +56,7 @@ configDir: /was7datanet/localProperties
 user:
     u::
     name: vichakra
-    password: tindrum210
+    password: xxxxxx
 ---
 m::
 name: dnl-p7-mo02
@@ -66,7 +66,7 @@ configDir: /was7datanet/localProperties
 user:
     u::
     name: vichakra
-    password: tindrum210
+    password: xxxxxx
 ---
 m::
 name: dnl-p7-mo03
@@ -76,7 +76,7 @@ configDir: /was7datanet/localProperties
 user:
     u::
     name: vichakra
-    password: tindrum210
+    password: xxxxxx
 ---
 m::
 name: dnl-p7-prod01
@@ -86,7 +86,7 @@ configDir: /was7datanet/localProperties
 user:
     u::
     name: vichakra
-    password: tindrum210
+    password: xxxxxx
 ---
 m::
 name: dnl-p7-prod02
@@ -96,7 +96,7 @@ configDir: /was7datanet/localProperties
 user:
     u::
     name: vichakra
-    password: tindrum210
+    password: xxxxxx
 ---
 m::
 name: dnl-p7-prod03
@@ -106,6 +106,6 @@ configDir: /was7datanet/localProperties
 user:
     u::
     name: vichakra
-    password: tindrum210
+    password: xxxxxx
 
 
