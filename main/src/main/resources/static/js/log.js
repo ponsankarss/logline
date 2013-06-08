@@ -206,11 +206,12 @@ LogTailTabs=  function(){
     var tabCount = 1;
 
     var add = function(machine, logFile){
-        var tabName = machine+"-"+logFile;
+        var regex = /\[.*\]*/g;
+        var tabName = machine+"-"+logFile.replace(regex,"");
         var tabId = "tail-tab-"+tabCount;
 
         $('#tail-list').append("<li class='"+tabId+"'><a href='#"+tabId+"'><img src='/static/images/log.gif'/>"+tabName+"</a></li>")
-        $('#tail-tabs').append("<div id='"+tabId+"'><div><input type='button' value='stop' tab='"+tabId+"' class='btn btn-info'/></div><div class='tails'></div></div>");
+        $('#tail-tabs').append("<div id='"+tabId+"'><div><input type='button' value='stop' tab='"+tabId+"' class='btn btn-info tail-stop'/></div><div class='tails'></div></div>");
 
         var logTailer = new LogTailer();
         logTailer.boot(machine,logFile,tabId);

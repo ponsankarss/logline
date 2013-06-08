@@ -241,8 +241,8 @@ h2{
 .form-horizontal .control-group{
     margin-bottom: 1px !important;
 }
-#tail-tabs{
-
+.ui-widget-content{
+    border: 0px !important;
 }
 input{
     -webkit-border-radius: 0px !important;
@@ -255,3 +255,8 @@ tr:hover{
     font-size: 12px;
     line-height:11px;
 }
+.tail-stop{
+    padding-bottom:5px;
+    margin-bottom:5px;
+}
+
