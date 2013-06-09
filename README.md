@@ -19,7 +19,7 @@ This tool is more like a supplement to the Terminal with certain features that m
 * Links: availability of urls plus ability to post if required
 * Db: sqls to run against databases to monitor state
 * Configuration: to pull configuration files and match them against stored/tracked versions in scm
-* 
+
 The above listed are nothing new or technically cool but every application babysitter including myself, uses/builds a bunch of tools/scripts.
 To avoid building tools that serve same purpose, I built this SupportGuy,a mashup of select features from Terminal,FTP client, FileDiff, WGET/CURL.
 Everything is configurable via YAML like
