@@ -32,10 +32,13 @@ Everything is configurable via YAML like
 * sqls.yml: queries to run against configured database servers
 
 ###Snaps
+![Alt text](http://www.vijayrc.com/posts/supportguy/log-search-0.jpg)
 ![Alt text](http://www.vijayrc.com/posts/supportguy/log-search-1.jpg)
-![Alt text](http://www.vijayrc.com/posts/supportguy/log-search-1.jpg)
-![Alt text](http://www.vijayrc.com/posts/supportguy/log-search-1.jpg)
-![Alt text](http://www.vijayrc.com/posts/supportguy/log-search-1.jpg)
+![Alt text](http://www.vijayrc.com/posts/supportguy/log-error.jpg)
+![Alt text](http://www.vijayrc.com/posts/supportguy/log-tail.jpg)
+![Alt text](http://www.vijayrc.com/posts/supportguy/config.jpg)
+![Alt text](http://www.vijayrc.com/posts/supportguy/link.jpg)
+![Alt text](http://www.vijayrc.com/posts/supportguy/db.jpg)
 
 
 
