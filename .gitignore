@@ -22,3 +22,5 @@ test-output/
 ananya-web/src/main/webapp/audio/*
 *.wav
 *.zip
+diffs/
+logs/
