@@ -23,7 +23,7 @@
                            value="run"/>
                  </td>
             </tr>
-            <tr>
+            <tr class="query-result-row">
             <td colspan="4" class="query-hit-result-col">
                 <div id="${query.getDb()}-${query.getName()}-response"></div>
             </td>

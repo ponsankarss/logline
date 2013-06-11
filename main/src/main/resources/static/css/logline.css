@@ -226,12 +226,14 @@ h2{
 }
 .query-result-header{
     font-weight:bold;
-    background: none repeat scroll 0 0 #66CDAA;
+    font-size:12px;
+    background: none repeat scroll 0 0 #ADD8E6;
 }
-.query-row{
+.query-result-row{
+    margin-bottom:20px;
 }
 .header{
-    width:auto !important;
+   width:auto !important;
    color:  #0088cc;
    font-size:18px;
 }
@@ -258,5 +260,8 @@ tr:hover{
 .tail-stop{
     padding-bottom:5px;
     margin-bottom:5px;
+}
+.query-hit-result-col{
+   background: #F0F8FF;
 }
 
