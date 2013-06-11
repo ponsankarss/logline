@@ -204,15 +204,15 @@ h2{
 }
 .query-db-col{
     padding: 2px !important;
-    width:20%;
+    width:10%;
 }
 .query-sql-col{
     padding: 2px !important;
-    width:50%;
+    width:65%;
 }
 .query-hit-col{
     padding: 2px !important;
-    width:10%;
+    width:5%;
 }
 .query-table-head{
     font-weight: bold;
