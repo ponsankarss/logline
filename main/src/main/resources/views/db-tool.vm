@@ -1,3 +1,4 @@
+<div class="alert">Please verify userid and password in dbs.yml before proceeding, your userid can get revoked on multiple runs with wrong password</div>
 <ol>
 #foreach($key in $group.keySet())
 <li>

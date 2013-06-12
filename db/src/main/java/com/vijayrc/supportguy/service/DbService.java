@@ -2,6 +2,7 @@ package com.vijayrc.supportguy.service;
 
 import ch.lambdaj.group.Group;
 import com.vijayrc.supportguy.domain.*;
+import com.vijayrc.supportguy.repository.AllDbErrors;
 import com.vijayrc.supportguy.repository.AllQueries;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
@@ -16,23 +17,27 @@ import java.sql.*;
 @Log4j
 public class DbService {
     private AllQueries allQueries;
+    private AllDbErrors allDbErrors;
     private MyClassLoader loader;
 
     @Autowired
-    public DbService(AllQueries allQueries) throws Exception {
+    public DbService(AllQueries allQueries, AllDbErrors allDbErrors) throws Exception {
         URL urls[] = {};
         this.allQueries = allQueries;
+        this.allDbErrors = allDbErrors;
         this.loader = new MyClassLoader(urls);
     }
 
     public MyRecordSet process(String name, String db) throws Exception {
         Connection connection = null;
-        MyRecordSet myRecordSet = null;
         Query query = allQueries.findBy(name, db);
-        myRecordSet = new MyRecordSet(query);
+        MyRecordSet myRecordSet = new MyRecordSet(query);
+
+        if (allDbErrors.has(db))
+            return myRecordSet.addError(allDbErrors.getFor(db));
+
         try {
             log.info("execute: " + query.getSql());
-
             Database database = query.getDatabase();
             connection = connectTo(database);
             Statement statement = connection.createStatement();
@@ -50,9 +55,11 @@ public class DbService {
                 myRecordSet.addTuple(myTuple);
             }
             log.info("fetched:" + myRecordSet);
+            if (allDbErrors.has(db)) allDbErrors.remove(db);
 
         } catch (Exception e) {
             log.error(ExceptionUtils.getFullStackTrace(e));
+            allDbErrors.add(db, e);
             myRecordSet.addError(e);
         } finally {
             if (connection != null) connection.close();

@@ -39,7 +39,8 @@ public class MyRecordSet {
         return StringUtils.isNotBlank(error);
     }
 
-    public void addError(Exception e) {
+    public MyRecordSet addError(Exception e) {
         error = ExceptionUtils.getFullStackTrace(e);
+        return this;
     }
 }
