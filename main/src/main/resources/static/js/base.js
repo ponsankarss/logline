@@ -13,8 +13,8 @@ HomePage = function(){
         $('a.db').click(function(){
             $.ajax({url : "/db/tool/",type : "GET"}).done(updateToolBoxForDb);
         });
-        $('a.webservice').click(function(){
-          $.ajax({url : "/webservice/",type : "GET"}).done(updateToolBox);
+        $('a.stop').click(function(){
+          $.ajax({url : "/stop/",type : "GET"}).done(updateToolBox);
         });
       };
 
