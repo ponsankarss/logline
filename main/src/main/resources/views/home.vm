@@ -67,6 +67,7 @@
     <script src="/static/js/framework/html5.js" type="text/javascript"></script>
     <script src="/static/js/framework/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
     <script src="/static/js/framework/date-time-picker.js" type="text/javascript"></script>
+    <script src="/static/js/framework/run_prettify.js" type="text/javascript"></script>
     <script src="/static/js/log.js" type="text/javascript"></script>
     <script src="/static/js/config.js" type="text/javascript"></script>
     <script src="/static/js/base.js" type="text/javascript"></script>
