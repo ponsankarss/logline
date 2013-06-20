@@ -5,6 +5,7 @@ import com.vijayrc.supportguy.domain.Tailer;
 import com.vijayrc.supportguy.repository.AllMachines;
 import com.vijayrc.supportguy.repository.AllTailers;
 import lombok.extern.log4j.Log4j;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,7 @@ public class LogTailService {
     public String pullTail(String tailName) {
         tailName = removeTimeStamp(tailName);
         Tailer tailer = allTailers.find(tailName);
-        return tailer != null ? tailer.pop() : tailName + " not present";
+        return tailer != null ? StringEscapeUtils.escapeHtml(tailer.pop()) : tailName + " not present";
     }
 
     public String stopTail(String tailName) throws Exception {
