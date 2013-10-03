@@ -24,6 +24,7 @@ public class ConfigTest {
         }
         assertEquals(3, machines.size());
         assertEquals("vichakra", machines.get(0).getUser().getName());
+        System.out.println();
     }
 
 
