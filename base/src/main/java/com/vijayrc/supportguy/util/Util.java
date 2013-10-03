@@ -1,7 +1,7 @@
 package com.vijayrc.supportguy.util;
 
 public class Util {
-    private static boolean packaged = false;
+    private static boolean packaged = true;
 
     public static String resource(String fileName) {
         return packaged ? userDir() + fileName : ClassLoader.getSystemResource(fileName).getFile();
