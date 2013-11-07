@@ -18,8 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.vijayrc.supportguy.util.Util.userDir;
-
 @Component
 @WebClass("log")
 @Log4j
@@ -34,7 +32,7 @@ public class LogController extends BaseController {
     @WebMethod("tool")
     public void showTool(Request request, Response response) throws Exception {
         Map<String, Object> model = new HashMap<String, Object>();
-        model.put("folder", userDir() + "\\logs");
+        model.put("folders", fetchService.dumpFolders());
         model.put("machines",fetchService.machineNames());
         renderer.render("log-tool", model, response);
     }

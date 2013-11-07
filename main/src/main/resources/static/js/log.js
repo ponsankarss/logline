@@ -9,6 +9,7 @@ LogForm = function(){
 		option = $("#option").val();
 	};
 
+
     var post = function(){
     $("#loading-div-background").show();
         pick();
@@ -110,7 +111,7 @@ LogLight = function(){
         //file
         var fileMatch = html.match("\\[.*?\\]");
         if(fileMatch){
-            html = html.replace(fileMatch[0],"<span class='file'>"+fileMatch[0]+"</span>")
+            html = html.replace(fileMatch[0],"<span class='file'>"+fileMatch[0]+"</span>");
         };
 
         $(this).html(html);

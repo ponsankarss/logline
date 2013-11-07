@@ -46,8 +46,7 @@ public class Tailer implements Runnable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tailer tailer = (Tailer) o;
-        if (name != null ? !name.equals(tailer.name) : tailer.name != null) return false;
-        return true;
+        return !(name != null ? !name.equals(tailer.name) : tailer.name != null);
     }
 
     @Override

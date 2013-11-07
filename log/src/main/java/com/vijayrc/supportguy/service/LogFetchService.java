@@ -4,12 +4,15 @@ import com.vijayrc.supportguy.domain.Machine;
 import com.vijayrc.supportguy.repository.AllMachines;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.List;
+
+import static ch.lambdaj.Lambda.*;
+import static com.vijayrc.supportguy.util.Util.userDir;
 
 @Service
 @Scope("prototype")
@@ -38,5 +41,10 @@ public class LogFetchService {
 
     private String removeTimeStamp(String logFileName) {
         return logFileName.replaceAll("\\[.*\\]", "").trim();
+    }
+
+    public List<File> dumpFolders() {
+        File rootFolder = new File(userDir() + "\\logs");
+        return filter(having(on(File.class).isDirectory()), rootFolder.listFiles());
     }
 }

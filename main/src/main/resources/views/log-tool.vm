@@ -8,7 +8,13 @@
     <form id="log_form" class="form-horizontal" action="">
         <div class="control-group">
             <label for="folder" class="control-label">Logs Folder</label>
-            <div class="controls"><input id="folder" type="text"  class="input-xxlarge" value="${folder}"/></div>
+            <div class="controls">
+                <select id="folder">
+                    #foreach($folder in $folders)
+                    <option value="${folder.getAbsolutePath()}">$folder.getName()</option>
+                    #end
+                </select>
+            </div>
         </div>
         <div class="control-group">
             <label for="keys" class="control-label">Keys</label>
