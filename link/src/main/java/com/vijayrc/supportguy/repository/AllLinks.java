@@ -1,6 +1,5 @@
 package com.vijayrc.supportguy.repository;
 
-import ch.lambdaj.group.Group;
 import com.esotericsoftware.yamlbeans.YamlReader;
 import com.vijayrc.supportguy.domain.Link;
 import com.vijayrc.supportguy.util.Util;
@@ -8,14 +7,13 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static ch.lambdaj.Lambda.*;
-import static ch.lambdaj.group.Groups.by;
-import static ch.lambdaj.group.Groups.group;
 import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -43,7 +41,14 @@ public class AllLinks {
         return isNotEmpty(filtered) ? filtered.get(0) : null;
     }
 
-    public Group<Link> groupByEnv(){
-        return group(links, by(on(Link.class).getEnvironment()));
+    public Map<String, List<Link>> groupByEnv(){
+        Map<String,List<Link>> map = new TreeMap<>();
+        for (Link link : links) {
+            String env = link.getEnvironment();
+            if(map.get(env) == null)
+                map.put(env,new ArrayList<Link>());
+            map.get(env).add(link);
+        }
+        return map;
     }
 }

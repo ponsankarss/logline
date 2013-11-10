@@ -1,5 +1,5 @@
 <ol>
-#foreach($key in $group.keySet())
+#foreach($key in $map.keySet())
 <li>
     <a class="expand-link" href="#"><img src="/static/images/link.png"/><span class="header">$key</span></a>
     <div class="content-link">
@@ -9,7 +9,7 @@
                <tr><td>name</td><td>params</td><td>action</td><td>status</td></tr>
             </thead>
             <tbody>
-                #foreach($link in $group.findGroup($key).findAll())
+                #foreach($link in $map.get($key))
                     <tr>
                         <td class="link-name-col"><a href="${link.getUrl()}">$link.getName()</a></td>
                         <td class="link-params-col">

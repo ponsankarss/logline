@@ -4,12 +4,8 @@ import com.vijayrc.supportguy.domain.Link;
 import com.vijayrc.supportguy.domain.LinkHit;
 import com.vijayrc.supportguy.meta.WebClass;
 import com.vijayrc.supportguy.meta.WebMethod;
-import com.vijayrc.supportguy.repository.AllLinks;
 import com.vijayrc.supportguy.service.LinkService;
 import lombok.extern.log4j.Log4j;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.log4j.Logger;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +25,7 @@ public class LinkController extends BaseController {
     @WebMethod("tool")
     public void tool(Request request, Response response) throws Exception {
         HashMap<String, Object> model = new HashMap<>();
-        model.put("group", linkService.getAll());
+        model.put("map", linkService.getAll());
         renderer.render("link-tool", model, response);
     }
 
