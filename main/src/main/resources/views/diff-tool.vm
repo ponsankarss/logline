@@ -11,7 +11,7 @@
      </div>
 </div>
 <div class="control-group">
-     <label for="release" class="control-label">SCM</label>
+     <label for="scm" class="control-label">SCM</label>
      <div class="controls">
         <select id="scm">
             #foreach($scm in $scms)

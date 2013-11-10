@@ -3,11 +3,9 @@ package com.vijayrc.supportguy.domain;
 import difflib.Delta;
 import difflib.DiffUtils;
 import difflib.Patch;
-import lombok.Data;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.util.regex.Matcher;
@@ -31,6 +29,7 @@ public class FileDiff {
     public FileDiff process() throws Exception {
         File file1 = new File(filePath1);
         File file2 = new File(filePath2);
+        log.info("process: "+filePath1+"|"+filePath2);
         if (!file1.exists() || !file2.exists()) {
             missing = true;
         } else {

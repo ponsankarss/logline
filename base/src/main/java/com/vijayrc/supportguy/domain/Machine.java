@@ -24,6 +24,7 @@ public class Machine {
     private String configDir;
     private User user;
     private Pattern logPattern = Pattern.compile("[\\w]+.log(.\\d)*");
+    private Pattern configPattern = Pattern.compile("([\\w]+.properties*)|([\\w]+.xml*)");
 
     public List<String> browseLogFiles() throws Exception {
         return remote().browse(logDir, logPattern);
@@ -39,7 +40,7 @@ public class Machine {
 
     public List<String> getConfigFiles() throws Exception {
         String downloadDir = userDir() + "diffs";
-        remote().download(configDir, downloadDir, true, null);
+        remote().download(configDir, downloadDir, true, configPattern);
         log.info("all config files downloaded");
         return new MyFile(downloadDir).getChildren();
     }

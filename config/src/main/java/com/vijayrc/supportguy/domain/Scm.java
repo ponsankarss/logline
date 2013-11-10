@@ -13,7 +13,7 @@ public class Scm {
     private String type;
 
     public String getFileFor(String peerFile) {
-        return location + peerFile.replace(userDir() + "config" + fileSeparator(), "");
+        return location + peerFile.replace(userDir() + "diffs" + fileSeparator(), "/");
     }
 
 
