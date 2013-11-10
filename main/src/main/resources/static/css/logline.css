@@ -267,3 +267,9 @@ tr:hover{
 #folder{
     width:auto;
 }
+.error-occur-count{
+    color:orange;
+    font-size:180%;
+    padding-left:1%;
+
+}

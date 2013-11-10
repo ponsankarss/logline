@@ -7,10 +7,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
 
-import static org.joda.time.format.DateTimeFormat.*;
+import static org.joda.time.format.DateTimeFormat.forPattern;
 
 public class Logs {
     private Lines lines;
@@ -43,7 +42,7 @@ public class Logs {
         return lines.byThread();
     }
 
-    public Map<String, Set<Line>> errorLines() {
+    public Map<String, List<Line>> errorLines() {
         return lines.byError();
     }
 

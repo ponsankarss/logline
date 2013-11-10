@@ -75,13 +75,15 @@ public class Lines {
         return groups;
     }
 
-    public Map<String, Set<Line>> byError() {
-        Map<String, Set<Line>> groups = new HashMap<>();
+    public Map<String, List<Line>> byError() {
+        Map<String, List<Line>> groups = new HashMap<>();
         for (Line line : errorLines) {
             if (!groups.containsKey(line.errorTitle()))
-                groups.put(line.errorTitle(), new HashSet<Line>());
+                groups.put(line.errorTitle(), new ArrayList<Line>());
             groups.get(line.errorTitle()).add(line);
         }
+        for (List<Line> lines : groups.values())
+            Collections.sort(lines);
         return groups;
     }
 

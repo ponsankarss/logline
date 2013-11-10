@@ -58,7 +58,7 @@
     #foreach($key in $errorLines.keySet())
         <div class="error-box">
             <p class="expand-error">
-                <a href="#" class="error-no">$count</a><div class="error-title">$key</div>
+                <a href="#" class="error-no">$count</a><span class="error-occur-count">|$errorLines.get($key).size() times</span><div class="error-title">$key</div>
             </p>
             <div class="content-error">
                 <ul>
