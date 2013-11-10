@@ -1,7 +1,6 @@
 package com.vijayrc.supportguy.domain;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.time.StopWatch;
 
 import java.io.File;
 import java.util.*;
@@ -65,7 +64,7 @@ public class Lines {
     }
 
     public Map<String, List<Line>> byThread() {
-        Map<String, List<Line>> groups = new HashMap<String, List<Line>>();
+        Map<String, List<Line>> groups = new HashMap<>();
         for (Line line : keyLines) {
             if (!groups.containsKey(line.getThread()))
                 groups.put(line.getThread(), new ArrayList<Line>());
@@ -77,7 +76,7 @@ public class Lines {
     }
 
     public Map<String, Set<Line>> byError() {
-        Map<String, Set<Line>> groups = new HashMap<String, Set<Line>>();
+        Map<String, Set<Line>> groups = new HashMap<>();
         for (Line line : errorLines) {
             if (!groups.containsKey(line.errorTitle()))
                 groups.put(line.errorTitle(), new HashSet<Line>());

@@ -69,7 +69,7 @@ LogTabs = function(){
        $('.content-error').slideToggle('fast');
     };
     var closeAllXMLTabs = function(){
-       $('.content-xml').slideToggle('fast');
+       //$('.content-xml').slideToggle('fast');
     };
 
     this.boot = function(){

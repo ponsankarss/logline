@@ -38,7 +38,7 @@
     #set( $count = 1 )
     #foreach($key in $keyLines.keySet())
     <div class="thread-box">
-        <p class="expand"><a href="#">Thread ${count}</a> <img src="/static/images/arrow.gif"/></p>
+        <p class="expand"><a href="#">Context ${count}</a> <img src="/static/images/arrow.gif"/></p>
         <div class="content">
             <ul>
                 #foreach($line in $keyLines.get($key))
