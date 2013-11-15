@@ -1,10 +1,17 @@
 package com.vijayrc.supportguy.util;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 public class Util {
 
     public static String resource(String fileName) {
-        boolean packaged = false;
-        return packaged ? userDir() + fileName : ClassLoader.getSystemResource(fileName).getFile();
+        boolean packaged = true;
+        if(packaged){
+            return userDir() + fileName;
+        }else{
+            return ClassLoader.getSystemResource(fileName).getFile();
+        }
     }
 
     public static String userDir() {

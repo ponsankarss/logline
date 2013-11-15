@@ -3,4 +3,8 @@
    main/pom.xml - filtering of yml files
 
 cd logline/main
-   mvn assembly:single
+   mvn assembly:single - > gives spring namespace issue
+   mvn clean package -> invokes shade plugin
+
+mkdir 'logs' when u package
+cp views, static, *.yml files to package folder
