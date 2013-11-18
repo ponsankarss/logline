@@ -18,7 +18,7 @@
         </div>
         <div class="control-group">
             <label for="keys" class="control-label">Keys</label>
-            <div class="controls"><input id="keys" type="text"  class="input-xxlarge"/></div>
+            <div class="controls"><input id="keys" type="text"  class="input-xxlarge"/> <span class="help-inline">separate keys by comma ','</span></div>
         </div>
         <div class="control-group">
 		    <label for="start_date" class="control-label">Start Date</label>

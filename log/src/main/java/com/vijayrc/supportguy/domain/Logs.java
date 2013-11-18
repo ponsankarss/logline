@@ -1,6 +1,6 @@
 package com.vijayrc.supportguy.domain;
 
-import org.apache.commons.lang.StringUtils;
+import lombok.extern.log4j.Log4j;
 import org.joda.time.DateTime;
 
 import java.io.File;
@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import static org.apache.commons.lang.StringUtils.*;
 import static org.joda.time.format.DateTimeFormat.forPattern;
 
+@Log4j
 public class Logs {
     private Lines lines;
     private String option;
@@ -55,7 +57,7 @@ public class Logs {
     }
 
     private DateTime parse(String date) {
-        if (StringUtils.isBlank(date)) return null;
+        if (isBlank(date)) return null;
         date = date.trim();
         return date.contains(":") ?
                 forPattern("MM/dd/yyyy HH:mm:ss").parseDateTime(date) :
@@ -64,9 +66,12 @@ public class Logs {
 
     private Pattern keyPattern(String keys) {
         List<String> splitKeys = new ArrayList<String>();
-        for (String key : StringUtils.split(keys, ","))
-            splitKeys.add(StringUtils.deleteWhitespace(key));
-        return Pattern.compile("(?i)" + StringUtils.join(splitKeys.toArray(), "|"));
+        for (String key : split(keys, ",")) {
+            splitKeys.add(Pattern.quote(key));
+        }
+        String join = join(splitKeys.toArray(), "|");
+        log.info("search key regex: "+join);
+        return Pattern.compile(join);
     }
 
     public boolean hasNoSearchKey(String line) {

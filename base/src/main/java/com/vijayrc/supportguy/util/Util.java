@@ -6,7 +6,7 @@ import lombok.extern.log4j.Log4j;
 public class Util {
 
     public static String resource(String fileName) {
-        boolean packaged = true;
+        boolean packaged = false;
         if(packaged){
             return userDir() + fileName;
         }else{
