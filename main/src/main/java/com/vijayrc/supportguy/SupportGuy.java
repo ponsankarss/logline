@@ -6,7 +6,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @Log4j
-public class SupportGuy {
+public class
+        SupportGuy {
 
     public static void main(String[] list) throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");

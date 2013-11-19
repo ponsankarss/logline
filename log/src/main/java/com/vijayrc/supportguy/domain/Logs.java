@@ -4,12 +4,11 @@ import lombok.extern.log4j.Log4j;
 import org.joda.time.DateTime;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
-import static org.apache.commons.lang.StringUtils.*;
+import static org.apache.commons.lang.StringUtils.isBlank;
+import static org.apache.commons.lang.StringUtils.split;
 import static org.joda.time.format.DateTimeFormat.forPattern;
 
 @Log4j
@@ -18,15 +17,16 @@ public class Logs {
     private String option;
     private DateTime startDate;
     private DateTime endDate;
-    private Pattern searchKeyPattern;
+    private String[] searchKeys;
 
     public Logs(Lines lines, String startDateString, String endDateString, String keys, String option) {
         this.lines = lines;
         this.option = option;
-        this.searchKeyPattern = keyPattern(keys);
         this.startDate = parse(startDateString);
         this.endDate = parse(endDateString);
+        this.searchKeys = split(keys, ",");
     }
+
 
     public Lines lines() {
         return lines;
@@ -64,18 +64,10 @@ public class Logs {
                 forPattern("MM/dd/yyyy").parseDateTime(date);
     }
 
-    private Pattern keyPattern(String keys) {
-        List<String> splitKeys = new ArrayList<String>();
-        for (String key : split(keys, ",")) {
-            splitKeys.add(Pattern.quote(key));
-        }
-        String join = join(splitKeys.toArray(), "|");
-        log.info("search key regex: "+join);
-        return Pattern.compile(join);
-    }
-
     public boolean hasNoSearchKey(String line) {
-        return !searchKeyPattern.matcher(line).find();
+        for (String searchKey : searchKeys)
+            if(line.contains(searchKey))return false;
+        return true;
     }
 
     public void addFileLinesFrom(File file) throws Exception {
