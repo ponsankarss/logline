@@ -32,12 +32,12 @@ public class KeyRule implements LineRule {
             Context context = new Context("c"+c,3);
             for (int k = i - context.size(); k != i && k > 0; k++) {
                 String contextLine = processedLines.get(k);
-                context.add(new Line(contextLine).withTime(allLogRegex.findTimeFor(contextLine)));
+                context.add(new Line(contextLine).withTime(allLogRegex.findTimeFor(contextLine)).ofFile(logs.file()));
             }
-            context.add(new Line(processedLine).withTime(allLogRegex.findTimeFor(processedLine)));
+            context.add(new Line(processedLine).withTime(allLogRegex.findTimeFor(processedLine)).ofFile(logs.file()));
             for (int j = i + context.size(); j != i && j < processedLines.size(); j--) {
                 String contextLine = processedLines.get(j);
-                context.add(new Line(contextLine).withTime(allLogRegex.findTimeFor(contextLine)));
+                context.add(new Line(contextLine).withTime(allLogRegex.findTimeFor(contextLine)).ofFile(logs.file()));
             }
             lines.addKeyContext(context.complete());
             c++;
