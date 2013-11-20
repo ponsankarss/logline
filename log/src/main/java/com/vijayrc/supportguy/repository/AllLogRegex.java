@@ -49,4 +49,8 @@ public class AllLogRegex {
     }
 
 
+    public String findTimeFor(String line) {
+        MyMatcher matched = findMatched(line);
+        return matched.group("timestamp");
+    }
 }

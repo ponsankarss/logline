@@ -14,8 +14,6 @@ import java.util.List;
 @Log4j
 public class KeyRule implements LineRule {
 
-    private int context = 2;
-
     @Autowired
     private AllLogRegex allLogRegex;
 
@@ -24,16 +22,24 @@ public class KeyRule implements LineRule {
         Lines lines = logs.lines();
         List<String> processedLines = lines.processedLines();
 
+        int context = 3;
         int contextIndex = 1;
+
         for (int i = 0; i < processedLines.size(); i++) {
             String processedLine = processedLines.get(i);
             if (logs.hasNoSearchKey(processedLine))
                 continue;
-            for (int k = i - context; k != i && k > 0; k++)
-                lines.addKeyLine(new Line(processedLines.get(k)).ofThread("context-" + contextIndex));
-            lines.addKeyLine(new Line(processedLine).ofThread("context-" + contextIndex));
-            for (int j = i + context; j != i && j < processedLines.size(); j--)
-                lines.addKeyLine(new Line(processedLines.get(j)).ofThread("context-" + contextIndex));
+            for (int k = i - context; k != i && k > 0; k++) {
+                String contextLine = processedLines.get(k);
+                Line keyLine = new Line(contextLine).withThread("c-" + contextIndex).withTime(allLogRegex.findTimeFor(contextLine));
+                lines.addKeyLine(keyLine);
+            }
+            lines.addKeyLine(new Line(processedLine).withThread("c-" + contextIndex));
+            for (int j = i + context; j != i && j < processedLines.size(); j--) {
+                String contextLine = processedLines.get(j);
+                Line keyLine = new Line(contextLine).withThread("c-" + contextIndex).withTime(allLogRegex.findTimeFor(contextLine));
+                lines.addKeyLine(keyLine);
+            }
             contextIndex++;
         }
     }

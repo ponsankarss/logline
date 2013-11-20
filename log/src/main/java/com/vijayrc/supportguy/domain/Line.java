@@ -2,8 +2,6 @@ package com.vijayrc.supportguy.domain;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
-import java.util.Map;
-
 public class Line implements Comparable<Line> {
 
     private String file;
@@ -27,10 +25,6 @@ public class Line implements Comparable<Line> {
         return value;
     }
 
-    public boolean isError() {
-        return error;
-    }
-
     public Line markError() {
         this.error = true;
         return this;
@@ -50,7 +44,7 @@ public class Line implements Comparable<Line> {
         return value != null ? value.hashCode() : 0;
     }
 
-    public Line ofThread(String thread) {
+    public Line withThread(String thread) {
         this.thread = thread;
         return this;
     }
@@ -69,11 +63,6 @@ public class Line implements Comparable<Line> {
         return this.value.compareTo(line.value);
     }
 
-    public void replace(Map<String, String> shorts) {
-        for (String key : shorts.keySet())
-            value = value.replaceAll(key, shorts.get(key));
-    }
-
     public String file() {
         return "[" + file + "]";
     }
@@ -86,7 +75,7 @@ public class Line implements Comparable<Line> {
         return timestamp;
     }
 
-    public Line timeIs(String timestamp) {
+    public Line withTime(String timestamp) {
         this.timestamp = timestamp;
         return this;
     }

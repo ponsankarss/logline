@@ -30,7 +30,7 @@ public class ErrorRule implements LineRule {
             String timeStamp = getTime(title);
 
             Line errorLine = new Line(processedLine).ofFile(lines.file()).markError();
-            errorLine.timeIs(timeStamp).titleIs(title.replaceAll("\\[.*\\]", "").replaceAll(timeStamp, ""));
+            errorLine.withTime(timeStamp).titleIs(title.replaceAll("\\[.*\\]", "").replaceAll(timeStamp, ""));
             lines.addErrorLine(errorLine);
         }
     }

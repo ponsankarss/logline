@@ -21,15 +21,10 @@ public class AllRules {
 
     public void process(Logs logs) throws Exception {
         List<LineRule> rules = new ArrayList<LineRule>();
-        String option = logs.option();
-
-        if (option.equals("error"))
-            rules.add(errorRule);
-        else if (option.equals("key"))
-            rules.add(keyRule);
-        else {
-            rules.add(keyRule);
-            rules.add(errorRule);
+        switch (logs.option()){
+            case "error":rules.add(errorRule);
+            case "key":rules.add(keyRule);
+            default:rules.add(errorRule);rules.add(keyRule);
         }
         for (LineRule rule : rules)
             rule.process(logs);

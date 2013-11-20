@@ -70,8 +70,6 @@ public class Lines {
                 groups.put(line.getThread(), new ArrayList<Line>());
             groups.get(line.getThread()).add(line);
         }
-        for (List<Line> lines : groups.values())
-            Collections.sort(lines);
         return groups;
     }
 
