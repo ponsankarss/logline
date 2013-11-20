@@ -1,6 +1,7 @@
 package com.vijayrc.supportguy.domain;
 
 import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
 
 public class Line implements Comparable<Line> {
 
@@ -82,5 +83,9 @@ public class Line implements Comparable<Line> {
 
     public void titleIs(String errorTitle) {
         this.errorTitle = errorTitle;
+    }
+
+    public boolean hasNoTime() {
+        return StringUtils.isBlank(timestamp);
     }
 }

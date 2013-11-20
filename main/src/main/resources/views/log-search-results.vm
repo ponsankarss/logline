@@ -35,19 +35,17 @@
 
 #macro(searchResults)
     <h2>Analysis</h2>
-    #set( $count = 1 )
-    #foreach($key in $keyLines.keySet())
+    #foreach($context in $contexts)
     <div class="thread-box">
-        <p class="expand"><a href="#">Context ${count}</a> <img src="/static/images/arrow.gif"/></p>
+        <p class="expand"><a href="#">$context.name(): $context.startTime() -> $context.endTime()</a><img src="/static/images/arrow.gif"/></p>
         <div class="content">
             <ul>
-                #foreach($line in $keyLines.get($key))
+                #foreach($line in $context.lines())
                 <li class="key-item"><pre>$line.html()</pre></li>
                 #end
             </ul>
         </div>
     </div>
-     #set($count = $count+1)
      #end
 
 #end

@@ -1,5 +1,6 @@
 package com.vijayrc.supportguy.rule;
 
+import com.vijayrc.supportguy.domain.Context;
 import com.vijayrc.supportguy.domain.Line;
 import com.vijayrc.supportguy.domain.Lines;
 import com.vijayrc.supportguy.domain.Logs;
@@ -21,26 +22,25 @@ public class KeyRule implements LineRule {
     public void process(Logs logs) {
         Lines lines = logs.lines();
         List<String> processedLines = lines.processedLines();
-
-        int context = 3;
-        int contextIndex = 1;
+        int c = 1;
 
         for (int i = 0; i < processedLines.size(); i++) {
             String processedLine = processedLines.get(i);
             if (logs.hasNoSearchKey(processedLine))
                 continue;
-            for (int k = i - context; k != i && k > 0; k++) {
+
+            Context context = new Context("c"+c,3);
+            for (int k = i - context.size(); k != i && k > 0; k++) {
                 String contextLine = processedLines.get(k);
-                Line keyLine = new Line(contextLine).withThread("c-" + contextIndex).withTime(allLogRegex.findTimeFor(contextLine));
-                lines.addKeyLine(keyLine);
+                context.add(new Line(contextLine).withTime(allLogRegex.findTimeFor(contextLine)));
             }
-            lines.addKeyLine(new Line(processedLine).withThread("c-" + contextIndex));
-            for (int j = i + context; j != i && j < processedLines.size(); j--) {
+            context.add(new Line(processedLine).withTime(allLogRegex.findTimeFor(processedLine)));
+            for (int j = i + context.size(); j != i && j < processedLines.size(); j--) {
                 String contextLine = processedLines.get(j);
-                Line keyLine = new Line(contextLine).withThread("c-" + contextIndex).withTime(allLogRegex.findTimeFor(contextLine));
-                lines.addKeyLine(keyLine);
+                context.add(new Line(contextLine).withTime(allLogRegex.findTimeFor(contextLine)));
             }
-            contextIndex++;
+            lines.addKeyContext(context.complete());
+            c++;
         }
     }
 

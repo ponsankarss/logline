@@ -5,12 +5,16 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.util.*;
 
+import static ch.lambdaj.Lambda.on;
+import static ch.lambdaj.Lambda.sort;
+
 public class Lines {
     private File file;
     private Set<Line> keyLines = new HashSet<Line>();
     private Set<Line> errorLines = new HashSet<Line>();
     private List<String> fileLines = new ArrayList<String>();
     private List<String> processedLines = new ArrayList<String>();
+    private List<Context> keyContexts = new ArrayList<>();
 
     public Lines addFileLinesFrom(File file) throws Exception {
         this.file = file;
@@ -85,5 +89,12 @@ public class Lines {
         return groups;
     }
 
+    public void addKeyContext(Context context) {
+        keyContexts.add(context);
+    }
+
+    public List<Context> byContext(){
+        return sort(keyContexts,on(Context.class).startTime());
+    }
 }
 
