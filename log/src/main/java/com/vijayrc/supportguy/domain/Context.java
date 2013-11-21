@@ -29,9 +29,14 @@ public class Context {
     public Context complete(){
         for (int i=lines.size()-1;i>=0;i--)
             if(lines.get(i).hasNoTime())lines.remove(i);
-        lines= sort(lines, on(Line.class).timestamp());
         if(lines.isEmpty()) return this;
+        return consolidate();
+    }
 
+    public Context consolidate() {
+        lines= sort(lines, on(Line.class).timestamp());
+        for (int i=lines.size()-1;i>0;i--)
+            if(lines.get(i).equals(lines.get(i-1)))lines.remove(i);
         startTime = lines.get(0).timestamp();
         endTime = lines.get(lines.size()-1).timestamp();
         return this;
@@ -55,5 +60,9 @@ public class Context {
 
     public List<Line> lines() {
         return lines;
+    }
+
+    public void addAll(List<Line> lines) {
+        this.lines.addAll(lines);
     }
 }

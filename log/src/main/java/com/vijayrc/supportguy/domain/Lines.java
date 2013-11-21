@@ -5,16 +5,12 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.util.*;
 
-import static ch.lambdaj.Lambda.on;
-import static ch.lambdaj.Lambda.sort;
-
 public class Lines {
     private File file;
-    private Set<Line> keyLines = new HashSet<Line>();
-    private Set<Line> errorLines = new HashSet<Line>();
-    private List<String> fileLines = new ArrayList<String>();
-    private List<String> processedLines = new ArrayList<String>();
-    private List<Context> keyContexts = new ArrayList<>();
+    private List<String> fileLines = new ArrayList<>();
+    private List<String> processedLines = new ArrayList<>();
+    private Set<Line> errorLines = new HashSet<>();
+    private ContextList contextList= new ContextList();
 
     public Lines addFileLinesFrom(File file) throws Exception {
         this.file = file;
@@ -24,11 +20,6 @@ public class Lines {
 
     public Lines addProcessedLine(String processedLine) {
         this.processedLines.add(processedLine);
-        return this;
-    }
-
-    public Lines addKeyLine(Line keyLine) {
-        this.keyLines.add(keyLine.ofFile(file()));
         return this;
     }
 
@@ -51,10 +42,6 @@ public class Lines {
         return file.getName();
     }
 
-    public Set<Line> keyLines() {
-        return keyLines;
-    }
-
     public Set<Line> errorLines() {
         return errorLines;
     }
@@ -65,16 +52,6 @@ public class Lines {
 
     public List<String> processedLines() {
         return processedLines;
-    }
-
-    public Map<String, List<Line>> byThread() {
-        Map<String, List<Line>> groups = new HashMap<>();
-        for (Line line : keyLines) {
-            if (!groups.containsKey(line.getThread()))
-                groups.put(line.getThread(), new ArrayList<Line>());
-            groups.get(line.getThread()).add(line);
-        }
-        return groups;
     }
 
     public Map<String, List<Line>> byError() {
@@ -89,12 +66,12 @@ public class Lines {
         return groups;
     }
 
-    public void addKeyContext(Context context) {
-        keyContexts.add(context);
+    public void addContext(Context context) {
+       contextList.add(context);
     }
 
     public List<Context> byContext(){
-        return sort(keyContexts,on(Context.class).startTime());
+        return contextList.consolidate();
     }
 }
 

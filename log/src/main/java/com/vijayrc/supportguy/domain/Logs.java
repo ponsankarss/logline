@@ -27,7 +27,6 @@ public class Logs {
         this.searchKeys = split(keys, ",");
     }
 
-
     public Lines lines() {
         return lines;
     }
@@ -38,10 +37,6 @@ public class Logs {
 
     public DateTime endDate() {
         return endDate;
-    }
-
-    public Map<String, List<Line>> keyLines() {
-        return lines.byThread();
     }
 
     public Map<String, List<Line>> errorLines() {

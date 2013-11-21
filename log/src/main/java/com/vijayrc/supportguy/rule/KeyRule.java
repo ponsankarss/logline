@@ -39,7 +39,7 @@ public class KeyRule implements LineRule {
                 String contextLine = processedLines.get(j);
                 context.add(new Line(contextLine).withTime(allLogRegex.findTimeFor(contextLine)).ofFile(logs.file()));
             }
-            lines.addKeyContext(context.complete());
+            lines.addContext(context.complete());
             c++;
         }
     }
