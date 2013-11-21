@@ -11,7 +11,7 @@ LogForm = function(){
 
 
     var post = function(){
-    $("#loading-div-background").show();
+        $("#loading-div-background").show();
         pick();
         $.ajax({
         	url : "/log/search/",
