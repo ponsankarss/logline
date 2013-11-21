@@ -10,7 +10,7 @@ mkdir 'logs' when u package
 cp views, static, *.yml files to package folder
 
 1) make multiple keys with spaces work - DONE
-2) intelligence in search/display wrt time, count
+2) intelligence in search/display wrt time, count - done
 3) confirm if timewindow work, show the time in displays of errors
 4) increase speed
 
