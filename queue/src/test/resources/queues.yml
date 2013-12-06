@@ -1,0 +1,26 @@
+qmgr::
+name: QM1
+host: 127.0.0.1
+port: 8090
+queues:
+   - q::
+     name: queue11
+     type: local
+   - q::
+     name: queue12
+     type: local
+---
+qmgr::
+name: QM2
+host: 128.0.0.1
+port: 8040
+queues:
+   - q::
+     name: queue21
+     type: local
+   - q::
+     name: queue22
+     type: local
+---
+
+

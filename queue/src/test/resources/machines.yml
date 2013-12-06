@@ -1,0 +1,111 @@
+m::
+name: b2:p5-dev
+ip: nasnmasdev
+logDir: /was7blue2/logs
+configDir: /was7blue2/config
+user:
+     u::
+     name: vichakra
+     password: xxxxxx
+---
+m::
+name: b2:p5-mo
+ip: nasnmasmo
+logDir: /was7blue2/logs
+configDir: /was7blue2/config
+user:
+     u::
+     name: vichakra
+     password: xxxxxx
+---
+m::
+name: b2:p5-prod
+ip: nasnmas3
+logDir: /was7blue2/logs
+configDir: /was7blue2/config
+user:
+    u::
+    name: vichakra
+    password: xxxxxx
+---
+m::
+name: b2:p7-dev02
+ip: naswasdev02
+logDir: /was7blue2/logs
+configDir: /was7blue2/config
+user:
+    u::
+    name: vichakra
+    password: xxxxxx
+---
+m::
+name: dnl:p7-dev01
+ip: naswasdev01
+logDir: /was7datanet/logs
+configDir: /was7datanet/localProperties
+user:
+    u::
+    name: vichakra
+    password: xxxxxx
+---
+m::
+name: dnl:p7-mo01
+ip: naswasmo01
+logDir: /was7datanet/logs
+configDir: /was7datanet/localProperties
+user:
+    u::
+    name: vichakra
+    password: xxxxxx
+---
+m::
+name: dnl:p7-mo02
+ip: naswasmo02
+logDir: /was7datanet/logs
+configDir: /was7datanet/localProperties
+user:
+    u::
+    name: vichakra
+    password: xxxxxx
+---
+m::
+name: dnl:p7-mo03
+ip: naswasmo03
+logDir: /was7datanet/logs
+configDir: /was7datanet/localProperties
+user:
+    u::
+    name: vichakra
+    password: xxxxxxx
+---
+m::
+name: dnl:p7-prod01
+ip: naswas01
+logDir: /was7datanet/logs
+configDir: /was7datanet/localProperties
+user:
+    u::
+    name: vichakra
+    password: xxxxxx
+---
+m::
+name: dnl:p7-prod02
+ip: naswas02
+logDir: /was7datanet/logs
+configDir: /was7datanet/localProperties
+user:
+    u::
+    name: vichakra
+    password: xxxxxx
+---
+m::
+name: dnl:p7-prod03
+ip: naswas03
+logDir: /was7datanet/logs
+configDir: /was7datanet/localProperties
+user:
+    u::
+    name: vichakra
+    password: xxxxxx
+
+

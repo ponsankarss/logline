@@ -1,4 +1,4 @@
-package com.vijayrc.supportguy.queue.controller;
+package com.vijayrc.supportguy.queue.queue.controller;
 
 import com.vijayrc.supportguy.meta.WebClass;
 import lombok.extern.log4j.Log4j;
