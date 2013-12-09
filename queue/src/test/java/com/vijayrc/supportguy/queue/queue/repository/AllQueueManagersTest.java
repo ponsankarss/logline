@@ -22,12 +22,7 @@ public class AllQueueManagersTest {
     @Test
     public void shouldReadYAMLLoad() throws Exception {
         List<QueueManager> all = allQueueManagers.all();
-        for (QueueManager queueManager : all)    {
+        for (QueueManager queueManager : all)
             queueManager.connect();
-            for (Queue queue : queueManager.getQueues())
-                log.info(queue.toString());
-        }
-        QueueManager manager = allQueueManagers.fetch("MSGDEV02D7");
-        manager.connect();
     }
 }
