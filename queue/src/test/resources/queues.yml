@@ -1,27 +1,24 @@
 qmgr::
-name: QM1
-host: 127.0.0.1
-port: 8090
-channel: channel1
+name: MSGDEV02D6
+host: nasmsgdev02
+port: 1419
+channel: NASC.WAS.SVRCONN
 queues:
    - q::
-     name: queue11
-     type: local
-   - q::
-     name: queue12
+     name: NASC.BX.HIGH.XMIT.Q
      type: local
 ---
 qmgr::
-name: QM2
-host: 128.0.0.1
-port: 8040
-channel: channel2
+name: MSGDEV02D7
+host: nasmsgdev02
+port: 1420
+channel: NASC.WAS.SVRCONN
 queues:
    - q::
-     name: queue21
+     name: NF.EXCEPTION.Q
      type: local
    - q::
-     name: queue22
+     name: NF.INBOUND.Q
      type: local
 ---
 

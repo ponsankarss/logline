@@ -27,5 +27,7 @@ public class AllQueueManagersTest {
             for (Queue queue : queueManager.getQueues())
                 log.info(queue.toString());
         }
+        QueueManager manager = allQueueManagers.fetch("MSGDEV02D7");
+        manager.connect();
     }
 }

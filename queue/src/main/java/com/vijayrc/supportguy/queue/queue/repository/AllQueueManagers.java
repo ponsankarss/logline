@@ -39,4 +39,13 @@ public class AllQueueManagers {
     public List<QueueManager> all() {
         return managers;
     }
+
+    public QueueManager fetch(String name) {
+        for (QueueManager manager : managers)
+            if(manager.getName().equals(name))
+                return manager;
+        return null;
+    }
+
+
 }
