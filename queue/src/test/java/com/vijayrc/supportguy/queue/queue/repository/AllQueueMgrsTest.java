@@ -1,7 +1,6 @@
 package com.vijayrc.supportguy.queue.queue.repository;
 
-import com.vijayrc.supportguy.queue.queue.domain.Queue;
-import com.vijayrc.supportguy.queue.queue.domain.QueueManager;
+import com.vijayrc.supportguy.queue.queue.domain.QueueMgr;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,15 +13,15 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring.xml")
 @Log4j
-public class AllQueueManagersTest {
+public class AllQueueMgrsTest {
 
     @Autowired
-    private AllQueueManagers allQueueManagers;
+    private AllQueueMgrs allQueueMgrs;
 
     @Test
     public void shouldReadYAMLLoad() throws Exception {
-        List<QueueManager> all = allQueueManagers.all();
-        for (QueueManager queueManager : all)
-            queueManager.connect();
+        List<QueueMgr> all = allQueueMgrs.all();
+        for (QueueMgr queueMgr : all)
+            queueMgr.connect();
     }
 }
