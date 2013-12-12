@@ -36,14 +36,12 @@ public class LinkController extends BaseController {
 
         Link link = linkService.getFor(linkName, environment);
         log.info("processing:" + link);
-
         if (link.hasParams())
             for (String param : link.getParams())
                 link.addParam(param, request.getParameter(param));
 
         LinkHit linkHit = linkService.process(link);
         log.info(linkHit);
-
         Map<String, Object> model = new HashMap<>();
         model.put("linkHit", linkHit);
         renderer.render("link-result", model, response);

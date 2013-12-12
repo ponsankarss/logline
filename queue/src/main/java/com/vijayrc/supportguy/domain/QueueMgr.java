@@ -1,4 +1,4 @@
-package com.vijayrc.supportguy.queue.queue.domain;
+package com.vijayrc.supportguy.domain;
 
 import com.ibm.mq.*;
 import lombok.Data;
@@ -23,9 +23,10 @@ public class QueueMgr {
 
         for (Queue queue : queues) {
             MQQueue mqQueue = queueMgr.accessQueue(queue.getName(), MQOO_OUTPUT | MQOO_SET | MQOO_INQUIRE | MQOO_BROWSE| MQOO_FAIL_IF_QUIESCING);
-            String depth = String.valueOf(mqQueue.getCurrentDepth());
+            int depth = mqQueue.getCurrentDepth();
             queue.setDepth(depth);
-            log.info(queue.getName() + "=>" + depth);
+            QueueMgr.log.info(queue.getName() + "=>" + depth);
+            if(queue.isEmpty()) continue;
 
             MQGetMessageOptions options = new MQGetMessageOptions();
             options.options = MQGMO_WAIT | MQGMO_BROWSE_FIRST;
@@ -41,16 +42,16 @@ public class QueueMgr {
                     mqQueue.get(message, options);
                     String msg = message.readLine();
                     queue.addMessage(msg);
-                    log.info("browsed message: " + msg);
+                    QueueMgr.log.info("browsed message:["+msg+"]");
 
                     options.options = MQGMO_WAIT | MQGMO_BROWSE_NEXT;
                     count++;
                     if(count > 10) done = true;
                 } catch (MQException ex) {
-                    log.error("mq exception: CC = " + ex.completionCode + " RC = " + ex.reasonCode);
+                    QueueMgr.log.error("mq exception:[CC=" + ex.completionCode + "|RC=" + ex.reasonCode+"]");
                     done = true;
                 } catch (java.io.IOException ex) {
-                    log.error("exception: " + ex);
+                    QueueMgr.log.error("exception:" + ex);
                     done = true;
                 }finally {
                     queueMgr.close();

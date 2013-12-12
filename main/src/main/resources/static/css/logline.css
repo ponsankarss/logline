@@ -276,3 +276,18 @@ tr:hover{
 .help-inline{
     color:darkgoldenrod;
 }
+.queuemgr-row{
+    padding-top:0.6%;
+}
+.queue-row{
+    padding-top:0.6%;
+}
+.queue-name{
+
+}
+.queue-depth{
+
+}
+.queue-msgs{
+
+}

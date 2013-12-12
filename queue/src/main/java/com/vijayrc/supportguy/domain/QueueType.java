@@ -1,4 +1,4 @@
-package com.vijayrc.supportguy.queue.queue.domain;
+package com.vijayrc.supportguy.domain;
 
 /**
  * Created by vchakrav on 12/5/13.

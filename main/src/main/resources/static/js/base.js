@@ -11,7 +11,10 @@ HomePage = function(){
           $.ajax({url : "/link/tool/",type : "GET"}).done(updateToolBoxForRouter);
         });
         $('a.db').click(function(){
-            $.ajax({url : "/db/tool/",type : "GET"}).done(updateToolBoxForDb);
+          $.ajax({url : "/db/tool/",type : "GET"}).done(updateToolBoxForDb);
+        });
+        $('a.queue').click(function(){
+          $.ajax({url : "/queue/tool/",type : "GET"}).done(updateToolBoxForQueue);
         });
         $('a.stop').click(function(){
           $.ajax({url : "/stop/",type : "GET"}).done(updateToolBox);
@@ -23,10 +26,15 @@ HomePage = function(){
         $('#results').html('');
       };
 
-       var updateToolBoxForDb = function(response){
-           updateToolBox(response);
-           new QueryHit().boot();
-        };
+      var updateToolBoxForQueue = function(response){
+        updateToolBox(response);
+        new QueueHit().boot();
+      };
+
+      var updateToolBoxForDb = function(response){
+        updateToolBox(response);
+        new QueryHit().boot();
+      };
 
       var updateToolBoxForDiff = function(response){
         updateToolBox(response);

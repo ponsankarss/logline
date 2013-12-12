@@ -1,0 +1,25 @@
+qmgr::
+name: MSGDEV02D6
+host: nasmsgdev02
+port: 1419
+channel: NASC.WAS.SVRCONN
+queues:
+   - q::
+     name: NASC.BX.HIGH.XMIT.Q
+     type: local
+---
+qmgr::
+name: MSGDEV02D7
+host: nasmsgdev02
+port: 1420
+channel: NASC.WAS.SVRCONN
+queues:
+   - q::
+     name: NF.EXCEPTION.Q
+     type: local
+   - q::
+     name: NF.INBOUND.Q
+     type: local
+---
+
+

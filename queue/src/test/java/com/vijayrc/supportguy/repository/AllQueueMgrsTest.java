@@ -1,6 +1,6 @@
-package com.vijayrc.supportguy.queue.queue.repository;
+package com.vijayrc.supportguy.repository;
 
-import com.vijayrc.supportguy.queue.queue.domain.QueueMgr;
+import com.vijayrc.supportguy.domain.QueueMgr;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

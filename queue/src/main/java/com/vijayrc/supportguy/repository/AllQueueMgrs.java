@@ -1,8 +1,8 @@
-package com.vijayrc.supportguy.queue.queue.repository;
+package com.vijayrc.supportguy.repository;
 
 import com.esotericsoftware.yamlbeans.YamlReader;
-import com.vijayrc.supportguy.queue.queue.domain.Queue;
-import com.vijayrc.supportguy.queue.queue.domain.QueueMgr;
+import com.vijayrc.supportguy.domain.Queue;
+import com.vijayrc.supportguy.domain.QueueMgr;
 import com.vijayrc.supportguy.util.Util;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.io.FileUtils;

@@ -36,6 +36,11 @@
             <groupId>com.vijayrc</groupId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <artifactId>queue</artifactId>
+            <groupId>com.vijayrc</groupId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>

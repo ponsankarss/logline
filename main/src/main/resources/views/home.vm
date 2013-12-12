@@ -12,6 +12,7 @@
                         <tr><td><a href="#" class="config">Configuration</a></td><td><span class="link-detail">Fetch configuration files from servers and compare with CVS</span></td></tr>
                         <tr><td><a href="#" class="link">Links</a></td><td><span class="link-detail">Http URLs verification</span></td></tr>
                         <tr><td><a href="#" class="db">Db</a></td><td><span class="link-detail">SQL Data to Monitor</span></td></tr>
+                        <tr><td><a href="#" class="queue">Queues</a></td><td><span class="link-detail">MQ Queues</span></td></tr>
                         <tr><td><a href="#" class="stop">Stop</a></td><td><span class="link-detail">Stop Tool</span></td></tr>
                     </table>
                 </div>
@@ -33,6 +34,7 @@
                     <li><a href="#" class="config">Configuration</a></li>
                     <li><a href="#" class="link">Links</a></li>
                     <li><a href="#" class="db">Db</a></li>
+                    <li><a href="#" class="queue">Queues</a></li>
                     <li><a href="#" class="stop">Stop</a></li>
                 </ul>
             </div>
@@ -73,6 +75,7 @@
     <script src="/static/js/base.js" type="text/javascript"></script>
     <script src="/static/js/link.js" type="text/javascript"></script>
     <script src="/static/js/db.js" type="text/javascript"></script>
+    <script src="/static/js/queue.js" type="text/javascript"></script>
     <title>Support Guy</title>
 </head>
 #end
