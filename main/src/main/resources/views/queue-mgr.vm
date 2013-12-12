@@ -3,7 +3,7 @@
     <li class="queue-row">
         <span class="queue-name">$queue.getName()</span>
         <span class="queue-depth">$queue.getDepth()</span>
-        <a href="/queue/browse/">browse</a>
+        <a class="queue-browse" href="/queue/browse/">browse</a>
         <div class="queue-msgs"></div>
     </li>
     #end

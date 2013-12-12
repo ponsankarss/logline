@@ -1,5 +1,6 @@
 package com.vijayrc.supportguy.controller;
 
+import com.vijayrc.supportguy.domain.QueueMgr;
 import com.vijayrc.supportguy.meta.WebClass;
 import com.vijayrc.supportguy.meta.WebMethod;
 import com.vijayrc.supportguy.repository.AllQueueMgrs;
@@ -30,8 +31,9 @@ public class QueueController extends BaseController {
     public void connect(Request request, Response response) throws Exception {
         HashMap<String, Object> model = new HashMap<>();
         String name = request.getParameter("queueMgr");
-        System.out.println(name);
-        model.put("queueMgr", allQueueMgrs.fetch(name));
+        QueueMgr queueMgr = allQueueMgrs.fetch(name);
+        queueMgr.connect();
+        model.put("queueMgr", queueMgr);
         renderer.render("queue-mgr", model, response);
     }
 }
