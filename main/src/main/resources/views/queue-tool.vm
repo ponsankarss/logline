@@ -3,19 +3,10 @@
     <li class="queuemgr-row">
         <a class="expand-queue" href="#">
             <img src="/static/images/queue.jpg"/>
-            <span class="header">$queueMgr.getName()</span>
+            <span class="header" name="$queueMgr.getName()">$queueMgr.getName() |</span>
         </a>
-        <div class="content-queue">
-            <ul>
-                #foreach($queue in $queueMgr.getQueues())
-                <li class="queue-row">
-                        <span class="queue-name">$queue.getName()</span>
-                        <span class="queue-depth">$queue.getDepth()</span>
-                        <div class="queue-msgs"></div>
-                </li>
-                #end
-            </ul>
-        </div>
+        <a class="queueMgr-connect" href="/queue/connect/">connect</a>
+        <div id="$queueMgr.getName()" class="content-queue"></div>
     </li>
     #end
 </ol>

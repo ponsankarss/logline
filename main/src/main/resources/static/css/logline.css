@@ -286,7 +286,9 @@ tr:hover{
 
 }
 .queue-depth{
-
+   color:indianred;
+   font-size: 200%;
+   padding-left: 1%;
 }
 .queue-msgs{
 

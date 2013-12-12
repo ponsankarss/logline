@@ -25,4 +25,13 @@ public class QueueController extends BaseController {
         model.put("queueMgrs", allQueueMgrs.all());
         renderer.render("queue-tool", model, response);
     }
+
+    @WebMethod("connect")
+    public void connect(Request request, Response response) throws Exception {
+        HashMap<String, Object> model = new HashMap<>();
+        String name = request.getParameter("queueMgr");
+        System.out.println(name);
+        model.put("queueMgr", allQueueMgrs.fetch(name));
+        renderer.render("queue-mgr", model, response);
+    }
 }
