@@ -3,8 +3,8 @@
     <li class="queue-row">
         <span class="queue-name">$queue.getName()</span>
         <span class="queue-depth">$queue.getDepth()</span>
-        <a class="queue-browse" href="/queue/browse/">browse</a>
-        <div class="queue-msgs"></div>
+        <a queueMgr="${queueMgr.getName()}" queue="${queue.getName()}" class="queue-browse" href="/queue/browse/">browse</a>
+        <div id="${queue.getName()}" class="queue-msgs"></div>
     </li>
     #end
 </ul>

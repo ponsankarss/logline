@@ -21,4 +21,8 @@ public class Queue {
     public boolean isEmpty() {
         return depth == 0;
     }
+
+    public boolean nameIs(String queueName) {
+        return name.equalsIgnoreCase(queueName);
+    }
 }

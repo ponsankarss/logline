@@ -290,6 +290,10 @@ tr:hover{
    font-size: 200%;
    padding-left: 1%;
 }
-.queue-msgs{
-
+.queue-msg-table{
+    font-size:100%;
+}
+.queue-table-col1{
+    font-size:210%;
+    color:indianred;
 }

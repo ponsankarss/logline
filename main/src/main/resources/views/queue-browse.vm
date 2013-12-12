@@ -1,0 +1,10 @@
+<table class="queue-msg-table table table-condensed" queue="$queue.getName()">
+    <thead style="font-weight:bold;font-size:140%;"><tr><td>Count</td><td>Message</td></tr></thead>
+    <tbody>
+        #set($count = 1)
+        #foreach($msg in $queue.getMessages())
+            <tr><td class="queue-table-col1">$count</td><td>$msg</td></tr>
+            #set($count = $count+1)
+        #end
+    </tbody>
+</table>

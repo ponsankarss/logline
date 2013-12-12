@@ -13,7 +13,7 @@ QueueHit = function(){
 
     var setupConnectLinks = function(){
         $('.queueMgr-connect').click(function(e){
-            var queueMgr = $(this).siblings("div").attr("id");
+            var queueMgr = $(this).attr("queueMgr");
             var responseElement = "#"+queueMgr;
             $(responseElement).html("<p style='color:orange;'>please wait..</p>");
             $(responseElement).slideToggle('slow');
@@ -30,11 +30,33 @@ QueueHit = function(){
         });
     };
 
+    var setupBrowseLinks = function(){
+       $('.queue-browse').click(function(e){
+           var queueMgrName = $(this).attr("queueMgr");
+           var queueName = $(this).attr("queue");
+           e.preventDefault();
+           $.ajax({
+              type:"GET",
+              url:"/queue/browse",
+              data:{queueMgrName:queueMgrName,queueName:queueName},
+              cache:false,
+              success: displayQueueMsgs
+           });
+       });
+    };
+
     var displayQueues = function(data){
         var response= $(data);
-        var responseElement = "#"+response.attr("class");
+        var responseElement = "#"+response.attr("class").replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\\\$&");
         $(responseElement).html(data);
+        setupBrowseLinks();
+    };
 
+    var displayQueueMsgs = function(data){
+        var response= $(data);
+        var responseElement = "#"+response.attr("queue").replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\\\$&");
+        $("#queue-messages").dialog({height:"auto", width: 900, modal: true});
+        $("#queue-messages").html(data);
     };
 
     this.boot = function(){

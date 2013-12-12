@@ -5,8 +5,9 @@
             <img src="/static/images/queue.jpg"/>
             <span class="header" name="$queueMgr.getName()">$queueMgr.getName()</span>
         </a>
-        <a class="queueMgr-connect" href="/queue/connect/">| connect</a>
+        <a queueMgr="${queueMgr.getName()}" class="queueMgr-connect" href="/queue/connect/">| connect</a>
         <div id="$queueMgr.getName()" class="content-queue"></div>
     </li>
     #end
 </ol>
+<div id="queue-messages"></div>
