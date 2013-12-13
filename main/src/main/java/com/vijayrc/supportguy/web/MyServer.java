@@ -1,7 +1,6 @@
 package com.vijayrc.supportguy.web;
 
 import lombok.extern.log4j.Log4j;
-import org.apache.log4j.Logger;
 import org.simpleframework.http.core.ContainerServer;
 import org.simpleframework.transport.Server;
 import org.simpleframework.transport.connect.Connection;
@@ -28,7 +27,7 @@ public class MyServer {
     }
 
     public void start() throws Exception {
-        myServer = new ContainerServer(myContainer);
+        myServer = new ContainerServer(myContainer,100);
         Connection connection = new SocketConnection(myServer);
         connection.connect(new InetSocketAddress(port));
         log.info("support-guy server started, ready to process request...");

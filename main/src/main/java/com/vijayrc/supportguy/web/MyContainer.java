@@ -23,7 +23,7 @@ public class MyContainer implements Container {
     @Autowired
     public MyContainer(AllControllers allControllers, @Value("#{config['server.pool.size']}") Integer poolSize) {
         this.allControllers = allControllers;
-        this.executor = Executors.newFixedThreadPool(poolSize);
+        this.executor = Executors.newCachedThreadPool();
     }
 
     @Override
@@ -31,4 +31,5 @@ public class MyContainer implements Container {
         HttpTask httpTask = new HttpTask(request, response, allControllers);
         this.executor.execute(httpTask);
     }
+
 }
