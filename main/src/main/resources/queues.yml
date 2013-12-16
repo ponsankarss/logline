@@ -1,6 +1,6 @@
 qmgr::
-name: MSGDEV02D6
-host: nasmsgdev02
+name: WMQDEV1D6
+host: 206.201.99.250
 port: 1419
 channel: NASC.WAS.SVRCONN
 queues:
@@ -30,8 +30,8 @@ queues:
       name: WMQDEV1D6.DEAD.QUEUE
 ---
 qmgr::
-name: MSGDEV02D7
-host: nasmsgdev02
+name: WMQDEV1D7
+host: 206.201.99.250
 port: 1420
 channel: NASC.WAS.SVRCONN
 queues:
