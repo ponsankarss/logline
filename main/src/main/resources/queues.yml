@@ -63,7 +63,7 @@ queues:
      name: NASC.REPLYTO.Q
    - q::
      name: NASC.RT.INBOUND.Q
-   - q
+   - q::
      name: NASC.RT.REPLYTO.Q
    - q::
      name: NODE.EXCEPTION.Q

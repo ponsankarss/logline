@@ -23,10 +23,14 @@ public class QueueMgr {
         MQQueueManager queueMgr = new MQQueueManager(name);
         try {
             for (Queue queue : queues) {
-                MQQueue mqQueue = queueMgr.accessQueue(queue.getName(), MQOO_OUTPUT | MQOO_SET | MQOO_INQUIRE | MQOO_BROWSE| MQOO_FAIL_IF_QUIESCING);
-                int depth = mqQueue.getCurrentDepth();
-                queue.setDepth(depth);
-                log.info(queue.getName() + "=>" + depth);
+                try {
+                    MQQueue mqQueue = queueMgr.accessQueue(queue.getName(), MQOO_OUTPUT | MQOO_SET | MQOO_INQUIRE | MQOO_BROWSE| MQOO_FAIL_IF_QUIESCING);
+                    int depth = mqQueue.getCurrentDepth();
+                    queue.setDepth(depth);
+                    log.info(queue.getName() + "=>" + depth);
+                } catch (MQException ex) {
+                    log.error("mq exception:[queue="+queue.getName()+"|CC=" + ex.completionCode + "|RC=" + ex.reasonCode + "]");
+                }
             }
         } finally {
             queueMgr.close();
@@ -35,6 +39,7 @@ public class QueueMgr {
 
     public Queue browse(String queueName) throws Exception{
         Queue queue = pickQueue(queueName);
+        queue.clearMsgs();
         initialize();
 
         MQQueueManager queueMgr = new MQQueueManager(name);
@@ -52,7 +57,7 @@ public class QueueMgr {
                 message.messageId = MQMI_NONE;
                 mqQueue.get(message, options);
 
-                String msg = message.readLine();
+                String msg = message.readString(message.getMessageLength());
                 queue.addMessage(StringEscapeUtils.escapeHtml(msg));
                 options.options = MQGMO_WAIT | MQGMO_BROWSE_NEXT;
                 log.info("browsed message:["+msg+"]");

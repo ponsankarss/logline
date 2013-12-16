@@ -25,4 +25,8 @@ public class Queue {
     public boolean nameIs(String queueName) {
         return name.equalsIgnoreCase(queueName);
     }
+
+    public void clearMsgs() {
+        messages.clear();
+    }
 }
