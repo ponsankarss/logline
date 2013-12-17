@@ -3,6 +3,7 @@ name: WMQDEV1D6
 host: 206.201.99.250
 port: 1419
 channel: NASC.WAS.SVRCONN
+description: (DEV)Gateway QueueManager
 queues:
  - q::
       name: NASC.B2P7.DEVQ
@@ -34,6 +35,7 @@ name: WMQDEV1D7
 host: 206.201.99.250
 port: 1420
 channel: NASC.WAS.SVRCONN
+description: (DEV)WebSphere QueueManager
 queues:
    - q::
      name: NF.EXCEPTION.Q
@@ -72,4 +74,145 @@ queues:
    - q::
      name: WMQDEV1D7.DEAD.QUEUE
 ---
+qmgr::
+name: WMQMO01M6
+host: 206.201.99.161
+port: 1419
+channel: NASC.WAS.SVRCONN
+description: (MO)Gateway QueueManager
+queues:
+ - q::
+      name: NASC.B2P7.DEVQ
+ - q::
+      name: NASC.BX.HIGH.XMIT.Q
+ - q::
+      name: NASC.BX.LOW.XMIT.Q
+ - q::
+      name: NASC.BX.NORMAL.XMIT.Q
+ - q::
+      name: NASC.BX.RT.XMIT.Q
+ - q::
+      name: NASC.BX.UNRECOGNIZED.FORMAT.REJECT.Q
+---
+qmgr::
+name: WMQMO01M7
+host: 206.201.99.161
+port: 1420
+channel: NASC.WAS.SVRCONN
+description: (MO1)WebSphere Server1 QueueManager
+queues:
+   - q::
+     name: NF.EXCEPTION.Q
+   - q::
+     name: NF.INBOUND.Q
+   - q::
+     name: B2.EVENT.Q
+   - q::
+     name: B2.EXCEPTION.Q
+   - q::
+     name: CA.RESP.Q
+   - q::
+     name: NASC.HIGH.INBOUND.Q
+   - q::
+     name: NASC.INBOUND.Q
+   - q::
+     name: NASC.LOW.INBOUND.Q
+   - q::
+     name: NASC.MSG.DECORATION.Q
+   - q::
+     name: NASC.MSG.DISPATCH.Q
+   - q::
+     name: NASC.MSG.EXCEPTION.Q
+   - q::
+     name: NASC.MSG.RETRY.Q
+   - q::
+     name: NASC.REPLYTO.Q
+   - q::
+     name: NASC.RT.INBOUND.Q
+   - q::
+     name: NASC.RT.REPLYTO.Q
+   - q::
+     name: NODE.EXCEPTION.Q
+---
+qmgr::
+name: WMQMO02M7
+host: 206.201.99.162
+port: 1420
+channel: NASC.WAS.SVRCONN
+description: (MO2)WebSphere Server2 QueueManager
+queues:
+   - q::
+     name: NF.EXCEPTION.Q
+   - q::
+     name: NF.INBOUND.Q
+   - q::
+     name: B2.EVENT.Q
+   - q::
+     name: B2.EXCEPTION.Q
+   - q::
+     name: CA.RESP.Q
+   - q::
+     name: NASC.HIGH.INBOUND.Q
+   - q::
+     name: NASC.INBOUND.Q
+   - q::
+     name: NASC.LOW.INBOUND.Q
+   - q::
+     name: NASC.MSG.DECORATION.Q
+   - q::
+     name: NASC.MSG.DISPATCH.Q
+   - q::
+     name: NASC.MSG.EXCEPTION.Q
+   - q::
+     name: NASC.MSG.RETRY.Q
+   - q::
+     name: NASC.REPLYTO.Q
+   - q::
+     name: NASC.RT.INBOUND.Q
+   - q::
+     name: NASC.RT.REPLYTO.Q
+   - q::
+     name: NODE.EXCEPTION.Q
+---
+qmgr::
+name: WMQMO03M7
+host: 206.201.99.163
+port: 1420
+channel: NASC.WAS.SVRCONN
+description: (MO3)WebSphere Server3 QueueManager
+queues:
+   - q::
+     name: NF.EXCEPTION.Q
+   - q::
+     name: NF.INBOUND.Q
+   - q::
+     name: B2.EVENT.Q
+   - q::
+     name: B2.EXCEPTION.Q
+   - q::
+     name: CA.RESP.Q
+   - q::
+     name: NASC.HIGH.INBOUND.Q
+   - q::
+     name: NASC.INBOUND.Q
+   - q::
+     name: NASC.LOW.INBOUND.Q
+   - q::
+     name: NASC.MSG.DECORATION.Q
+   - q::
+     name: NASC.MSG.DISPATCH.Q
+   - q::
+     name: NASC.MSG.EXCEPTION.Q
+   - q::
+     name: NASC.MSG.RETRY.Q
+   - q::
+     name: NASC.REPLYTO.Q
+   - q::
+     name: NASC.RT.INBOUND.Q
+   - q::
+     name: NASC.RT.REPLYTO.Q
+   - q::
+     name: NODE.EXCEPTION.Q
+---
+
 

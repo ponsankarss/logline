@@ -17,10 +17,12 @@ public class QueueMgr {
     private String channel;
     private int port;
     private List<Queue> queues;
+    private String description;
 
     public void connect() throws Exception{
         initialize();
         MQQueueManager queueMgr = new MQQueueManager(name);
+        log.info("connecting to:"+queueMgr.getName());
         try {
             for (Queue queue : queues) {
                 try {

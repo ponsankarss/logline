@@ -5,6 +5,7 @@
             <img src="/static/images/queue.jpg"/>
             <span class="header" name="$queueMgr.getName()">$queueMgr.getName()</span>
         </a>
+        <span class="queuemgr-desc">$queueMgr.getDescription()</span>
         <a queueMgr="${queueMgr.getName()}" class="queueMgr-connect" href="/queue/connect/">| connect</a>
         <div id="$queueMgr.getName()" class="content-queue"></div>
     </li>
