@@ -3,7 +3,7 @@ name: WMQDEV1D6
 host: 206.201.99.250
 port: 1419
 channel: NASC.WAS.SVRCONN
-description: (DEV)Gateway QueueManager
+description: (DEV)Gateway 
 queues:
  - q::
       name: NASC.B2P7.DEVQ
@@ -35,7 +35,7 @@ name: WMQDEV1D7
 host: 206.201.99.250
 port: 1420
 channel: NASC.WAS.SVRCONN
-description: (DEV)WebSphere QueueManager
+description: (DEV)WAS 
 queues:
    - q::
      name: NF.EXCEPTION.Q
@@ -79,7 +79,7 @@ name: WMQMO01M6
 host: 206.201.99.161
 port: 1419
 channel: NASC.WAS.SVRCONN
-description: (MO)Gateway QueueManager
+description: (MO)Gateway 
 queues:
  - q::
       name: NASC.B2P7.DEVQ
@@ -99,7 +99,7 @@ name: WMQMO01M7
 host: 206.201.99.161
 port: 1420
 channel: NASC.WAS.SVRCONN
-description: (MO1)WebSphere Server1 QueueManager
+description: (MO1)WAS  
 queues:
    - q::
      name: NF.EXCEPTION.Q
@@ -139,7 +139,7 @@ name: WMQMO02M7
 host: 206.201.99.162
 port: 1420
 channel: NASC.WAS.SVRCONN
-description: (MO2)WebSphere Server2 QueueManager
+description: (MO2)WAS  
 queues:
    - q::
      name: NF.EXCEPTION.Q
@@ -179,7 +179,7 @@ name: WMQMO03M7
 host: 206.201.99.163
 port: 1420
 channel: NASC.WAS.SVRCONN
-description: (MO3)WebSphere Server3 QueueManager
+description: (MO3)WAS  
 queues:
    - q::
      name: NF.EXCEPTION.Q
@@ -213,6 +213,158 @@ queues:
      name: NASC.RT.REPLYTO.Q
    - q::
      name: NODE.EXCEPTION.Q
+---
+qmgr::
+name: WMQ1P6
+host: 206.201.99.69
+port: 1419
+channel: NASC.WAS.SVRCONN
+description: (PROD)Gateway 
+queues:
+ - q::
+      name: NASC.B2P7.DEVQ
+ - q::
+      name: NASC.BX.HIGH.XMIT.Q
+ - q::
+      name: NASC.BX.LOW.XMIT.Q
+ - q::
+      name: NASC.BX.NORMAL.XMIT.Q
+ - q::
+      name: NASC.BX.RT.XMIT.Q
+ - q::
+      name: NASC.BX.UNRECOGNIZED.FORMAT.REJECT.Q
+---
+qmgr::
+name: WMQ1P7
+host: 206.201.99.69
+port: 1420
+channel: NASC.WAS.SVRCONN
+description: (PROD1)WAS  
+queues:
+   - q::
+     name: NF.EXCEPTION.Q
+   - q::
+     name: NF.INBOUND.Q
+   - q::
+     name: B2.EVENT.Q
+   - q::
+     name: B2.EXCEPTION.Q
+   - q::
+     name: CA.RESP.Q
+   - q::
+     name: NASC.HIGH.INBOUND.Q
+   - q::
+     name: NASC.INBOUND.Q
+   - q::
+     name: NASC.LOW.INBOUND.Q
+   - q::
+     name: NASC.MSG.DECORATION.Q
+   - q::
+     name: NASC.MSG.DISPATCH.Q
+   - q::
+     name: NASC.MSG.EXCEPTION.Q
+   - q::
+     name: NASC.MSG.RETRY.Q
+   - q::
+     name: NASC.REPLYTO1.Q
+   - q::
+     name: NASC.RT.INBOUND.Q
+   - q::
+     name: NASC.RT.REPLYTO.Q
+   - q::
+     name: NODE.EXCEPTION.Q
+   - q::
+     name: WMQ1P7.DEAD.QUEUE
+   - q::
+     name: WMQ1P7.BACKOUT.QUEUE
+---
+qmgr::
+name: WMQ2P7
+host: 206.201.99.156
+port: 1420
+channel: NASC.WAS.SVRCONN
+description: (PROD2)WAS  
+queues:
+   - q::
+     name: NF.EXCEPTION.Q
+   - q::
+     name: NF.INBOUND.Q
+   - q::
+     name: B2.EVENT.Q
+   - q::
+     name: B2.EXCEPTION.Q
+   - q::
+     name: CA.RESP.Q
+   - q::
+     name: NASC.HIGH.INBOUND.Q
+   - q::
+     name: NASC.INBOUND.Q
+   - q::
+     name: NASC.LOW.INBOUND.Q
+   - q::
+     name: NASC.MSG.DECORATION.Q
+   - q::
+     name: NASC.MSG.DISPATCH.Q
+   - q::
+     name: NASC.MSG.EXCEPTION.Q
+   - q::
+     name: NASC.MSG.RETRY.Q
+   - q::
+     name: NASC.REPLYTO2.Q
+   - q::
+     name: NASC.RT.INBOUND.Q
+   - q::
+     name: NASC.RT.REPLYTO.Q
+   - q::
+     name: NODE.EXCEPTION.Q
+   - q::
+     name: WMQ2P7.DEAD.QUEUE
+   - q::
+     name: WMQ2P7.BACKOUT.QUEUE
+---
+qmgr::
+name: WMQ3P7
+host: 206.201.99.157
+port: 1420
+channel: NASC.WAS.SVRCONN
+description: (PROD3)WAS  
+queues:
+   - q::
+     name: NF.EXCEPTION.Q
+   - q::
+     name: NF.INBOUND.Q
+   - q::
+     name: B2.EVENT.Q
+   - q::
+     name: B2.EXCEPTION.Q
+   - q::
+     name: CA.RESP.Q
+   - q::
+     name: NASC.HIGH.INBOUND.Q
+   - q::
+     name: NASC.INBOUND.Q
+   - q::
+     name: NASC.LOW.INBOUND.Q
+   - q::
+     name: NASC.MSG.DECORATION.Q
+   - q::
+     name: NASC.MSG.DISPATCH.Q
+   - q::
+     name: NASC.MSG.EXCEPTION.Q
+   - q::
+     name: NASC.MSG.RETRY.Q
+   - q::
+     name: NASC.REPLYTO3.Q
+   - q::
+     name: NASC.RT.INBOUND.Q
+   - q::
+     name: NASC.RT.REPLYTO.Q
+   - q::
+     name: NODE.EXCEPTION.Q
+   - q::
+     name: WMQ3P7.DEAD.QUEUE
+   - q::
+     name: WMQ3P7.BACKOUT.QUEUE
 ---
 
 

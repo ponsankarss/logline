@@ -1,4 +1,4 @@
-<ul class="${queueMgr.getName()}">
+<ul class="${queueMgr.getName()}" style="width:50%">
     #foreach($queue in $queueMgr.getQueues())
     <li class="queue-row">
         <span class="queue-name">$queue.getName()</span>
