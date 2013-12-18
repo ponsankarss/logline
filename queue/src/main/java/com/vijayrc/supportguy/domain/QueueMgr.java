@@ -1,6 +1,8 @@
 package com.vijayrc.supportguy.domain;
 
 import com.ibm.mq.*;
+import com.ibm.mq.pcf.PCFAgent;
+import com.vijayrc.supportguy.channel.AllChannelStatus;
 import lombok.Data;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringEscapeUtils;
@@ -79,6 +81,13 @@ public class QueueMgr {
         } while (!done);
 
         return queue;
+    }
+
+    public void channelStatus() throws Exception {
+        PCFAgent iAgent = new PCFAgent(host, port, channel);
+        Channel[] channels = new AllChannelStatus(iAgent).getChannelStatus();
+        log.info("fetched "+channels.length+" channels");
+        iAgent.disconnect();
     }
 
     private void initialize() {

@@ -24,4 +24,10 @@ public class AllQueueMgrsTest {
         for (QueueMgr queueMgr : all)
             queueMgr.connect();
     }
+    @Test
+    public void shouldReadYAMLLoadChannelStatus() throws Exception {
+        List<QueueMgr> all = allQueueMgrs.all();
+        for (QueueMgr queueMgr : all)
+            queueMgr.channelStatus();
+    }
 }
