@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 @Component
 @WebClass("queue")
@@ -25,14 +24,14 @@ public class QueueController extends BaseController {
 
     @WebMethod("tool")
     public void tool(Request request, Response response) throws Exception {
-        HashMap<String, Object> model = new HashMap<>();
+        Map<String, Object> model = new HashMap<>();
         model.put("queueMgrs", allQueueMgrs.all());
         renderer.render("queue-tool", model, response);
     }
 
     @WebMethod("connect")
     public void connect(Request request, Response response) throws Exception {
-        HashMap<String, Object> model = new HashMap<>();
+        Map<String, Object> model = new HashMap<>();
         String name = request.getParameter("queueMgr");
 
         QueueMgr queueMgr = allQueueMgrs.fetch(name);
@@ -44,7 +43,7 @@ public class QueueController extends BaseController {
 
     @WebMethod("browse")
     public void browse(Request request, Response response) throws Exception {
-        HashMap<String, Object> model = new HashMap<>();
+        Map<String, Object> model = new HashMap<>();
         String queueMgrName = request.getParameter("queueMgrName");
         String queueName = request.getParameter("queueName");
 
@@ -58,7 +57,7 @@ public class QueueController extends BaseController {
 
     @WebMethod("channels")
     public void channels(Request request, Response response) throws Exception {
-        Map<String, Object> model = new TreeMap<>();
+        HashMap<String, Object> model = new HashMap<>();
         String queueMgrName = request.getParameter("queueMgrName");
 
         QueueMgr queueMgr = allQueueMgrs.fetch(queueMgrName);

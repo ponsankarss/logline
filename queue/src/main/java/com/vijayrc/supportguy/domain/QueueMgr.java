@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringEscapeUtils;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import static com.ibm.mq.MQC.*;
 
@@ -92,7 +92,7 @@ public class QueueMgr {
     }
 
     public Map<String,String> channelStatus() throws Exception {
-        Map<String,String> map = new HashMap<>();
+        Map<String,String> map = new TreeMap<>();
         PCFAgent iAgent = new PCFAgent(host, port, channel);
         Channel[] channels = new ChannelStatus(iAgent).all();
 
