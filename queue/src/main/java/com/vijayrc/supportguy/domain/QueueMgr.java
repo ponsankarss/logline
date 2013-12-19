@@ -2,12 +2,13 @@ package com.vijayrc.supportguy.domain;
 
 import com.ibm.mq.*;
 import com.ibm.mq.pcf.PCFAgent;
-import com.vijayrc.supportguy.channel.AllChannelStatus;
 import lombok.Data;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang.StringEscapeUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.ibm.mq.MQC.*;
 
@@ -83,11 +84,25 @@ public class QueueMgr {
         return queue;
     }
 
-    public void channelStatus() throws Exception {
+    public void channelDetails() throws Exception {
         PCFAgent iAgent = new PCFAgent(host, port, channel);
-        Channel[] channels = new AllChannelStatus(iAgent).getChannelStatus();
+        Channel[] channels = new ChannelDetails(iAgent).all();
         log.info("fetched "+channels.length+" channels");
         iAgent.disconnect();
+    }
+
+    public Map<String,String> channelStatus() throws Exception {
+        Map<String,String> map = new HashMap<>();
+        PCFAgent iAgent = new PCFAgent(host, port, channel);
+        Channel[] channels = new ChannelStatus(iAgent).all();
+
+        log.info("fetched "+channels.length+" channels");
+        for (Channel channel : channels) {
+            log.info("channel name="+channel.name()+"|status="+channel.status());
+            map.put(channel.name(),channel.status());
+        }
+        iAgent.disconnect();
+        return map;
     }
 
     private void initialize() {

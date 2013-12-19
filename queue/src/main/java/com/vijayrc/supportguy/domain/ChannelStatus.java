@@ -1,16 +1,15 @@
-package com.vijayrc.supportguy.channel;
+package com.vijayrc.supportguy.domain;
 
 import com.ibm.mq.MQMessage;
 import com.ibm.mq.pcf.*;
-import com.vijayrc.supportguy.domain.Channel;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-public class AllChannelStatus implements CMQCFC {
+public class ChannelStatus implements CMQCFC {
     private PCFAgent iAgent;
     private PCFParameter[] iParameters;
 
-    public AllChannelStatus(PCFAgent agent) {
+    public ChannelStatus(PCFAgent agent) {
         iAgent = agent;
         iParameters = new PCFParameter[]{
                 new MQCFST(MQCACH_CHANNEL_NAME, "*"),
@@ -19,7 +18,7 @@ public class AllChannelStatus implements CMQCFC {
         };
     }
 
-    public Channel[] getChannelStatus() {
+    public Channel[] all() {
         try {
             MQMessage[] pcfResponses = iAgent.send(MQCMD_INQUIRE_CHANNEL_STATUS, iParameters);
             Channel[] channels = new Channel[pcfResponses.length];

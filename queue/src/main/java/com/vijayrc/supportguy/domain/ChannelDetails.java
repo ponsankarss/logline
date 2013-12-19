@@ -1,8 +1,7 @@
-package com.vijayrc.supportguy.channel;
+package com.vijayrc.supportguy.domain;
 
 import com.ibm.mq.MQMessage;
 import com.ibm.mq.pcf.*;
-import com.vijayrc.supportguy.domain.Channel;
 import lombok.extern.log4j.Log4j;
 
 /**
@@ -12,7 +11,7 @@ import lombok.extern.log4j.Log4j;
  * This query is currently limited to sender channels.
  */
 @Log4j
-public class AllChannelDetails implements CMQCFC {
+public class ChannelDetails implements CMQCFC {
     private PCFAgent iAgent;
     private PCFParameter[] iParameters;
 
@@ -22,7 +21,7 @@ public class AllChannelDetails implements CMQCFC {
      * (channel type of MQCHT_SENDER), though this may easily be
      * changed to MQCHT_ALL.
      */
-    public AllChannelDetails(PCFAgent agent) {
+    public ChannelDetails(PCFAgent agent) {
         iAgent = agent;
         iParameters = new PCFParameter[]{
                 new MQCFST(MQCACH_CHANNEL_NAME, "*"),
@@ -31,7 +30,7 @@ public class AllChannelDetails implements CMQCFC {
         };
     }
 
-    public Channel[] getAll() {
+    public Channel[] all() {
         try {
             MQMessage[] pcfResponses = iAgent.send(MQCMD_INQUIRE_CHANNEL, iParameters);
             Channel[] channels = new Channel[pcfResponses.length];
@@ -39,7 +38,7 @@ public class AllChannelDetails implements CMQCFC {
                 channels[i] = new Channel(pcfResponses[i]);
             return channels;
         } catch (Exception e) {
-            AllChannelDetails.log.error(e);
+            log.error(e);
             return null;
         }
     }
