@@ -45,6 +45,20 @@ QueueHit = function(){
        });
     };
 
+    var setupChannelLinks = function(){
+       $('.queueMgr-channels').click(function(e){
+           var queueMgrName = $(this).attr("queueMgr");
+           e.preventDefault();
+           $.ajax({
+              type:"GET",
+              url:"/queue/channels",
+              data:{queueMgrName:queueMgrName},
+              cache:false,
+              success: displayChannels
+           });
+       });
+    };
+
     var displayQueues = function(data){
         var response= $(data);
         var responseElement = "#"+response.attr("class").replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\\\$&");
@@ -54,14 +68,20 @@ QueueHit = function(){
 
     var displayQueueMsgs = function(data){
         var response= $(data);
-        var responseElement = "#"+response.attr("queue").replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\\\$&");
         $("#queue-messages").dialog({height:"auto", width: 900, modal: true});
         $("#queue-messages").html(data);
+    };
+
+    var displayChannels = function(data){
+       var response= $(data);
+       $("#queue-channels").dialog({height:"auto", width: 500, modal: false});
+       $("#queue-channels").html(data);
     };
 
     this.boot = function(){
         linkTabs();
         closeAllLinkTabs();
         setupConnectLinks();
+        setupChannelLinks();
     };
 };

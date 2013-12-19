@@ -1,0 +1,9 @@
+<h2>$queueMgr.getName()</h2>
+<table class="table table-condensed channel-table">
+    <thead><th>Name</th><th>Status</th></thead>
+    <tbody>
+        #foreach($key in $channelMap.keySet())
+        <tr><td>$key</td><td>$channelMap.get($key)</td></tr>
+        #end
+    </tbody>
+</table>

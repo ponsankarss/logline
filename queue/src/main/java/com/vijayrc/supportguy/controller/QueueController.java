@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 @Component
 @WebClass("queue")
@@ -52,5 +54,17 @@ public class QueueController extends BaseController {
         model.put("queue", queue);
         model.put("queueMgr", queueMgr);
         renderer.render("queue-browse", model, response);
+    }
+
+    @WebMethod("channels")
+    public void channels(Request request, Response response) throws Exception {
+        Map<String, Object> model = new TreeMap<>();
+        String queueMgrName = request.getParameter("queueMgrName");
+
+        QueueMgr queueMgr = allQueueMgrs.fetch(queueMgrName);
+
+        model.put("queueMgr", queueMgr);
+        model.put("channelMap", queueMgr.channelStatus());
+        renderer.render("queue-channels", model, response);
     }
 }
