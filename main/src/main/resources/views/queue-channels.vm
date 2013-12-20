@@ -2,8 +2,21 @@
 <table class="table table-condensed channel-table">
     <thead><th>Name</th><th>Status</th></thead>
     <tbody>
-        #foreach($key in $channelMap.keySet())
-        <tr><td>$key</td><td>$channelMap.get($key)</td></tr>
+        #foreach($channel in $channels)
+        <tr>
+            <td>$channel.name()</td>
+            <td>$channel.status()</td>
+            <td>
+                <ol>
+                    #foreach($time in $channel.times().all())
+                        <li>
+                            <span class="channel-time-name">$time.getName()</span>
+                            <span class="channel-time-value">$time.value()</span>
+                        </li>
+                    #end
+                </ol>
+            </td>
+        </tr>
         #end
     </tbody>
 </table>

@@ -18,9 +18,9 @@ public class QueueMgr {
     private String name;
     private String host;
     private String channel;
+    private String description;
     private int port;
     private List<Queue> queues;
-    private String description;
 
     public void connect() throws Exception{
         initialize();
@@ -84,22 +84,14 @@ public class QueueMgr {
         return queue;
     }
 
-    public void channelDetails() throws Exception {
-        PCFAgent iAgent = new PCFAgent(host, port, channel);
-        Channel[] channels = new ChannelDetails(iAgent).all();
-        log.info("fetched "+channels.length+" channels");
-        iAgent.disconnect();
-    }
-
-    public Map<String,String> channelStatus() throws Exception {
-        Map<String,String> map = new TreeMap<>();
+    public Map<String,Channel> channels() throws Exception {
+        Map<String,Channel> map = new TreeMap<>();
         PCFAgent iAgent = new PCFAgent(host, port, channel);
         Channel[] channels = new ChannelStatus(iAgent).all();
 
-        log.info("fetched "+channels.length+" channels");
         for (Channel channel : channels) {
             log.info("channel name="+channel.name()+"|status="+channel.status());
-            map.put(channel.name(),channel.status());
+            map.put(channel.name(),channel);
         }
         iAgent.disconnect();
         return map;

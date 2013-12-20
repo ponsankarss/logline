@@ -1,13 +1,16 @@
 package com.vijayrc.supportguy.domain;
 
 import com.ibm.mq.MQMessage;
-import com.ibm.mq.constants.CMQCFC;
 import com.ibm.mq.pcf.MQCFH;
 import com.ibm.mq.pcf.PCFParameter;
+import com.vijayrc.supportguy.repository.AllChannelTimes;
 import lombok.extern.log4j.Log4j;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.ibm.mq.constants.CMQCFC.MQCACH_CHANNEL_NAME;
+import static com.ibm.mq.constants.CMQCFC.MQIACH_CHANNEL_STATUS;
 
 /**
  * Each hashtable represents a single mq channel.
@@ -16,67 +19,58 @@ import java.util.Map;
  */
 @Log4j
 public class Channel {
-    private Map<Integer, Object> map = new HashMap<>();
-    private int iReasonCode;
-    public static final String[] statuses = {"Inactive", "Binding", "Starting", "Running", "Stopping", "Retrying", "Stopped", "Requesting", "Paused", "", "", "", "", "Initializing"};
+    private Map<Integer, Object> dataMap = new HashMap<>();
+
+    public static final String[] statuses = {
+            "Inactive", "Binding", "Starting", "Running", "Stopping", "Retrying",
+            "Stopped", "Requesting", "Paused", "", "", "", "", "Initializing"};
 
     public Channel(MQMessage message) {
         super();
         try {
             MQCFH cfh = new MQCFH(message);
-            iReasonCode = cfh.reason;
-            if (isValid()) {
+            int iReasonCode = cfh.reason;
+            if (iReasonCode == 0) {
                 PCFParameter p;
                 for (int i = 0; i < cfh.parameterCount; i++) {
                     p = PCFParameter.nextParameter(message);
                     Integer key = p.getParameter();
                     Object value = p.getValue();
-                    map.put(key, value);
-//                    log.info("adding:" + key + "=>" + value);
+                    dataMap.put(key, value);
+                    log.info("adding:" + key + "=>" + value);
                 }
             }
         } catch (Exception ex) {
-            Channel.log.error(ex);
+            log.error(ex);
         }
     }
 
-    public boolean isValid() {
-        return iReasonCode == 0;
-    }
-
-    public int getReasonCode() {
-        return iReasonCode;
-    }
-
-    public int getIntValue(int key) {
-        return (Integer) map.get(key);
-    }
-
-    public int[] getIntArray(int key) {
-        return (int[]) map.get(key);
-    }
-
-    public String getStringValue(int key) {
-        return ((String) map.get(key)).trim();
-    }
-
-    public String[] getStringArray(int key) {
-        String[] paddedStrings = (String[]) map.get(key);
-        String[] trimStrings = new String[paddedStrings.length];
-        for (int i = 0; i < paddedStrings.length; i++)
-            trimStrings[i] = paddedStrings[i].trim();
-        return trimStrings;
+    public String name() {
+        return getStringValue(MQCACH_CHANNEL_NAME);
     }
 
     public String status() {
         try {
-            return statuses[getIntValue(CMQCFC.MQIACH_CHANNEL_STATUS)];
+            return statuses[getIntValue(MQIACH_CHANNEL_STATUS)];
         } catch (NullPointerException channelIsInactive) {
             return statuses[0];
         }
     }
 
-    public String name(){
-        return getStringValue(CMQCFC.MQCACH_CHANNEL_NAME);
+    public AllChannelTimes times() {
+        AllChannelTimes times = new AllChannelTimes();
+        for (ChannelTime channelTime : times.all()) {
+            channelTime.setValue(getStringValue(channelTime.getKey()));
+            log.info(channelTime);
+        }
+        return times;
+    }
+
+    private int getIntValue(int key) {
+        return (Integer) dataMap.get(key);
+    }
+
+    private String getStringValue(int key) {
+        return ((String) dataMap.get(key));
     }
 }

@@ -28,7 +28,7 @@ public class AllQueueMgrsTest {
     public void shouldReadYAMLLoadChannelStatus() throws Exception {
         List<QueueMgr> all = allQueueMgrs.all();
         for (QueueMgr queueMgr : all) {
-            queueMgr.channelStatus();
+            queueMgr.channels();
             //queueMgr.channelDetails();
         }
     }

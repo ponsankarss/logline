@@ -63,7 +63,7 @@ public class QueueController extends BaseController {
         QueueMgr queueMgr = allQueueMgrs.fetch(queueMgrName);
 
         model.put("queueMgr", queueMgr);
-        model.put("channelMap", queueMgr.channelStatus());
+        model.put("channels", queueMgr.channels());
         renderer.render("queue-channels", model, response);
     }
 }
