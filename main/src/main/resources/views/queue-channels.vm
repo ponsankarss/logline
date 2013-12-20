@@ -5,16 +5,24 @@
         #foreach($channel in $channels)
         <tr>
             <td>$channel.name()</td>
-            <td>$channel.status()</td>
+            #if($channel.isRunning())
+                <td class="channel-running">$channel.status()</td>
+            #elseif($channel.isStopped())
+                <td class="channel-stopped">$channel.status()</td>
+            #elseif($channel.isInactive())
+                <td class="channel-inactive">$channel.status()</td>
+            #else
+                <td>$channel.status()</td>
+            #end
             <td>
-                <ol>
+                <ul>
                     #foreach($time in $channel.times().all())
                         <li>
-                            <span class="channel-time-name">$time.getName()</span>
+                            <span class="channel-time-name">$time.getName()|</span>
                             <span class="channel-time-value">$time.value()</span>
                         </li>
                     #end
-                </ol>
+                </ul>
             </td>
         </tr>
         #end

@@ -301,4 +301,25 @@ tr:hover{
 .queuemgr-desc{
     color:darkblue;
 }
-.
+.channel-time-name{
+
+}
+.channel-time-value{
+    color:blue;
+    font-size:110%;
+}
+.channel-stopped{
+    color:indianred;
+    font-size:120%;
+}
+.channel-inactive{
+    color:orange;
+    font-size:120%;
+}
+.channel-running{
+    color:yellowgreen;
+    font-size:120%;
+}
+.channel-table{
+    font-size:95%;
+}

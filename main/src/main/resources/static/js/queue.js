@@ -79,7 +79,7 @@ QueueHit = function(){
 
     var displayChannels = function(data){
        var response= $(data);
-       $("#queue-channels").dialog({height:"auto", width: 500, modal: true});
+       $("#queue-channels").dialog({height:"auto", width: 600, modal: true});
        $("#queue-channels").html(data);
        $("#loading-div-background").hide();
     };

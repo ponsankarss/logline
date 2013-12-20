@@ -66,10 +66,18 @@ public class Channel {
         return times;
     }
 
+    public boolean isRunning(){
+        return "Running".equals(status());
+    }
+    public boolean isStopped(){
+        return "Stopped".equals(status());
+    }
+    public boolean isInactive(){
+        return "Inactive".equals(status());
+    }
     private int getIntValue(int key) {
         return (Integer) dataMap.get(key);
     }
-
     private String getStringValue(int key) {
         return ((String) dataMap.get(key));
     }
