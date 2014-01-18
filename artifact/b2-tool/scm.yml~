@@ -1,9 +1,0 @@
-name: b2-r13.5-dev
-location : C:/Work/code/Release/13.5/configuration/dev/b2home
----
-name: b2-r13.5-mo
-location : C:/Work/code/Release/13.5/configuration/mo/b2home
----
-name: b2-r13.5-prod
-location : C:/Work/code/Release/13.5/configuration/prod/b2home
----
