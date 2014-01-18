@@ -1,0 +1,45 @@
+#*********************************************************************
+#SAMPLE
+#*********************************************************************
+name: google
+url: http://www.google.com
+method: get
+environment: sample
+---
+name: vijayrc
+url: http://www.vijayrc.com
+method: get
+environment: sample
+---
+
+#*********************************************************************
+#B2-P5-DEV
+#*********************************************************************
+name: ui
+url: http://XXXXX:9107/blue2web/general/login.do
+method: get
+environment: b2-p5-dev
+---
+name: router-state-change
+url: http://XXXXXX:9107/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p5-dev
+params:
+    - action
+---
+#*********************************************************************
+#B2-P5-MO
+#*********************************************************************
+name: ui
+url: http://nasnmasmo:81/blue2web/general/login.do
+method: get
+environment: b2-p5-dev
+---
+name: router-state-change
+url: http://nasnmasmo:81/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p5-mo
+params:
+    - action
+---
+

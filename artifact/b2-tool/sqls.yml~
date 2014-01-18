@@ -1,0 +1,88 @@
+#***************************************************
+#SAMPLE
+#***************************************************
+name: blog-posts-count
+sql: SELECT COUNT(*) FROM POST
+db: vectorclocks-postgres
+---
+name: blog-tags
+sql: SELECT NAME,DISPLAY FROM TAG
+db: vectorclocks-postgres
+---
+name: all-handsets
+sql: select * from  handset
+db: dealsite-mysql
+---
+
+#***************************************************
+#B2-DEV
+#***************************************************
+name: messages-count
+sql: SELECT COUNT(*) FROM IPP_MSG_SEARCH WITH UR;
+db: b2-dev
+---
+name: scheduled-tasks
+sql: SELECT TASKID,TASKSUSPENDED,CANCELLED,NEXTFIRETIME,REPEATINTERVAL,NAME, MAXATTEMPTS,OWNERTOKEN,CREATETIME FROM IPP_SCHED_TASK WITH UR;
+db: b2-dev
+---
+name: upcoming-retries
+sql: SELECT SCH.TASKID,SCH.NAME,SUBSTR(SCH.NAME,14,32) AS MSG_ID,MSG.MSG_STS_CD,TIMESTAMP('1970-01-01-00.00.00.000000')+(SCH.NEXTFIRETIME/1000-14400) SECONDS AS NEXTFIRETIME, TIMESTAMP('1970-01-01-00.00.00.000000')+(SCH.CREATETIME/1000-14400) SECONDS AS CREATETIME, SCH.TASKSUSPENDED, SCH.CANCELLED, TIMESTAMP('1970-01-01-00.00.00.000000')+(SCH.VALIDFROMTIME/1000-14400) SECONDS AS VALIDFROM, SCH.VALIDTOTIME AS VALIDTO,SCH.MAXREPEATS,SCH.REPEATSLEFT, SCH.MAXATTEMPTS,SCH.QOS,SCH.OWNERTOKEN FROM IPP_SCHED_TASK SCH JOIN IPP_MSG_SEARCH MSG ON MSG.MSG_ID = SUBSTR(SCH.NAME,14,32) WHERE NAME LIKE 'Retr%' ORDER BY NEXTFIRETIME WITH UR;
+db: b2-dev
+---
+name: automation-messages-count
+sql: SELECT COUNT(*) FROM B2_MSG_AUTOMATION WHERE  ARCHIVE_MSG_TS < CURRENT_TIMESTAMP WITH UR;
+db: b2-dev
+---
+name: open-messsages-count-total
+sql: SELECT COUNT(*) FROM IPP_MSG_OPEN_INV WITH UR;
+db: b2-dev
+---
+name: open-messsages-count-today
+sql: SELECT COUNT(*) FROM IPP_MSG_OPEN_INV WHERE CRT_TS > CURRENT_TIMESTAMP - 1 DAY WITH UR
+db: b2-dev
+---
+name: hold-messsages-count-total
+sql: SELECT COUNT(*) FROM IPP_MSG_HOLD WITH UR;
+db: b2-dev
+---
+name: hold-messsages-count-today
+sql: SELECT COUNT(*) FROM IPP_MSG_HOLD WHERE LAST_UPDT_TS > CURRENT_TIMESTAMP - 1 DAY WITH UR
+db: b2-dev
+---
+
+
+#***************************************************
+#B2-MO
+#***************************************************
+name: messages-count
+sql: SELECT COUNT(*) FROM IPP_MSG_SEARCH;
+db: b2-mo
+---
+name: scheduled-tasks
+sql: SELECT TASKID,TASKSUSPENDED,CANCELLED,NEXTFIRETIME,REPEATINTERVAL,NAME, MAXATTEMPTS,OWNERTOKEN,CREATETIME FROM IPP_SCHED_TASK;
+db: b2-mo
+---
+name: upcoming-retries
+sql: SELECT SCH.TASKID,SCH.NAME,SUBSTR(SCH.NAME,14,32) AS MSG_ID,MSG.MSG_STS_CD,TIMESTAMP('1970-01-01-00.00.00.000000')+(SCH.NEXTFIRETIME/1000-14400) SECONDS AS NEXTFIRETIME, TIMESTAMP('1970-01-01-00.00.00.000000')+(SCH.CREATETIME/1000-14400) SECONDS AS CREATETIME, SCH.TASKSUSPENDED, SCH.CANCELLED, TIMESTAMP('1970-01-01-00.00.00.000000')+(SCH.VALIDFROMTIME/1000-14400) SECONDS AS VALIDFROM, SCH.VALIDTOTIME AS VALIDTO,SCH.MAXREPEATS,SCH.REPEATSLEFT, SCH.MAXATTEMPTS,SCH.QOS,SCH.OWNERTOKEN FROM IPP_SCHED_TASK SCH JOIN IPP_MSG_SEARCH MSG ON MSG.MSG_ID = SUBSTR(SCH.NAME,14,32) WHERE NAME LIKE 'Retr%' ORDER BY NEXTFIRETIME
+db: b2-mo
+---
+name: automation-messages-count
+sql: SELECT COUNT(*) FROM B2_MSG_AUTOMATION WHERE  ARCHIVE_MSG_TS < CURRENT_TIMESTAMP WITH UR;
+db: b2-mo
+---
+name: open-messsages-count-total
+sql: SELECT COUNT(*) FROM IPP_MSG_OPEN_INV WITH UR;
+db: b2-mo
+---
+name: open-messsages-count-today
+sql: SELECT COUNT(*) FROM IPP_MSG_OPEN_INV WHERE CRT_TS > CURRENT_TIMESTAMP - 1 DAY WITH UR
+db: b2-mo
+---
+name: hold-messsages-count-total
+sql: SELECT COUNT(*) FROM IPP_MSG_HOLD WITH UR;
+db: b2-mo
+---
+name: hold-messsages-count-today
+sql: SELECT COUNT(*) FROM IPP_MSG_HOLD WHERE LAST_UPDT_TS > CURRENT_TIMESTAMP - 1 DAY WITH UR
+db: b2-mo
+---

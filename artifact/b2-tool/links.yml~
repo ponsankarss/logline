@@ -1,0 +1,607 @@
+#*********************************************************************
+#SAMPLE
+#*********************************************************************
+name: google
+url: http://www.google.com
+method: get
+environment: sample
+---
+name: vijayrc
+url: http://www.vijayrc.com
+method: get
+environment: sample
+---
+
+#*********************************************************************
+#B2-P5-DEV
+#*********************************************************************
+name: ui
+url: http://nasnmasdev:9107/blue2web/general/login.do
+method: get
+environment: b2-p5-dev
+---
+name: router-state-change
+url: http://nasnmasdev:9107/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p5-dev
+params:
+    - action
+---
+name: postprocessor
+url: http://nasnmasdev:9107/blue2_plan_postprocessorWeb/services/ServiceProcessor
+method: get
+environment: b2-p5-dev
+---
+name: remediation
+url: http://nasnmasdev:9107/blue2_plan_remediationWeb/b2remediation/transfer/show/
+method: get
+environment: b2-p5-dev
+---
+name: terminate
+url: http://nasnmasdev:9107/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p5-dev
+---
+name: claimsadmin
+url: https://nasnmasdev:9503/cacert/service/soap/sf
+method: get
+environment: b2-p5-dev
+---
+name: serviceprocessor
+url: https://nasnmasdev:9503/blue2/services/ServiceProcessor
+method: get
+environment: b2-p5-dev
+---
+#*********************************************************************
+#B2-P5-MO
+#*********************************************************************
+name: ui
+url: http://nasnmasmo:81/blue2web/general/login.do
+method: get
+environment: b2-p5-dev
+---
+name: router-state-change
+url: http://nasnmasmo:81/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p5-mo
+params:
+    - action
+---
+name: postprocessor
+url: http://nasnmasmo:81/blue2_plan_postprocessorWeb/services/ServiceProcessor
+method: get
+environment: b2-p5-mo
+---
+name: remediation
+url: http://nasnmasmo:81/blue2_plan_remediationWeb/b2remediation/transfer/show
+method: get
+environment: b2-p5-mo
+---
+name: terminate
+url: http://nasnmasmo:81/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p5-mo
+---
+name: claimsadmin
+url: https://nasnmasmo:9454/cacert/service/soap/sf
+method: get
+environment: b2-p5-mo
+---
+name: serviceprocessor
+url: https://nasnmasmo:9454/blue2/services/ServiceProcessor
+method: get
+environment: b2-p5-mo
+---
+#*********************************************************************
+#B2-P5-PROD
+#*********************************************************************
+name: ui
+url: http://nasnmas3/blue2web/general/login.do
+method: get
+environment: b2-p5-dev
+---
+name: router-state-change
+url: http://nasnmas3/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p5-prod
+params:
+    - action
+---
+name: postprocessor
+url: http://nasnmas3/blue2_plan_postprocessorWeb/services/ServiceProcessor
+method: get
+environment: b2-p5-prod
+---
+name: remediation
+url: http://nasnmas3/blue2_plan_remediationWeb/b2remediation/transfer/show
+method: get
+environment: b2-p5-prod
+---
+name: terminate
+url: http://nasnmas3/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p5-prod
+---
+name: claimsadmin
+url: https://nasnmas3:9454/cacert/service/soap/sf
+method: get
+environment: b2-p5-prod
+---
+name: serviceprocessor
+url: https://nasnmas3:9454/blue2/services/ServiceProcessor
+method: get
+environment: b2-p5-prod
+#*********************************************************************
+#B2-P7-DEV
+#*********************************************************************
+name: ui
+url: http://naswasdev02:18010/blue2web/general/login.do
+method: get
+environment: b2-p5-dev
+---
+name: router-state-change
+url: http://naswasdev02:18010/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p7-dev
+params:
+    - action
+---
+name: postprocessor
+url: http://naswasdev02:18010/blue2_plan_postprocessorWeb/services/ServiceProcessor
+method: get
+environment: b2-p7-dev
+---
+name: remediation
+url: http://naswasdev02:18010/blue2_plan_remediationWeb/b2remediation/transfer/show/
+method: get
+environment: b2-p7-dev
+---
+name: terminate
+url: http://naswasdev02:18010/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p7-dev
+---
+name: claimsadmin
+url: https://naswasdev02:18011/cacert/service/soap/sf
+method: get
+environment: b2-p7-dev
+---
+name: serviceprocessor
+url: https://naswasdev02:18011/blue2/services/ServiceProcessor
+method: get
+environment: b2-p7-dev
+---
+name: planintegration
+url: http://naswasdev02:18010/blue2_plan_integration_jaxws_web/IPPPlanIntegrationService
+method: get
+environment: b2-p7-dev
+---
+#*********************************************************************
+#B2-P7-MO-1
+#*********************************************************************
+name: ui
+url: http://naswasmo04:18010/blue2web/general/login.do
+method: get
+environment: b2-p7-mo4
+---
+name: router-state-change
+url: http://naswasmo04:18010/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p7-mo4
+params:
+    - action
+---
+name: postprocessor
+url: http://naswasmo04:18010/blue2_plan_postprocessorWeb/services/ServiceProcessor
+method: get
+environment: b2-p7-mo4
+---
+name: remediation
+url: http://naswasmo04:18010/blue2_plan_remediationWeb/b2remediation/transfer/show/
+method: get
+environment: b2-p7-mo4
+---
+name: terminate
+url: http://naswasmo04:18010/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p7-mo4
+---
+name: claimsadmin
+url: https://naswasmo04:18011/cacert/service/soap/sf
+method: get
+environment: b2-p7-mo4
+---
+name: serviceprocessor
+url: https://naswasmo04:18011/blue2/services/ServiceProcessor
+method: get
+environment: b2-p7-mo4
+---
+name: planintegration
+url: http://naswasmo04:18010/blue2_plan_integration_jaxws_web/IPPPlanIntegrationService
+method: get
+environment: b2-p7-mo4
+---
+#*********************************************************************
+#B2-P7-MO-2
+#*********************************************************************
+name: ui
+url: http://naswasmo05:18010/blue2web/general/login.do
+method: get
+environment: b2-p7-mo5
+---
+name: router-state-change
+url: http://naswasmo05:18010/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p7-mo5
+params:
+    - action
+---
+name: postprocessor
+url: http://naswasmo05:18010/blue2_plan_postprocessorWeb/services/ServiceProcessor
+method: get
+environment: b2-p7-mo5
+---
+name: remediation
+url: http://naswasmo05:18010/blue2_plan_remediationWeb/b2remediation/transfer/show/
+method: get
+environment: b2-p7-mo5
+---
+name: terminate
+url: http://naswasmo05:18010/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p7-mo5
+---
+name: claimsadmin
+url: https://naswasmo05:18011/cacert/service/soap/sf
+method: get
+environment: b2-p7-mo5
+---
+name: serviceprocessor
+url: https://naswasmo05:18011/blue2/services/ServiceProcessor
+method: get
+environment: b2-p7-mo5
+---
+name: planintegration
+url: http://naswasmo05:18010/blue2_plan_integration_jaxws_web/IPPPlanIntegrationService
+method: get
+environment: b2-p7-mo5
+---
+#*********************************************************************
+#B2-P7-MO-3
+#*********************************************************************
+name: ui
+url: http://naswasmo06:18010/blue2web/general/login.do
+method: get
+environment: b2-p7-mo6
+---
+name: router-state-change
+url: http://naswasmo06:18010/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p7-mo6
+params:
+    - action
+---
+name: postprocessor
+url: http://naswasmo06:18010/blue2_plan_postprocessorWeb/services/ServiceProcessor
+method: get
+environment: b2-p7-mo6
+---
+name: remediation
+url: http://naswasmo06:18010/blue2_plan_remediationWeb/b2remediation/transfer/show/
+method: get
+environment: b2-p7-mo6
+---
+name: terminate
+url: http://naswasmo06:18010/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p7-mo6
+---
+name: claimsadmin
+url: https://naswasmo06:18011/cacert/service/soap/sf
+method: get
+environment: b2-p7-mo6
+---
+name: serviceprocessor
+url: https://naswasmo06:18011/blue2/services/ServiceProcessor
+method: get
+environment: b2-p7-mo6
+---
+name: planintegration
+url: http://naswasmo06:18010/blue2_plan_integration_jaxws_web/IPPPlanIntegrationService
+method: get
+environment: b2-p7-mo6
+---
+#*********************************************************************
+#B2-P7-PROD-1
+#*********************************************************************
+name: ui
+url: http://naswas04:18010/blue2web/general/login.do
+method: get
+environment: b2-p7-prod4
+---
+name: router-state-change
+url: http://naswas04:18010/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p7-prod4
+params:
+    - action
+---
+name: postprocessor
+url: http://naswas04:18010/blue2_plan_postprocessorWeb/services/ServiceProcessor
+method: get
+environment: b2-p7-prod4
+---
+name: remediation
+url: http://naswas04:18010/blue2_plan_remediationWeb/b2remediation/transfer/show/
+method: get
+environment: b2-p7-prod4
+---
+name: terminate
+url: http://naswas04:18010/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p7-prod4
+---
+name: claimsadmin
+url: https://naswas04:18011/cacert/service/soap/sf
+method: get
+environment: b2-p7-prod4
+---
+name: serviceprocessor
+url: https://naswas04:18011/blue2/services/ServiceProcessor
+method: get
+environment: b2-p7-prod4
+---
+name: planintegration
+url: http://naswas04:18010/blue2_plan_integration_jaxws_web/IPPPlanIntegrationService
+method: get
+environment: b2-p7-prod4
+---
+#*********************************************************************
+#B2-P7-PROD-2
+#*********************************************************************
+name: ui
+url: http://naswas05:18010/blue2web/general/login.do
+method: get
+environment: b2-p7-prod5
+---
+name: router-state-change
+url: http://naswas05:18010/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p7-prod5
+params:
+    - action
+---
+name: postprocessor
+url: http://naswas05:18010/blue2_plan_postprocessorWeb/services/ServiceProcessor
+method: get
+environment: b2-p7-prod5
+---
+name: remediation
+url: http://naswas05:18010/blue2_plan_remediationWeb/b2remediation/transfer/show/
+method: get
+environment: b2-p7-prod5
+---
+name: terminate
+url: http://naswas05:18010/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p7-prod5
+---
+name: claimsadmin
+url: https://naswas05:18011/cacert/service/soap/sf
+method: get
+environment: b2-p7-prod5
+---
+name: serviceprocessor
+url: https://naswas05:18011/blue2/services/ServiceProcessor
+method: get
+environment: b2-p7-prod5
+---
+name: planintegration
+url: http://naswas05:18010/blue2_plan_integration_jaxws_web/IPPPlanIntegrationService
+method: get
+environment: b2-p7-prod5
+---
+#*********************************************************************
+#B2-P7-PROD-3
+#*********************************************************************
+name: ui
+url: http://naswas06:18010/blue2web/general/login.do
+method: get
+environment: b2-p7-prod6
+---
+name: router-state-change
+url: http://naswas06:18010/blue2_wsrouterWeb/B2KillRouter
+method: post
+environment: b2-p7-prod6
+params:
+    - action
+---
+name: postprocessor
+url: http://naswas06:18010/blue2_plan_postprocessorWeb/services/ServiceProcessor
+method: get
+environment: b2-p7-prod6
+---
+name: remediation
+url: http://naswas06:18010/blue2_plan_remediationWeb/b2remediation/transfer/show/
+method: get
+environment: b2-p7-prod6
+---
+name: terminate
+url: http://naswas06:18010/blue2_plan_term_msgWeb/b2terminate/home
+method: get
+environment: b2-p7-prod6
+---
+name: claimsadmin
+url: https://naswas06:18011/cacert/service/soap/sf
+method: get
+environment: b2-p7-prod6
+---
+name: serviceprocessor
+url: https://naswas06:18011/blue2/services/ServiceProcessor
+method: get
+environment: b2-p7-prod6
+---
+name: planintegration
+url: http://naswas06:18010/blue2_plan_integration_jaxws_web/IPPPlanIntegrationService
+method: get
+environment: b2-p7-prod6
+---
+#*********************************************************************
+#DNL
+#*********************************************************************
+name: dnl-login
+url: http://206.201.99.252/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-dev
+---
+name: dnl-login-mo1
+url: http://naswasmo01:14010/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-mo
+---
+name: dnl-login-mo2
+url: http://naswasmo02:14010/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-mo
+---
+name: dnl-login-mo3
+url: http://naswasmo03:14010/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-mo
+---
+name: dnl-login-mo-lb
+url: https://solutions-mo.nasco.bluesnet.net/datanet-lite
+method: get
+environment: dnl-p7-mo
+---
+name: dnl-login-prod1
+url: http://naswas01:14010/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-prod
+---
+name: dnl-login-prod2
+url: http://naswas02:14010/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-prod
+---
+name: dnl-login-prod3
+url: http://naswas03:14010/datanet-lite/assets/login.jsp
+method: get
+environment: dnl-p7-prod
+---
+name: dnl-login-lb
+url: https://solutions.nasco.bluesnet.net/datanet-lite
+method: get
+environment: dnl-p7-prod
+---
+#*********************************************************************
+#DP-MO
+#*********************************************************************
+name: claimsaadmin-service-external
+url: https://206.201.99.175/Blue2ClaimsAdminMediationExtWeb/sca/ClaimsAdministrationSfExt
+method: get
+environment: dp-mo
+---
+name: claimsaadmin-external-service-ssl
+url: https://206.201.96.36:8005/Blue2ClaimsAdminMediationExtWeb/sca/ClaimsAdministrationSfExt
+method: get
+environment: dp-mo
+---
+name: claimsaadmin-service-external
+url: http://206.201.96.36:8301/Blue2ClaimsAdminMediationExtWeb/sca/ClaimsAdministrationSfExt
+method: get
+environment: dp-mo
+---
+name: claims-service-external
+url: https://206.201.99.175/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-mo
+---
+name: claims-external-service-ssl
+url: https://206.201.96.36:8005/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-mo
+---
+name: claims-service-external
+url: http://206.201.96.36:8301/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-mo
+---
+name: serviceprocessor-external-lb
+url: https://206.201.99.175/Blue2ServiceProcessorMediationExtWeb/sca/ServiceProcessorExt
+method: get
+environment: dp-mo
+---
+name: serviceprocessor-external-ssl
+url: https://206.201.96.36:8005/Blue2ServiceProcessorMediationExtWeb/sca/ServiceProcessorExt
+method: get
+environment: dp-mo
+---
+name: serviceprocessor-external-service
+url: http://206.201.96.36:8301/Blue2ServiceProcessorMediationExtWeb/sca/ServiceProcessorExt
+method: get
+environment: dp-mo
+---
+name: serviceprocessor-internal-service
+url: http://206.201.96.36:8301/Blue2ServiceProcessorMediationIntWeb/sca/ServiceProcessorInt
+method: get
+environment: dp-mo
+---
+#*********************************************************************
+#DP-PROD
+#*********************************************************************
+name: claimsaadmin-service-external
+url: https://206.201.99.13/Blue2ClaimsAdminMediationExtWeb/sca/ClaimsAdministrationSfExt
+method: get
+environment: dp-prod
+---
+name: claimsaadmin-service-external-ssl
+url: https://206.201.96.51:8005/Blue2ClaimsAdminMediationExtWeb/sca/ClaimsAdministrationSfExt
+method: get
+environment: dp-prod
+---
+name: claimsaadmin-service-external-services
+url: http://206.201.96.52:8301/Blue2ClaimsAdminMediationExtWeb/sca/ClaimsAdministrationSfExt
+method: get
+environment: dp-prod
+---
+name: claims-service-external
+url: https://206.201.99.13/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-prod
+---
+name: claims-service-external-ssl
+url: https://206.201.96.51:8005/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-prod
+---
+name: claims-service-external-services-1
+url: http://206.201.96.51:8301/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-prod
+---
+name: claims-service-external-services-2
+url: http://206.201.96.52:8301/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-prod
+---
+name: serviceprocessor-external-services-lb
+url: https://206.201.99.13/Blue2ServiceProcessorMediationExtWeb/sca/ServiceProcessorExt
+method: get
+environment: dp-prod
+---
+name: serviceprocessor-external-services-1
+url: http://206.201.96.51:8301/Blue2ServiceProcessorMediationExtWeb/sca/ServiceProcessorExt
+method: get
+environment: dp-prod
+---
+name: serviceprocessor-external-services-2
+url: http://206.201.96.52:8301/Blue2ClaimServiceMediationExtWeb/sca/ClaimManagerExt
+method: get
+environment: dp-prod
+---
+name: serviceprocessor-internal-service
+url: http://10.39.15.159:8301/Blue2ServiceProcessorMediationIntWeb/sca/ServiceProcessorInt
+method: get
+environment: dp-prod
+---

@@ -1,0 +1,37 @@
+<div class="alert">Please verify userid and password in dbs.yml before proceeding, your userid can get revoked on multiple runs with wrong password</div>
+<ol>
+#foreach($key in $group.keySet())
+<li>
+    <a  class="expand-db" href="#"><img src="/static/images/db.png"/><span class="header">$key</span></a>
+    <div class="content-db">
+    <input db="${key}" class="query-main-btn btn-primary" value="run all" type="button"/>
+    <table class="table query-table table-condensed">
+        <thead class="query-table-head">
+           <tr><td>name</td><td>sql</td><td>database</td><td>action</td></tr>
+        </thead>
+        <tbody>
+        #foreach($query in $group.findGroup($key).findAll())
+            <tr class="query-row">
+                <td class="query-name-col">$query.getName()</td>
+                <td class="query-sql-col">$query.getSql()</td>
+                <td class="query-db-col">$query.getDb() </td>
+                <td class="query-hit-col">
+                       <input
+                           query="${query.getName()}"
+                           db="${query.getDb()}"
+                           type="button"
+                           class="btn-info btn-mini query-small-btn"
+                           value="run"/>
+                 </td>
+            </tr>
+            <tr class="query-result-row">
+            <td colspan="4" class="query-hit-result-col">
+                <div id="${query.getDb()}-${query.getName()}-response"></div>
+            </td>
+            </tr>
+         #end
+         </tbody>
+    </table>
+   </div>
+</li>
+#end

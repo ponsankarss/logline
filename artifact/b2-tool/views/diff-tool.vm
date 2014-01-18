@@ -1,0 +1,26 @@
+<form id="diff_tool_form" class="form-horizontal" action="">
+<h3>Configuration Matcher<img src="/static/images/settings.png"/></h3>
+<div class="control-group">
+     <label for="machine" class="control-label">Machine</label>
+     <div class="controls">
+        <select id="machine">
+            #foreach($machine in $machines)
+                <option>$machine</option>
+            #end
+        </select>
+     </div>
+</div>
+<div class="control-group">
+     <label for="scm" class="control-label">SCM</label>
+     <div class="controls">
+        <select id="scm">
+            #foreach($scm in $scms)
+                <option>$scm</option>
+             #end
+        </select>
+     </div>
+</div>
+<div id="buttons" class="form-actions">
+    <input type="button" class="btn btn-primary" id="fetch_diff" value="Start"/>
+</div>
+</form>

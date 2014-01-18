@@ -1,0 +1,80 @@
+<div id="fetch-log" class="span4">#logFetch()</div>
+<div id="search-log" class="span6">#logSearch()</div>
+<div id="tail-log" class="span12">#logTail()</div>
+
+#macro(logSearch)
+<h3>Search Logs<img src="/static/images/search.gif"/></h3>
+<div id="form_table" class="span8">
+    <form id="log_form" class="form-horizontal" action="">
+        <div class="control-group">
+            <label for="folder" class="control-label">Logs Folder</label>
+            <div class="controls">
+                <select id="folder">
+                    #foreach($folder in $folders)
+                    <option value="${folder.getAbsolutePath()}">$folder.getName()</option>
+                    #end
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="keys" class="control-label">Keys</label>
+            <div class="controls"><input id="keys" type="text"  class="input-xxlarge"/> <span class="help-inline">separate keys by comma ','</span></div>
+        </div>
+        <div class="control-group">
+		    <label for="start_date" class="control-label">Start Date</label>
+		    <div class="controls">
+		        <input id="start_date" class="input-large" type="text"/>
+		    </div>
+		</div>
+		<div class="control-group">
+		    <label for="end_date" class="control-label">End Date</label>
+		    <div class="controls">
+		        <input id="end_date" class="input-large" type="text"/>
+		    </div>
+		</div>
+        <div class="control-group">
+		    <label for="option" class="control-label">Option</label>
+		    <div class="controls">
+		        <select id="option">
+		            <option value="both">Key search+Error Analysis</option>
+		            <option value="key">Key Search</option>
+		            <option value="error">Error Analysis</option>
+		        </select>
+		    </div>
+		</div>
+        <div id="buttons" class="form-actions">
+            <input type="button" class="btn btn-primary" id="analyse" value="Analyse"/>
+        </div>
+    </form>
+</div>
+#end
+
+#macro(logFetch)
+<form id="log_fetch_form" class="form-horizontal" action="">
+<h3>Fetch Logs<img src="/static/images/download.png"/></h3>
+<div class="control-group">
+     <label for="folder" class="control-label">Machine</label>
+     <div class="controls">
+        <select id="machine">
+            #foreach($machine in $machines)
+                <option>$machine</option>
+            #end
+        </select>
+     </div>
+</div>
+<div id="buttons" class="form-actions">
+    <input type="button" class="btn btn-primary" id="browse_logs" value="Browse"/>
+</div>
+</form>
+<div id="browse-logs-dialog"></div>
+#end
+
+#macro(logTail)
+<div id="tail-tabs">
+   <ul id="tail-list">
+        <li><a href="#tail-index"><img src="/static/images/log.gif"/>tails</a></li>
+   </ul>
+   <div id="tail-index">
+   </div>
+</div>
+#end

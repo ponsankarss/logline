@@ -1,0 +1,16 @@
+<div class="span4">
+    <form class="form-horizontal" action="">
+    <p id="pick-log">Pick files to download</p>
+    <div class="control-group">
+         <select multiple="multiple" id="logFileNames">
+         #foreach($logFile in $logFiles)
+            <option>$logFile</option>
+         #end
+         </select>
+    </div>
+    <div id="buttons" class="form-actions">
+        <input type="button" class="btn btn-primary" id="download_logs" value="Download"/>
+        <input type="button" class="btn btn-primary" id="tail_logs" value="Tail"/>
+    </div>
+    </form>
+</div>
