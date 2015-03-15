@@ -19,14 +19,11 @@ public class SupportGuy {
     }
 
     private static void stop(final MyServer myServer) {
-        Thread hook = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    myServer.stop();
-                } catch (Exception e) {
-                    log.error(e);
-                }
+        Thread hook = new Thread(() -> {
+            try {
+                myServer.stop();
+            } catch (Exception e) {
+                log.error(e);
             }
         });
         Runtime.getRuntime().addShutdownHook(hook);
