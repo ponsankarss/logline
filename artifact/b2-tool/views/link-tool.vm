@@ -1,0 +1,45 @@
+<ol>
+#foreach($key in $map.keySet())
+<li>
+    <a class="expand-link" href="#"><img src="/static/images/link.png"/><span class="header">$key</span></a>
+    <div class="content-link">
+        <input environment="${key}" class="link-main-btn btn-primary"  value="hit all" type="button"/>
+        <table class="table  link-table table-condensed">
+            <thead class="link-table-head">
+               <tr><td>name</td><td>params</td><td>action</td><td>status</td></tr>
+            </thead>
+            <tbody>
+                #foreach($link in $map.get($key))
+                    <tr>
+                        <td class="link-name-col"><a href="${link.getUrl()}">$link.getName()</a></td>
+                        <td class="link-params-col">
+                            #if($link.hasParams())
+                                <ul>
+                                #foreach($param in $link.getParams())
+                                    <li><span>$param :</span><span><input class="link-param-input" name="${param}" type="text"/></span></li>
+                                #end
+                                </ul>
+                            #end
+                        </td>
+                        <td class="link-hit-col">
+                            <input
+                                url="${link.getName()}"
+                                env="${link.getEnvironment()}"
+                                type="button"
+                                class="btn-info btn-mini link-small-btn"
+                                value="hit"/>
+                        </td>
+                        <td class="link-hit-result-col"><div id="${link.getEnvironment()}-${link.getName()}"></div></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="link-hit-result">
+                            <div id="${link.getEnvironment()}-${link.getName()}-response"></div>
+                        </td>
+                    </tr>
+                 #end
+             </tbody>
+        </table>
+   </div>
+</li>
+#end
+ </ol>

@@ -1,0 +1,8 @@
+<div class="span4">
+    <h3>Fetched files</h3>
+    <ul>
+    #foreach($logName in $logNames)
+      <li>$logName</li>
+    #end
+    </ul>
+</div>

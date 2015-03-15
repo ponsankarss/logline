@@ -1,0 +1,30 @@
+<h2>$queueMgr.getName()</h2>
+<table class="table table-condensed channel-table">
+    <thead><th>Name</th><th>Status</th></thead>
+    <tbody>
+        #foreach($channel in $channels)
+        <tr>
+            <td>$channel.name()</td>
+            #if($channel.isRunning())
+                <td class="channel-running">$channel.status()</td>
+            #elseif($channel.isStopped())
+                <td class="channel-stopped">$channel.status()</td>
+            #elseif($channel.isInactive())
+                <td class="channel-inactive">$channel.status()</td>
+            #else
+                <td>$channel.status()</td>
+            #end
+            <td>
+                <ul>
+                    #foreach($time in $channel.times().all())
+                        <li>
+                            <span class="channel-time-name">$time.getName()|</span>
+                            <span class="channel-time-value">$time.value()</span>
+                        </li>
+                    #end
+                </ul>
+            </td>
+        </tr>
+        #end
+    </tbody>
+</table>

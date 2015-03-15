@@ -1,0 +1,21 @@
+name: vectorclocks-postgres
+url: jdbc:postgresql://localhost/vectorclocks
+user: postgres
+password: password
+driver: org.postgresql.Driver
+schema: blog
+---
+name: dealsite-mysql
+url: jdbc:mysql://localhost/dealsite
+user: vijayrc
+password: password
+driver: com.mysql.jdbc.Driver
+schema: mobile
+---
+name: b2-dev
+url: jdbc:db2://XX.XXX.XXX.XX:XX10/XX1DDXX
+user: T6XXXX
+password: XXXXX13
+driver: com.ibm.db2.jcc.DB2Driver
+schema: XXXXX
+---

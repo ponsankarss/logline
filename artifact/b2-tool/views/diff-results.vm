@@ -1,0 +1,21 @@
+<h2>Changed Files [Server] to [SCM]</h2>
+<ul>
+#foreach($fileDiff in $changedFileDiffs)
+#if($fileDiff.hasResult())
+<li>
+    <span class="expand-diff">$fileDiff.name()</span>
+    <div class="content-diff">
+          <pre>$fileDiff.result()</pre>
+    </div>
+</li>
+#end
+#end
+</ul>
+<h2>Missing Files [SCM]</h2>
+<ul>
+#foreach($fileDiff in $missingFileDiffs)
+<li>
+    $fileDiff.name();
+</li>
+#end
+</ul>

@@ -1,0 +1,16 @@
+#***************************************************
+#SAMPLE
+#***************************************************
+name: blog-posts-count
+sql: SELECT COUNT(*) FROM POST
+db: vectorclocks-postgres
+---
+name: blog-tags
+sql: SELECT NAME,DISPLAY FROM TAG
+db: vectorclocks-postgres
+---
+name: all-handsets
+sql: select * from  handset
+db: dealsite-mysql
+---
+

@@ -2,6 +2,7 @@ package com.vijayrc.supportguy.controller;
 
 import com.vijayrc.supportguy.meta.WebClass;
 import com.vijayrc.supportguy.meta.WebMethod;
+import com.vijayrc.supportguy.util.Util;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.simpleframework.http.Request;
@@ -41,7 +42,7 @@ public class StaticController extends BaseController {
     }
 
     public String getPath(String path) {
-        return ClassLoader.getSystemResource(path).getFile();
+        return Util.resource(path);
     }
 
 }

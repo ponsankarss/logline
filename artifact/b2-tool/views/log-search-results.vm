@@ -1,0 +1,74 @@
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Search Results</a></li>
+        <li><a href="#tabs-2">Errors</a></li>
+    </ul>
+    <div id="tabs-1">
+        #searchResults()
+    </div>
+    <div id="tabs-2">
+        #errorResults()
+    </div>
+</div>
+
+
+#macro(toolbox)
+<div id="tool-dialog" title="ToolBox">
+<table id="tool-table">
+    <tr>
+        <td class="tool-table-column">Keys:</td>
+        <td class="tool-table-column">
+            <input type="button" id="key_prev" value="<"/>
+            <input type="button" id="key_next" value=">"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="tool-table-column">Thread:</td>
+        <td class="tool-table-column">
+            <input type="button" id="thread_prev" value="<"/>
+            <input type="button" id="thread_next" value=">"/>
+        </td>
+    </tr>
+</table>
+</div>
+#end
+
+#macro(searchResults)
+    <h2>Analysis</h2>
+    #foreach($context in $contexts)
+    <div class="thread-box">
+        <p class="expand"><a href="#">$context.name(): $context.startTime() -> $context.endTime()</a><img src="/static/images/arrow.gif"/></p>
+        <div class="content">
+            <ul>
+                #foreach($line in $context.lines())
+                <li class="key-item"><pre>$line.html()</pre></li>
+                #end
+            </ul>
+        </div>
+    </div>
+     #end
+
+#end
+
+#macro(errorResults)
+    <h2>Errors</h2>
+    #set( $count = 1 )
+    #foreach($key in $errorLines.keySet())
+        <div class="error-box">
+            <p class="expand-error">
+                <a href="#" class="error-no">$count</a><span class="error-occur-count">|$errorLines.get($key).size() times</span><div class="error-title">$key</div>
+            </p>
+            <div class="content-error">
+                <ul>
+                    #foreach($line in $errorLines.get($key))
+                    <li>
+                        <p class="expand-error"><a class="error-time" href="#">$line.timestamp()</a></p>
+                        <div class="content-error"><pre>$line.html()</pre></div>
+                    </li>
+                    #end
+                </ul>
+            </div>
+            #set($count = $count+1)
+        </div>
+    #end
+#end

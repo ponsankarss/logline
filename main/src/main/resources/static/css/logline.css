@@ -264,4 +264,6 @@ tr:hover{
 .query-hit-result-col{
    background: #F0F8FF;
 }
-
+#folder{
+    width:auto;
+}

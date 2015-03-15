@@ -76,8 +76,7 @@ public class DbService {
     private Connection connectTo(Database database) throws Exception {
         Driver driver = (Driver) Class.forName(database.getDriver(), true, loader).newInstance();
         DriverManager.registerDriver(new MyDriver(driver));
-        Connection connection = DriverManager.getConnection(database.getUrl(), database.getUser(), database.getPassword());
-        return connection;
+        return DriverManager.getConnection(database.getUrl(), database.getUser(), database.getPassword());
     }
 
     public Group<Query> getAll() {

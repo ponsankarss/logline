@@ -194,6 +194,11 @@ url: http://naswas03:14010/datanet-lite/assets/login.jsp
 method: get
 environment: dnl-p7-prod
 ---
+name: dnl-login-lb
+url: https://solutions.nasco.bluesnet.net/datanet-lite
+method: get
+environment: dnl-p7-prod
+---
 #*********************************************************************
 #DP-MO
 #*********************************************************************

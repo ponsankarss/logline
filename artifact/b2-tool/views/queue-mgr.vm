@@ -1,0 +1,12 @@
+<ul class="${queueMgr.getName()}" style="width:50%">
+    #foreach($queue in $queueMgr.getQueues())
+    <li class="queue-row">
+        <span class="queue-name">$queue.getName()</span>
+        <span class="queue-depth">$queue.getDepth()</span>
+        #if(!$queue.isEmpty())
+            <a queueMgr="${queueMgr.getName()}" queue="${queue.getName()}" class="queue-browse" href="/queue/browse/">browse</a>
+        #end
+        <div id="${queue.getName()}" class="queue-msgs"></div>
+    </li>
+    #end
+</ul>
